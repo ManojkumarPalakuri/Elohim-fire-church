@@ -199,6 +199,59 @@ export default function BiblePage() {
             </Helmet>
 
             <style>{`
+                :root {
+                    --bp-bg-main: #f5f0e8;
+                    --bp-bg-header: #ffffff;
+                    --bp-bg-sidebar: #ffffff;
+                    --bp-bg-alt: #faf7f2;
+                    --bp-bg-panel: #f8f1e4;
+                    --bp-bg-active: #fdf4e3;
+                    --bp-bg-hover: #f0e4d0;
+                    --bp-border: #e0d8cc;
+                    --bp-border-light: rgba(90,60,30,0.14);
+                    --bp-border-superlight: rgba(90,60,30,0.12);
+                    --bp-text-main: #1e1208;
+                    --bp-text-dark: #2a1a0a;
+                    --bp-text-muted: #555555;
+                    --bp-text-light: #777777; /* for #aaa, #bbb */
+                    --bp-text-accent: #6b4f2d;
+                    --bp-text-accent-light: #a08060;
+                    --bp-text-accent-hover: #8b6840;
+                    --bp-verse-hover: rgba(251,243,219,0.8);
+                    --bp-verse-active-bg: #fef9c3;
+                    --bp-verse-active-border: #b45309;
+                    --bp-error-bg: #fef2f2;
+                    --bp-error-border: #fecaca;
+                    --bp-error-text: #b91c1c;
+                    --bp-spinner: #e0d0b8;
+                }
+                .dark {
+                    --bp-bg-main: #020617;      /* slate-950 */
+                    --bp-bg-header: #0f172a;    /* slate-900 */
+                    --bp-bg-sidebar: #0f172a;
+                    --bp-bg-alt: #020617;
+                    --bp-bg-panel: #0b1120;
+                    --bp-bg-active: #1e293b;    /* slate-800 */
+                    --bp-bg-hover: #1e293b;
+                    --bp-border: #334155;       /* slate-700 */
+                    --bp-border-light: #1e293b;
+                    --bp-border-superlight: #1e293b;
+                    --bp-text-main: #f1f5f9;    /* slate-100 */
+                    --bp-text-dark: #f8fafc;    /* slate-50 */
+                    --bp-text-muted: #94a3b8;   /* slate-400 */
+                    --bp-text-light: #64748b;   /* slate-500 */
+                    --bp-text-accent: #e2e8f0;  /* slate-200 */
+                    --bp-text-accent-light: #94a3b8;
+                    --bp-text-accent-hover: #cbd5e1; /* slate-300 */
+                    --bp-verse-hover: rgba(51, 65, 85, 0.5); /* slate-700 w/ opacity */
+                    --bp-verse-active-bg: #1e293b; /* slate-800 */
+                    --bp-verse-active-border: #94a3b8; /* slate-400 */
+                    --bp-error-bg: #450a0a;
+                    --bp-error-border: #7f1d1d;
+                    --bp-error-text: #fca5a5;
+                    --bp-spinner: #334155;
+                }
+
                 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap');
                 @keyframes spin { to { transform: rotate(360deg); } }
                 @keyframes fadeUp { from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)} }
@@ -209,11 +262,11 @@ export default function BiblePage() {
                 ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 4px; }
                 ::-webkit-scrollbar-track { background: transparent; }
                 .verse-row { transition: background 0.25s ease, border-left 0.25s ease; border-left: 3px solid transparent; }
-                .verse-row:hover { background: rgba(251,243,219,0.8) !important; }
-                .verse-row.active { background: #fef9c3 !important; border-left: 3px solid #b45309 !important; border-radius: 0 6px 6px 0; }
-                .chapter-btn:hover { background: #f0e4d0 !important; }
-                .book-item:hover { background: #fdf4e3 !important; }
-                .verse-nav-btn:hover { background: #f0e4d0 !important; }
+                .verse-row:hover { background: var(--bp-verse-hover) !important; }
+                .verse-row.active { background: var(--bp-verse-active-bg) !important; border-left: 3px solid var(--bp-verse-active-border) !important; border-radius: 0 6px 6px 0; }
+                .chapter-btn:hover { background: var(--bp-bg-hover) !important; }
+                .book-item:hover { background: var(--bp-bg-active) !important; }
+                .verse-nav-btn:hover { background: var(--bp-bg-hover) !important; }
                 @media (max-width: 768px) {
                     .bible-sidebar { position: fixed !important; top: 60px; left: 0; bottom: 0; z-index: 200; transform: translateX(-100%); transition: transform 0.3s ease; box-shadow: 4px 0 20px rgba(0,0,0,0.12); }
                     .bible-sidebar.open { transform: translateX(0) !important; }
@@ -236,31 +289,31 @@ export default function BiblePage() {
                 />
             )}
 
-            <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden', background: '#f5f0e8' }}>
+            <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden', background: 'var(--bp-bg-main)' }}>
 
                 {/* ── TOP HEADER BAR ── */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 16px', height: 50, borderBottom: '1px solid #e0d8cc', background: '#ffffff', flexShrink: 0, zIndex: 10 }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 16px', height: 50, borderBottom: '1px solid var(--bp-border)', background: 'var(--bp-bg-header)', flexShrink: 0, zIndex: 10 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                         <button onClick={() => setSidebarOpen(o => !o)}
                             style={{ display: 'none', background: 'none', border: 'none', cursor: 'pointer', padding: '4px 6px', borderRadius: 6 }}
                             className="mobile-menu-btn">
                             ☰
                         </button>
-                        <span style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: '1.15rem', fontWeight: 600, color: '#2a1a0a', letterSpacing: '1px' }}>
+                        <span style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: '1.15rem', fontWeight: 600, color: 'var(--bp-text-dark)', letterSpacing: '1px' }}>
                             ✝ Holy Bible
                         </span>
-                        <span style={{ fontSize: '0.7rem', color: '#a08060', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600 }}>
+                        <span style={{ fontSize: '0.7rem', color: 'var(--bp-text-accent-light)', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600 }}>
                             {bookName} {chapter}
                         </span>
                     </div>
 
                     {/* EN / TE toggle */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <span style={{ fontSize: '0.72rem', fontWeight: 700, color: lang === 'en' ? '#4a3728' : '#bbb', transition: 'color 0.2s' }}>EN</span>
-                        <button onClick={toggleLang} style={{ width: 42, height: 24, borderRadius: 12, background: lang === 'te' ? '#6b4f2d' : '#ddd0b5', border: 'none', cursor: 'pointer', position: 'relative', transition: 'background 0.3s', flexShrink: 0 }}>
-                            <span style={{ position: 'absolute', top: 3, left: lang === 'te' ? 22 : 3, width: 18, height: 18, borderRadius: '50%', background: '#fff', boxShadow: '0 1px 4px rgba(0,0,0,0.25)', transition: 'left 0.3s', display: 'block' }} />
+                        <span style={{ fontSize: '0.72rem', fontWeight: 700, color: lang === 'en' ? 'var(--bp-text-main)' : 'var(--bp-text-light)', transition: 'color 0.2s' }}>EN</span>
+                        <button onClick={toggleLang} style={{ width: 42, height: 24, borderRadius: 12, background: lang === 'te' ? 'var(--bp-text-accent)' : 'var(--bp-border)', border: 'none', cursor: 'pointer', position: 'relative', transition: 'background 0.3s', flexShrink: 0 }}>
+                            <span style={{ position: 'absolute', top: 3, left: lang === 'te' ? 22 : 3, width: 18, height: 18, borderRadius: '50%', background: 'var(--bp-bg-header)', boxShadow: '0 1px 4px rgba(0,0,0,0.25)', transition: 'left 0.3s', display: 'block' }} />
                         </button>
-                        <span style={{ fontSize: '0.72rem', fontWeight: 700, color: lang === 'te' ? '#4a3728' : '#bbb', transition: 'color 0.2s', fontFamily: 'serif' }}>తె</span>
+                        <span style={{ fontSize: '0.72rem', fontWeight: 700, color: lang === 'te' ? 'var(--bp-text-main)' : 'var(--bp-text-light)', transition: 'color 0.2s', fontFamily: 'serif' }}>తె</span>
                     </div>
                 </div>
 
@@ -268,16 +321,16 @@ export default function BiblePage() {
                 <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
 
                     {/* LEFT: Book Sidebar */}
-                    <div className={`bible-sidebar${sidebarOpen ? ' open' : ''}`} style={{ width: 220, flexShrink: 0, borderRight: '1px solid #e0d8cc', background: '#fff', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                    <div className={`bible-sidebar${sidebarOpen ? ' open' : ''}`} style={{ width: 220, flexShrink: 0, borderRight: '1px solid var(--bp-border)', background: 'var(--bp-bg-header)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
                         {/* OT / NT */}
-                        <div style={{ display: 'flex', borderBottom: '1px solid #e0d8cc', flexShrink: 0 }}>
+                        <div style={{ display: 'flex', borderBottom: '1px solid var(--bp-border)', flexShrink: 0 }}>
                             {['OT', 'NT'].map(tab => (
                                 <button key={tab} onClick={() => setTestament(tab)} style={{
                                     flex: 1, padding: '10px 0', border: 'none', cursor: 'pointer',
                                     fontSize: '0.72rem', fontWeight: 800, letterSpacing: '2px',
-                                    background: testament === tab ? '#fdf4e3' : '#fff',
-                                    color: testament === tab ? '#6b4f2d' : '#aaa',
-                                    borderBottom: `2px solid ${testament === tab ? '#6b4f2d' : 'transparent'}`,
+                                    background: testament === tab ? 'var(--bp-bg-active)' : 'transparent',
+                                    color: testament === tab ? 'var(--bp-text-accent)' : 'var(--bp-text-light)',
+                                    borderBottom: `2px solid ${testament === tab ? 'var(--bp-text-accent)' : 'transparent'}`,
                                     transition: 'all 0.2s',
                                 }}>
                                     {tab}
@@ -291,13 +344,13 @@ export default function BiblePage() {
                                 const active = b.id === book.id;
                                 return (
                                     <div key={b.id} className="book-item" onClick={() => selectBook(b)} style={{
-                                        padding: '9px 14px', cursor: 'pointer', borderBottom: '1px solid #f0e8d8',
-                                        background: active ? '#fdf4e3' : 'transparent',
-                                        borderLeft: `3px solid ${active ? '#6b4f2d' : 'transparent'}`,
+                                        padding: '9px 14px', cursor: 'pointer', borderBottom: '1px solid var(--bp-border)',
+                                        background: active ? 'var(--bp-bg-active)' : 'transparent',
+                                        borderLeft: `3px solid ${active ? 'var(--bp-text-accent)' : 'transparent'}`,
                                         transition: 'all 0.15s',
                                     }}>
-                                        <p style={{ margin: 0, fontSize: '0.79rem', fontWeight: active ? 700 : 500, color: active ? '#4a3728' : '#555', lineHeight: 1.3 }}>{b.en}</p>
-                                        <p style={{ margin: 0, fontSize: '0.68rem', color: active ? '#8b6840' : '#bbb', fontFamily: 'serif', lineHeight: 1.3 }}>{b.te}</p>
+                                        <p style={{ margin: 0, fontSize: '0.79rem', fontWeight: active ? 700 : 500, color: active ? 'var(--bp-text-main)' : 'var(--bp-text-muted)', lineHeight: 1.3 }}>{b.en}</p>
+                                        <p style={{ margin: 0, fontSize: '0.68rem', color: active ? 'var(--bp-text-accent-hover)' : 'var(--bp-text-light)', fontFamily: 'serif', lineHeight: 1.3 }}>{b.te}</p>
                                     </div>
                                 );
                             })}
@@ -305,10 +358,10 @@ export default function BiblePage() {
                     </div>
 
                     {/* CENTER: Chapters */}
-                    <div className="bible-chapters" style={{ width: 68, flexShrink: 0, borderRight: '1px solid #e0d8cc', background: '#faf7f2', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-                        <div style={{ padding: '10px 12px', borderBottom: '1px solid #e0d8cc', flexShrink: 0 }}>
-                            <p style={{ margin: 0, fontSize: '0.58rem', letterSpacing: '2px', textTransform: 'uppercase', color: '#a08060', fontWeight: 700, textAlign: 'center' }}>Ch</p>
-                            <p style={{ margin: '2px 0 0', fontSize: '0.8rem', fontWeight: 700, color: '#2a1a0a', fontFamily: '"Cormorant Garamond", serif', lineHeight: 1.2, wordBreak: 'break-word' }}>
+                    <div className="bible-chapters" style={{ width: 68, flexShrink: 0, borderRight: '1px solid var(--bp-border)', background: 'var(--bp-bg-alt)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                        <div style={{ padding: '10px 12px', borderBottom: '1px solid var(--bp-border)', flexShrink: 0 }}>
+                            <p style={{ margin: 0, fontSize: '0.58rem', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--bp-text-accent-light)', fontWeight: 700, textAlign: 'center' }}>Ch</p>
+                            <p style={{ margin: '2px 0 0', fontSize: '0.8rem', fontWeight: 700, color: 'var(--bp-text-dark)', fontFamily: '"Cormorant Garamond", serif', lineHeight: 1.2, wordBreak: 'break-word' }}>
                                 {lang === 'te' ? book.te : book.en}
                             </p>
                         </div>
@@ -318,8 +371,8 @@ export default function BiblePage() {
                                     display: 'block', width: '100%', padding: '5px 2px',
                                     border: 'none', borderRadius: 5, cursor: 'pointer',
                                     fontSize: '0.72rem', fontWeight: ch === chapter ? 700 : 400,
-                                    background: ch === chapter ? '#6b4f2d' : 'transparent',
-                                    color: ch === chapter ? '#fff' : '#5a432a',
+                                    background: ch === chapter ? 'var(--bp-text-accent)' : 'transparent',
+                                    color: ch === chapter ? '#fff' : 'var(--bp-text-main)',
                                     transition: 'all 0.15s', marginBottom: 1,
                                 }}>
                                     {ch}
@@ -329,10 +382,10 @@ export default function BiblePage() {
                     </div>
 
                     {/* VERSE NAVIGATOR column */}
-                    <div className="bible-verses-col" style={{ width: 68, flexShrink: 0, borderRight: '1px solid #e0d8cc', background: '#faf7f2', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-                        <div style={{ padding: '10px 8px', borderBottom: '1px solid #e0d8cc', flexShrink: 0 }}>
-                            <p style={{ margin: 0, fontSize: '0.58rem', letterSpacing: '2px', textTransform: 'uppercase', color: '#a08060', fontWeight: 700, textAlign: 'center' }}>Verse</p>
-                            <p style={{ margin: '2px 0 0', fontSize: '0.7rem', fontWeight: 700, color: '#2a1a0a', textAlign: 'center' }}>{chapter}</p>
+                    <div className="bible-verses-col" style={{ width: 68, flexShrink: 0, borderRight: '1px solid var(--bp-border)', background: 'var(--bp-bg-alt)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                        <div style={{ padding: '10px 8px', borderBottom: '1px solid var(--bp-border)', flexShrink: 0 }}>
+                            <p style={{ margin: 0, fontSize: '0.58rem', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--bp-text-accent-light)', fontWeight: 700, textAlign: 'center' }}>Verse</p>
+                            <p style={{ margin: '2px 0 0', fontSize: '0.7rem', fontWeight: 700, color: 'var(--bp-text-dark)', textAlign: 'center' }}>{chapter}</p>
                         </div>
                         <div style={{ flex: 1, overflowY: 'auto', padding: '6px 4px' }}>
                             {verses.map((v, idx) => {
@@ -350,8 +403,8 @@ export default function BiblePage() {
                                             display: 'block', width: '100%', padding: '5px 2px',
                                             border: 'none', borderRadius: 5, cursor: 'pointer',
                                             fontSize: '0.72rem', fontWeight: isActive ? 700 : 400,
-                                            background: isActive ? '#6b4f2d' : 'transparent',
-                                            color: isActive ? '#fff' : '#5a432a',
+                                            background: isActive ? 'var(--bp-text-accent)' : 'transparent',
+                                            color: isActive ? '#fff' : 'var(--bp-text-main)',
                                             transition: 'all 0.15s', marginBottom: 1,
                                         }}
                                     >
@@ -360,24 +413,24 @@ export default function BiblePage() {
                                 );
                             })}
                             {verses.length === 0 && !loading && (
-                                <p style={{ fontSize: '0.6rem', color: '#ccc', textAlign: 'center', padding: '8px 0' }}>—</p>
+                                <p style={{ fontSize: '0.6rem', color: 'var(--bp-text-light)', textAlign: 'center', padding: '8px 0' }}>—</p>
                             )}
                         </div>
                     </div>
 
                     {/* RIGHT: Reading Panel */}
-                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', background: '#f8f1e4' }}>
+                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', background: 'var(--bp-bg-panel)' }}>
                         <div ref={panelRef} style={{ flex: 1, overflowY: 'auto', padding: 'clamp(20px, 4vw, 48px)' }}>
                             {/* Chapter heading */}
-                            <div style={{ marginBottom: 24, paddingBottom: 16, borderBottom: '1px solid rgba(90,60,30,0.14)', maxWidth: 720 }}>
-                                <p style={{ margin: '0 0 3px', fontSize: '0.62rem', letterSpacing: '3px', textTransform: 'uppercase', color: '#a08060', fontWeight: 700 }}>
+                            <div style={{ marginBottom: 24, paddingBottom: 16, borderBottom: '1px solid var(--bp-border-light)', maxWidth: 720 }}>
+                                <p style={{ margin: '0 0 3px', fontSize: '0.62rem', letterSpacing: '3px', textTransform: 'uppercase', color: 'var(--bp-text-accent-light)', fontWeight: 700 }}>
                                     {book.t === 'OT' ? 'Old Testament' : 'New Testament'}
                                 </p>
-                                <h2 style={{ margin: 0, fontFamily: '"Cormorant Garamond", serif', fontSize: 'clamp(1.5rem,4vw,2.2rem)', fontWeight: 700, color: '#1e1208', lineHeight: 1.1 }}>
+                                <h2 style={{ margin: 0, fontFamily: '"Cormorant Garamond", serif', fontSize: 'clamp(1.5rem,4vw,2.2rem)', fontWeight: 700, color: 'var(--bp-text-main)', lineHeight: 1.1 }}>
                                     {lang === 'te' ? book.te : book.en.toUpperCase()} {chapter}
                                 </h2>
                                 {selectedIdx !== null && (
-                                    <p style={{ margin: '6px 0 0', fontSize: '0.7rem', color: '#b45309', letterSpacing: '1px', fontStyle: 'italic' }}>
+                                    <p style={{ margin: '6px 0 0', fontSize: '0.7rem', color: 'var(--bp-verse-active-border)', letterSpacing: '1px', fontStyle: 'italic' }}>
                                         Verse {verses[selectedIdx]?.v} selected — click again to deselect
                                     </p>
                                 )}
@@ -386,14 +439,14 @@ export default function BiblePage() {
                             {/* Loading */}
                             {loading && (
                                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '40px 0', maxWidth: 720 }}>
-                                    <div style={{ width: 22, height: 22, border: '2px solid #e0d0b8', borderTopColor: '#6b4f2d', borderRadius: '50%', animation: 'spin 0.7s linear infinite', flexShrink: 0 }} />
-                                    <span style={{ fontFamily: '"Cormorant Garamond", serif', color: '#a08060', fontSize: '1.05rem', fontStyle: 'italic' }}>Loading chapter…</span>
+                                    <div style={{ width: 22, height: 22, border: '2px solid var(--bp-spinner)', borderTopColor: 'var(--bp-text-accent)', borderRadius: '50%', animation: 'spin 0.7s linear infinite', flexShrink: 0 }} />
+                                    <span style={{ fontFamily: '"Cormorant Garamond", serif', color: 'var(--bp-text-accent-light)', fontSize: '1.05rem', fontStyle: 'italic' }}>Loading chapter…</span>
                                 </div>
                             )}
 
                             {/* Error */}
                             {error && (
-                                <p style={{ maxWidth: 720, padding: '12px 16px', background: '#fef2f2', border: '1px solid #fecaca', borderRadius: 8, color: '#b91c1c', fontSize: '0.9rem', fontFamily: '"Cormorant Garamond", serif' }}>
+                                <p style={{ maxWidth: 720, padding: '12px 16px', background: 'var(--bp-error-bg)', border: '1px solid var(--bp-error-border)', borderRadius: 8, color: 'var(--bp-error-text)', fontSize: '0.9rem', fontFamily: '"Cormorant Garamond", serif' }}>
                                     {error}
                                 </p>
                             )}
@@ -419,9 +472,9 @@ export default function BiblePage() {
                                             <span style={{
                                                 fontFamily: lang === 'te' ? '"Noto Serif Telugu", serif' : '"Cormorant Garamond", serif',
                                                 fontSize: lang === 'te' ? 'clamp(0.95rem,2vw,1.1rem)' : 'clamp(1.05rem,2vw,1.2rem)',
-                                                lineHeight: 1.9, color: '#1e1208',
+                                                lineHeight: 1.9, color: 'var(--bp-text-main)',
                                             }}>
-                                                <sup style={{ fontSize: '0.58em', color: '#8b6840', fontWeight: 700, verticalAlign: 'super', marginRight: 3, lineHeight: 0 }}>
+                                                <sup style={{ fontSize: '0.58em', color: 'var(--bp-text-accent-hover)', fontWeight: 700, verticalAlign: 'super', marginRight: 3, lineHeight: 0 }}>
                                                     {v.v}
                                                 </sup>
                                                 {v.t}
@@ -431,36 +484,36 @@ export default function BiblePage() {
 
                                     {/* Chapter footer */}
                                     <div style={{ marginTop: 32, display: 'flex', alignItems: 'center', gap: 10 }}>
-                                        <div style={{ flex: 1, height: 1, background: 'rgba(90,60,30,0.12)' }} />
-                                        <span style={{ fontSize: '0.75rem', color: '#a08060', fontStyle: 'italic', fontFamily: '"Cormorant Garamond", serif' }}>
+                                        <div style={{ flex: 1, height: 1, background: 'var(--bp-border-superlight)' }} />
+                                        <span style={{ fontSize: '0.75rem', color: 'var(--bp-text-accent-light)', fontStyle: 'italic', fontFamily: '"Cormorant Garamond", serif' }}>
                                             {lang === 'te' ? book.te : book.en} {chapter}
                                         </span>
-                                        <div style={{ flex: 1, height: 1, background: 'rgba(90,60,30,0.12)' }} />
+                                        <div style={{ flex: 1, height: 1, background: 'var(--bp-border-superlight)' }} />
                                     </div>
                                 </div>
                             )}
                         </div>
 
                         {/* ── BOTTOM NAV ── */}
-                        <div style={{ flexShrink: 0, borderTop: '1px solid #e0d8cc', background: '#fff', padding: '10px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <div style={{ flexShrink: 0, borderTop: '1px solid var(--bp-border)', background: 'var(--bp-bg-header)', padding: '10px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                             <button onClick={goPrev}
                                 disabled={chapter === 1 && (selectedIdx === null || selectedIdx === 0)}
                                 style={{
                                     display: 'flex', alignItems: 'center', gap: 6,
-                                    padding: '7px 16px', borderRadius: 8, border: '1px solid #e0d8cc',
+                                    padding: '7px 16px', borderRadius: 8, border: '1px solid var(--bp-border)',
                                     background: 'transparent', cursor: 'pointer', fontSize: '0.8rem',
-                                    fontWeight: 600, color: '#5a432a', fontFamily: 'Inter, sans-serif',
+                                    fontWeight: 600, color: 'var(--bp-text-main)', fontFamily: 'Inter, sans-serif',
                                     opacity: chapter === 1 && (selectedIdx === null || selectedIdx === 0) ? 0.3 : 1,
                                     transition: 'all 0.2s',
                                 }}
-                                onMouseEnter={e => e.currentTarget.style.background = '#fdf4e3'}
+                                onMouseEnter={e => e.currentTarget.style.background = 'var(--bp-bg-active)'}
                                 onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
                             >
                                 ← Prev
                             </button>
 
                             <div style={{ textAlign: 'center' }}>
-                                <p style={{ margin: 0, fontSize: '0.7rem', color: '#a08060', letterSpacing: '1px', fontWeight: 600 }}>
+                                <p style={{ margin: 0, fontSize: '0.7rem', color: 'var(--bp-text-accent-light)', letterSpacing: '1px', fontWeight: 600 }}>
                                     {selectedIdx !== null
                                         ? `Verse ${verses[selectedIdx]?.v} of ${verses.length}`
                                         : `${verses.length} verses`}
@@ -471,13 +524,13 @@ export default function BiblePage() {
                                 disabled={chapter === book.ch && selectedIdx === verses.length - 1}
                                 style={{
                                     display: 'flex', alignItems: 'center', gap: 6,
-                                    padding: '7px 16px', borderRadius: 8, border: '1px solid #e0d8cc',
+                                    padding: '7px 16px', borderRadius: 8, border: '1px solid var(--bp-border)',
                                     background: 'transparent', cursor: 'pointer', fontSize: '0.8rem',
-                                    fontWeight: 600, color: '#5a432a', fontFamily: 'Inter, sans-serif',
+                                    fontWeight: 600, color: 'var(--bp-text-main)', fontFamily: 'Inter, sans-serif',
                                     opacity: chapter === book.ch && selectedIdx === verses.length - 1 ? 0.3 : 1,
                                     transition: 'all 0.2s',
                                 }}
-                                onMouseEnter={e => e.currentTarget.style.background = '#fdf4e3'}
+                                onMouseEnter={e => e.currentTarget.style.background = 'var(--bp-bg-active)'}
                                 onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
                             >
                                 Next →
