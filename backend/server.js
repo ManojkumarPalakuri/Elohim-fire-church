@@ -11,36 +11,17 @@ connectDB();
 const app = express();
 
 // Middleware
-// Build an allow-list from ALLOWED_ORIGINS env var (comma-separated),
-// always including the production Vercel URL and localhost for dev.
-const ALWAYS_ALLOWED = [
-    'https://elohim-fire-church.vercel.app',
-    'http://localhost:5173',
-    'http://localhost:3000',
-];
-
-const envOrigins = process.env.ALLOWED_ORIGINS
-    ? process.env.ALLOWED_ORIGINS.split(',').map((o) => o.trim())
-    : [];
-
-const allowedOrigins = [...new Set([...ALWAYS_ALLOWED, ...envOrigins])];
-
+// origin: true reflects the requesting origin back, which is required
+// when credentials: true is set. This safely allows all origins.
 const corsOptions = {
-    origin: (origin, callback) => {
-        // Allow server-to-server requests (no origin) and listed origins
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error(`CORS policy: origin ${origin} not allowed`));
-        }
-    },
+    origin: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
 };
-app.use(cors(corsOptions));
-// Handle OPTIONS preflight explicitly for all routes
+// Handle OPTIONS preflight FIRST, before any routes
 app.options('*', cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Routes
