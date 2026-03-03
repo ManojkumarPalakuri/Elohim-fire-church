@@ -236,7 +236,7 @@ export default function BiblePage() {
                 />
             )}
 
-            <div style={{ height: 'calc(100vh - 60px)', marginTop: 60, display: 'flex', flexDirection: 'column', overflow: 'hidden', background: '#f5f0e8' }}>
+            <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden', background: '#f5f0e8' }}>
 
                 {/* ── TOP HEADER BAR ── */}
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 16px', height: 50, borderBottom: '1px solid #e0d8cc', background: '#ffffff', flexShrink: 0, zIndex: 10 }}>
@@ -305,27 +305,26 @@ export default function BiblePage() {
                     </div>
 
                     {/* CENTER: Chapters */}
-                    <div className="bible-chapters" style={{ width: 150, flexShrink: 0, borderRight: '1px solid #e0d8cc', background: '#faf7f2', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                    <div className="bible-chapters" style={{ width: 68, flexShrink: 0, borderRight: '1px solid #e0d8cc', background: '#faf7f2', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
                         <div style={{ padding: '10px 12px', borderBottom: '1px solid #e0d8cc', flexShrink: 0 }}>
-                            <p style={{ margin: 0, fontSize: '0.58rem', letterSpacing: '2px', textTransform: 'uppercase', color: '#a08060', fontWeight: 700 }}>Chapters</p>
+                            <p style={{ margin: 0, fontSize: '0.58rem', letterSpacing: '2px', textTransform: 'uppercase', color: '#a08060', fontWeight: 700, textAlign: 'center' }}>Ch</p>
                             <p style={{ margin: '2px 0 0', fontSize: '0.8rem', fontWeight: 700, color: '#2a1a0a', fontFamily: '"Cormorant Garamond", serif', lineHeight: 1.2, wordBreak: 'break-word' }}>
                                 {lang === 'te' ? book.te : book.en}
                             </p>
                         </div>
-                        <div style={{ flex: 1, overflowY: 'auto', padding: 8 }}>
-                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 3 }}>
-                                {Array.from({ length: book.ch }, (_, i) => i + 1).map(ch => (
-                                    <button key={ch} className="chapter-btn" onClick={() => selectChapter(ch)} style={{
-                                        padding: '6px 2px', border: 'none', borderRadius: 5, cursor: 'pointer',
-                                        fontSize: '0.72rem', fontWeight: ch === chapter ? 700 : 400,
-                                        background: ch === chapter ? '#6b4f2d' : 'transparent',
-                                        color: ch === chapter ? '#fff' : '#5a432a',
-                                        transition: 'all 0.15s',
-                                    }}>
-                                        {ch}
-                                    </button>
-                                ))}
-                            </div>
+                        <div style={{ flex: 1, overflowY: 'auto', padding: '6px 4px' }}>
+                            {Array.from({ length: book.ch }, (_, i) => i + 1).map(ch => (
+                                <button key={ch} className="verse-nav-btn" onClick={() => selectChapter(ch)} style={{
+                                    display: 'block', width: '100%', padding: '5px 2px',
+                                    border: 'none', borderRadius: 5, cursor: 'pointer',
+                                    fontSize: '0.72rem', fontWeight: ch === chapter ? 700 : 400,
+                                    background: ch === chapter ? '#6b4f2d' : 'transparent',
+                                    color: ch === chapter ? '#fff' : '#5a432a',
+                                    transition: 'all 0.15s', marginBottom: 1,
+                                }}>
+                                    {ch}
+                                </button>
+                            ))}
                         </div>
                     </div>
 
@@ -345,7 +344,7 @@ export default function BiblePage() {
                                         onClick={() => {
                                             setSelectedIdx(idx);
                                             const el = document.getElementById(`verse-${v.v}`);
-                                            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
                                         }}
                                         style={{
                                             display: 'block', width: '100%', padding: '5px 2px',
