@@ -5,7 +5,7 @@ const ThemeContext = createContext();
 export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
-    const [theme, setTheme] = useState('dark'); // Default to dark per previous instructions
+    const [theme, setTheme] = useState('light'); // Default to light
 
     useEffect(() => {
         // Check local storage for saved theme
@@ -14,7 +14,7 @@ export const ThemeProvider = ({ children }) => {
             setTheme(savedTheme);
             document.documentElement.setAttribute('data-theme', savedTheme);
         } else {
-            document.documentElement.setAttribute('data-theme', 'dark');
+            document.documentElement.setAttribute('data-theme', 'light');
         }
     }, []);
 
