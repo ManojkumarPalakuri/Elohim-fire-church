@@ -94,10 +94,22 @@ export default function BiblePage() {
         try {
             let result;
             if (language === 'te') {
-                await new Promise(r => setTimeout(r, 300));
-                result = getTeluguChapter(b.id, ch);
+                const fileMap = { 'Song of Solomon': 'Song of Songs' };
+                const fileName = encodeURIComponent((fileMap[b.en] || b.en) + '.json');
+                const teRes = await axios.get(
+                    `https://raw.githubusercontent.com/aruljohn/Bible-telugu/main/${fileName}`
+                );
+                const chapterObj = (teRes.data.chapters || []).find(c => parseInt(c.chapter) === ch);
+                if (chapterObj && chapterObj.verses?.length) {
+                    result = chapterObj.verses.map(v => ({
+                        v: parseInt(v.verse),
+                        t: v.text.trim(),
+                    }));
+                } else {
+                    result = getTeluguChapter(b.id, ch);
+                }
                 if (result.length === 0) {
-                    setError('తెలుగు అనువాదం ఇంకా అందుబాటులో లేదు. (Telugu not yet available for this chapter — switch to English to read it now.)');
+                    setError('ఈ అధ్యాయానికి తెలుగు అందుబాటులో లేదు.');
                     setLoading(false); setFadeIn(true); return;
                 }
             } else {
