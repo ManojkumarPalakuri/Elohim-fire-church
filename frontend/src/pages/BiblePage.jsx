@@ -213,11 +213,15 @@ export default function BiblePage() {
                 .verse-row.active { background: #fef9c3 !important; border-left: 3px solid #b45309 !important; border-radius: 0 6px 6px 0; }
                 .chapter-btn:hover { background: #f0e4d0 !important; }
                 .book-item:hover { background: #fdf4e3 !important; }
+                .verse-nav-btn:hover { background: #f0e4d0 !important; }
                 @media (max-width: 768px) {
                     .bible-sidebar { position: fixed !important; top: 60px; left: 0; bottom: 0; z-index: 200; transform: translateX(-100%); transition: transform 0.3s ease; box-shadow: 4px 0 20px rgba(0,0,0,0.12); }
                     .bible-sidebar.open { transform: translateX(0) !important; }
                     .bible-chapters { width: 100px !important; }
                     .sidebar-overlay { display: block !important; }
+                }
+                @media (max-width: 640px) {
+                    .bible-verses-col { display: none !important; }
                 }
                 @media (max-width: 520px) {
                     .bible-chapters { display: none !important; }
@@ -325,6 +329,43 @@ export default function BiblePage() {
                         </div>
                     </div>
 
+                    {/* VERSE NAVIGATOR column */}
+                    <div className="bible-verses-col" style={{ width: 68, flexShrink: 0, borderRight: '1px solid #e0d8cc', background: '#faf7f2', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                        <div style={{ padding: '10px 8px', borderBottom: '1px solid #e0d8cc', flexShrink: 0 }}>
+                            <p style={{ margin: 0, fontSize: '0.58rem', letterSpacing: '2px', textTransform: 'uppercase', color: '#a08060', fontWeight: 700, textAlign: 'center' }}>Verse</p>
+                            <p style={{ margin: '2px 0 0', fontSize: '0.7rem', fontWeight: 700, color: '#2a1a0a', textAlign: 'center' }}>{chapter}</p>
+                        </div>
+                        <div style={{ flex: 1, overflowY: 'auto', padding: '6px 4px' }}>
+                            {verses.map((v, idx) => {
+                                const isActive = selectedIdx === idx;
+                                return (
+                                    <button
+                                        key={v.v}
+                                        className="verse-nav-btn"
+                                        onClick={() => {
+                                            setSelectedIdx(idx);
+                                            const el = document.getElementById(`verse-${v.v}`);
+                                            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                        }}
+                                        style={{
+                                            display: 'block', width: '100%', padding: '5px 2px',
+                                            border: 'none', borderRadius: 5, cursor: 'pointer',
+                                            fontSize: '0.72rem', fontWeight: isActive ? 700 : 400,
+                                            background: isActive ? '#6b4f2d' : 'transparent',
+                                            color: isActive ? '#fff' : '#5a432a',
+                                            transition: 'all 0.15s', marginBottom: 1,
+                                        }}
+                                    >
+                                        {v.v}
+                                    </button>
+                                );
+                            })}
+                            {verses.length === 0 && !loading && (
+                                <p style={{ fontSize: '0.6rem', color: '#ccc', textAlign: 'center', padding: '8px 0' }}>—</p>
+                            )}
+                        </div>
+                    </div>
+
                     {/* RIGHT: Reading Panel */}
                     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', background: '#f8f1e4' }}>
                         <div ref={panelRef} style={{ flex: 1, overflowY: 'auto', padding: 'clamp(20px, 4vw, 48px)' }}>
@@ -364,6 +405,8 @@ export default function BiblePage() {
                                     {verses.map((v, idx) => (
                                         <div
                                             key={idx}
+                                            id={`verse-${v.v}`}
+                                            data-vidx={idx}
                                             ref={el => verseRefs.current[idx] = el}
                                             className={`verse-row${selectedIdx === idx ? ' active' : ''}`}
                                             onClick={() => clickVerse(idx)}
