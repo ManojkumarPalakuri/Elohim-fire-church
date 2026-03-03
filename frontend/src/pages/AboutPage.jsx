@@ -19,7 +19,7 @@ const AboutPage = () => {
                 <div className="container animate-fade-in">
                     <span style={{ color: 'var(--color-accent-primary)', letterSpacing: '2px', textTransform: 'uppercase', fontSize: '0.85rem', fontWeight: '600', display: 'block', marginBottom: '16px' }}>Our Identity</span>
                     <h1 style={{ marginBottom: '24px' }}>About <span className="text-accent" style={{ fontStyle: 'italic' }}>Us</span></h1>
-                    <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.2rem', maxWidth: '700px', margin: '0 auto', lineHeight: 1.6 }}>
+                    <p style={{ color: 'var(--color-text-secondary)', fontSize: 'clamp(1rem, 4vw, 1.2rem)', maxWidth: '700px', margin: '0 auto', lineHeight: 1.6 }}>
                         A cornerstone of faith, love, and miraculous encounters in the presence of God.
                     </p>
                 </div>
@@ -68,13 +68,19 @@ const AboutPage = () => {
 
                             <div style={{ color: 'var(--color-text-secondary)', fontSize: '1.1rem', lineHeight: 1.8, display: 'flex', flexDirection: 'column', gap: '24px' }}>
                                 <p>
-                                    Prophet Joshua is a dynamic and visionary leader called by God to ignite a global spiritual awakening. With a profound prophetic grace and a deep passion for the Word, his ministry is characterized by accurate prophetic utterances, undeniable signs, and miraculous healings.
+                                    Prophet Joshua is called, appointed, and anointed by the Lord Jesus Christ to serve the nations with a divine mission of winning souls for the Kingdom of God.
                                 </p>
                                 <p>
-                                    For over two decades, Prophet Joshua has traveled extensively, ministering in massive crusades and conferences, declaring the liberating power of Jesus Christ. Under his guidance, Elohim Fire Ministries has expanded into a multinational sanctuary of hope.
+                                    He carries a powerful Prophetic Teaching Ministry and is anointed in prophecy, healing, miracles, and deliverance. Through the leading of the Holy Spirit, his ministry has impacted countless lives with the transforming power of Christ.
                                 </p>
                                 <p>
-                                    He believes that every believer is destined for greatness and focuses his teachings on faith, spiritual warfare, and divine prosperity, equipping the church to overcome life's challenges.
+                                    He is the Founder of Elohim Fire Ministries, a ministry dedicated to spreading the Gospel and demonstrating the love and power of Jesus Christ.
+                                </p>
+                                <p>
+                                    Through Elohim Fire Ministries, thousands have been blessed, saved, healed, and delivered.
+                                </p>
+                                <p>
+                                    All glory to Jesus Christ of Nazareth.
                                 </p>
                             </div>
                         </div>
@@ -102,7 +108,7 @@ const AboutPage = () => {
                                 The Mission
                             </h2>
                             <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.1rem', lineHeight: 1.8 }}>
-                                To proclaim the uncompromised Word of God, equip saints for ministry, and spread the Gospel globally through Spirit-filled worship, bold evangelism, and compassionate outreach.
+                                Our purpose is to reach every corner of India, spreading the Word of God with faith and compassion, bringing healing, hope, and transformation through the power of Jesus Christ.
                             </p>
                         </div>
                     </div>

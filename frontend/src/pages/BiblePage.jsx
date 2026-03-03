@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import axios from 'axios';
 import { Helmet } from 'react-helmet-async';
+import { useNavigate } from 'react-router-dom';
+import { useTheme } from '../context/ThemeContext';
 import { getTeluguChapter } from '../data/teluguBible.js';
+import { X, Sun, Moon } from 'lucide-react';
 
 const BOOKS = [
     { id: 'genesis', en: 'Genesis', te: 'ఆదికాండము', ch: 50, t: 'OT' },
@@ -75,6 +78,8 @@ const BOOKS = [
 
 
 export default function BiblePage() {
+    const navigate = useNavigate();
+    const { theme, toggleTheme } = useTheme();
     const [testament, setTestament] = useState('NT');
     const [lang, setLang] = useState('en');
     const [book, setBook] = useState(BOOKS.find(b => b.id === 'john'));
@@ -88,6 +93,8 @@ export default function BiblePage() {
 
     const panelRef = useRef(null);
     const verseRefs = useRef({});
+    const chListRef = useRef(null);
+    const verseListRef = useRef(null);
 
     const loadChapter = useCallback(async (b, ch, language, highlightIdx = null) => {
         setLoading(true); setError(''); setFadeIn(false); setSelectedIdx(null);
@@ -144,7 +151,10 @@ export default function BiblePage() {
         setBook(b); setChapter(1);
         setTestament(b.t);
         loadChapter(b, 1, lang);
-        setSidebarOpen(false);
+        // Reset scroll positions of nav columns
+        if (chListRef.current) chListRef.current.scrollTop = 0;
+        if (verseListRef.current) verseListRef.current.scrollTop = 0;
+        // Keep sidebar open so user can pick chapter/verse
     };
 
     const selectChapter = (ch) => {
@@ -199,6 +209,8 @@ export default function BiblePage() {
             </Helmet>
 
             <style>{`
+                @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
                 :root {
                     --bp-bg-main: #f5f0e8;
                     --bp-bg-header: #ffffff;
@@ -213,7 +225,7 @@ export default function BiblePage() {
                     --bp-text-main: #1e1208;
                     --bp-text-dark: #2a1a0a;
                     --bp-text-muted: #555555;
-                    --bp-text-light: #777777; /* for #aaa, #bbb */
+                    --bp-text-light: #777777;
                     --bp-text-accent: #6b4f2d;
                     --bp-text-accent-light: #a08060;
                     --bp-text-accent-hover: #8b6840;
@@ -224,35 +236,38 @@ export default function BiblePage() {
                     --bp-error-border: #fecaca;
                     --bp-error-text: #b91c1c;
                     --bp-spinner: #e0d0b8;
+                    --bp-nav-active-bg: #6b4f2d;
+                    --bp-nav-active-text: #ffffff;
                 }
-                .dark {
-                    --bp-bg-main: #020617;      /* slate-950 */
-                    --bp-bg-header: #0f172a;    /* slate-900 */
+                [data-theme='dark'] {
+                    --bp-bg-main: #020617;
+                    --bp-bg-header: #0f172a;
                     --bp-bg-sidebar: #0f172a;
                     --bp-bg-alt: #020617;
                     --bp-bg-panel: #0b1120;
-                    --bp-bg-active: #1e293b;    /* slate-800 */
+                    --bp-bg-active: #1e293b;
                     --bp-bg-hover: #1e293b;
-                    --bp-border: #334155;       /* slate-700 */
+                    --bp-border: #334155;
                     --bp-border-light: #1e293b;
                     --bp-border-superlight: #1e293b;
-                    --bp-text-main: #f1f5f9;    /* slate-100 */
-                    --bp-text-dark: #f8fafc;    /* slate-50 */
-                    --bp-text-muted: #94a3b8;   /* slate-400 */
-                    --bp-text-light: #64748b;   /* slate-500 */
-                    --bp-text-accent: #e2e8f0;  /* slate-200 */
+                    --bp-text-main: #f1f5f9;
+                    --bp-text-dark: #f8fafc;
+                    --bp-text-muted: #94a3b8;
+                    --bp-text-light: #64748b;
+                    --bp-text-accent: #e2e8f0;
                     --bp-text-accent-light: #94a3b8;
-                    --bp-text-accent-hover: #cbd5e1; /* slate-300 */
-                    --bp-verse-hover: rgba(51, 65, 85, 0.5); /* slate-700 w/ opacity */
-                    --bp-verse-active-bg: #1e293b; /* slate-800 */
-                    --bp-verse-active-border: #94a3b8; /* slate-400 */
+                    --bp-text-accent-hover: #cbd5e1;
+                    --bp-verse-hover: rgba(51, 65, 85, 0.5);
+                    --bp-verse-active-bg: #1e293b;
+                    --bp-verse-active-border: #94a3b8;
                     --bp-error-bg: #450a0a;
                     --bp-error-border: #7f1d1d;
                     --bp-error-text: #fca5a5;
                     --bp-spinner: #334155;
+                    --bp-nav-active-bg: #e2e8f0;
+                    --bp-nav-active-text: #0f172a;
                 }
 
-                @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap');
                 @keyframes spin { to { transform: rotate(360deg); } }
                 @keyframes fadeUp { from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)} }
                 .bible-fade { transition: opacity 0.3s ease; }
@@ -267,17 +282,40 @@ export default function BiblePage() {
                 .chapter-btn:hover { background: var(--bp-bg-hover) !important; }
                 .book-item:hover { background: var(--bp-bg-active) !important; }
                 .verse-nav-btn:hover { background: var(--bp-bg-hover) !important; }
+
+                .bible-nav-wrapper { display: flex; flex-shrink: 0; }
+
                 @media (max-width: 768px) {
-                    .bible-sidebar { position: fixed !important; top: 60px; left: 0; bottom: 0; z-index: 200; transform: translateX(-100%); transition: transform 0.3s ease; box-shadow: 4px 0 20px rgba(0,0,0,0.12); }
-                    .bible-sidebar.open { transform: translateX(0) !important; }
-                    .bible-chapters { width: 100px !important; }
+                    .bible-nav-wrapper {
+                        position: fixed !important; top: 0; left: 0; bottom: 0; z-index: 200;
+                        transform: translateX(-100%); transition: transform 0.3s ease;
+                        box-shadow: 10px 0 30px rgba(0,0,0,0.2);
+                        background: var(--bp-bg-header);
+                    }
+                    .bible-nav-wrapper.open { transform: translateX(0) !important; }
                     .sidebar-overlay { display: block !important; }
+                    .mobile-menu-btn { display: block !important; }
+                    
+                    .bible-sidebar { width: 180px !important; }
+                    .bible-chapters { width: 60px !important; }
+                    .bible-verses-col { width: 60px !important; }
                 }
-                @media (max-width: 640px) {
-                    .bible-verses-col { display: none !important; }
+
+                .bible-top-header {
+                    background: var(--bp-bg-header) !important;
+                    backdrop-filter: blur(12px) !important;
+                    -webkit-backdrop-filter: blur(12px) !important;
                 }
-                @media (max-width: 520px) {
-                    .bible-chapters { display: none !important; }
+                [data-theme='light'] .bible-top-header {
+                    background: rgba(255, 255, 255, 0.5) !important;
+                }
+                [data-theme='dark'] .bible-top-header {
+                    background: rgba(15, 23, 42, 0.5) !important;
+                }
+                .bible-brand-text { display: inline; }
+                @media (max-width: 480px) {
+                    .bible-brand-text { display: none; }
+                    .bible-top-header { gap: 8px !important; padding: 0 8px !important; }
                 }
             `}</style>
 
@@ -289,132 +327,179 @@ export default function BiblePage() {
                 />
             )}
 
-            <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden', background: 'var(--bp-bg-main)' }}>
+            <div style={{ height: '100%', display: 'flex', flexDirection: 'column', overflow: 'hidden', background: 'var(--bp-bg-main)' }}>
 
                 {/* ── TOP HEADER BAR ── */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 16px', height: 50, borderBottom: '1px solid var(--bp-border)', background: 'var(--bp-bg-header)', flexShrink: 0, zIndex: 10 }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                <div className="bible-top-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 16px', height: 50, borderBottom: '1px solid var(--bp-border)', flexShrink: 0, zIndex: 10 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                         <button onClick={() => setSidebarOpen(o => !o)}
                             style={{ display: 'none', background: 'none', border: 'none', cursor: 'pointer', padding: '4px 6px', borderRadius: 6 }}
                             className="mobile-menu-btn">
                             ☰
                         </button>
-                        <span style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: '1.15rem', fontWeight: 600, color: 'var(--bp-text-dark)', letterSpacing: '1px' }}>
+                        <span className="bible-brand-text" style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: '1.15rem', fontWeight: 600, color: 'var(--bp-text-dark)', letterSpacing: '1px' }}>
                             ✝ Holy Bible
                         </span>
-                        <span style={{ fontSize: '0.7rem', color: 'var(--bp-text-accent-light)', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600 }}>
+                        <span style={{ fontSize: '0.7rem', color: 'var(--bp-text-accent-light)', letterSpacing: '1px', textTransform: 'uppercase', fontWeight: 600, whiteSpace: 'nowrap' }}>
                             {bookName} {chapter}
                         </span>
                     </div>
 
                     {/* EN / TE toggle */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <span style={{ fontSize: '0.72rem', fontWeight: 700, color: lang === 'en' ? 'var(--bp-text-main)' : 'var(--bp-text-light)', transition: 'color 0.2s' }}>EN</span>
-                        <button onClick={toggleLang} style={{ width: 42, height: 24, borderRadius: 12, background: lang === 'te' ? 'var(--bp-text-accent)' : 'var(--bp-border)', border: 'none', cursor: 'pointer', position: 'relative', transition: 'background 0.3s', flexShrink: 0 }}>
-                            <span style={{ position: 'absolute', top: 3, left: lang === 'te' ? 22 : 3, width: 18, height: 18, borderRadius: '50%', background: 'var(--bp-bg-header)', boxShadow: '0 1px 4px rgba(0,0,0,0.25)', transition: 'left 0.3s', display: 'block' }} />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                        <span className="bible-brand-text" style={{ fontSize: '0.72rem', fontWeight: 700, color: lang === 'en' ? 'var(--bp-text-main)' : 'var(--bp-text-light)', transition: 'color 0.2s' }}>EN</span>
+                        <button onClick={toggleLang} style={{ width: 36, height: 20, borderRadius: 10, background: lang === 'te' ? 'var(--bp-text-accent)' : 'var(--bp-border)', border: 'none', cursor: 'pointer', position: 'relative', transition: 'background 0.3s', flexShrink: 0 }}>
+                            <span style={{
+                                position: 'absolute', top: 2, left: lang === 'te' ? 18 : 2, width: 16, height: 16, borderRadius: '50%', background: 'var(--bp-bg-header)', boxShadow: '0 1px 4px rgba(0,0,0,0.25)', transition: 'left 0.3s', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                fontSize: '0.55rem', fontWeight: 900, color: 'var(--bp-text-dark)', lineHeight: 1
+                            }}>
+                                {lang === 'en' ? 'E' : 'తె'}
+                            </span>
                         </button>
-                        <span style={{ fontSize: '0.72rem', fontWeight: 700, color: lang === 'te' ? 'var(--bp-text-main)' : 'var(--bp-text-light)', transition: 'color 0.2s', fontFamily: 'serif' }}>తె</span>
+                        <span className="bible-brand-text" style={{ fontSize: '0.72rem', fontWeight: 700, color: lang === 'te' ? 'var(--bp-text-main)' : 'var(--bp-text-light)', transition: 'color 0.2s', fontFamily: 'serif' }}>తె</span>
+                    </div>
+
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                        <button
+                            onClick={toggleTheme}
+                            style={{
+                                background: 'transparent', border: 'none', color: 'var(--bp-text-dark)',
+                                cursor: 'pointer', padding: '6px', borderRadius: '8px',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                transition: 'background 0.2s'
+                            }}
+                            onMouseEnter={e => e.currentTarget.style.background = 'rgba(0,0,0,0.05)'}
+                            onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+                        >
+                            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+                        </button>
+
+                        <button
+                            onClick={() => navigate('/')}
+                            style={{
+                                display: 'flex', alignItems: 'center', gap: 6,
+                                padding: '6px 10px', borderRadius: 20, border: '1px solid var(--bp-border)',
+                                background: 'rgba(0,0,0,0.05)', cursor: 'pointer', fontSize: '0.75rem',
+                                fontWeight: 700, color: 'var(--bp-text-dark)', transition: 'all 0.2s',
+                            }}
+                            onMouseEnter={e => e.currentTarget.style.background = 'rgba(0,0,0,0.1)'}
+                            onMouseLeave={e => e.currentTarget.style.background = 'rgba(0,0,0,0.05)'}
+                        >
+                            <X size={14} /> <span className="bible-brand-text">Exit Bible</span>
+                        </button>
                     </div>
                 </div>
 
                 {/* ── THREE-COLUMN BODY ── */}
                 <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
 
-                    {/* LEFT: Book Sidebar */}
-                    <div className={`bible-sidebar${sidebarOpen ? ' open' : ''}`} style={{ width: 220, flexShrink: 0, borderRight: '1px solid var(--bp-border)', background: 'var(--bp-bg-header)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-                        {/* OT / NT */}
-                        <div style={{ display: 'flex', borderBottom: '1px solid var(--bp-border)', flexShrink: 0 }}>
-                            {['OT', 'NT'].map(tab => (
-                                <button key={tab} onClick={() => setTestament(tab)} style={{
-                                    flex: 1, padding: '10px 0', border: 'none', cursor: 'pointer',
-                                    fontSize: '0.72rem', fontWeight: 800, letterSpacing: '2px',
-                                    background: testament === tab ? 'var(--bp-bg-active)' : 'transparent',
-                                    color: testament === tab ? 'var(--bp-text-accent)' : 'var(--bp-text-light)',
-                                    borderBottom: `2px solid ${testament === tab ? 'var(--bp-text-accent)' : 'transparent'}`,
-                                    transition: 'all 0.2s',
-                                }}>
-                                    {tab}
-                                </button>
-                            ))}
-                        </div>
-
-                        {/* Book list */}
-                        <div style={{ flex: 1, overflowY: 'auto' }}>
-                            {filteredBooks.map(b => {
-                                const active = b.id === book.id;
-                                return (
-                                    <div key={b.id} className="book-item" onClick={() => selectBook(b)} style={{
-                                        padding: '9px 14px', cursor: 'pointer', borderBottom: '1px solid var(--bp-border)',
-                                        background: active ? 'var(--bp-bg-active)' : 'transparent',
-                                        borderLeft: `3px solid ${active ? 'var(--bp-text-accent)' : 'transparent'}`,
-                                        transition: 'all 0.15s',
+                    {/* Navigation Wrapper (Sidebar + Ch + Verse) */}
+                    <div className={`bible-nav-wrapper${sidebarOpen ? ' open' : ''}`}>
+                        {/* LEFT: Book Sidebar */}
+                        <div className="bible-sidebar" style={{ width: 220, flexShrink: 0, borderRight: '1px solid var(--bp-border)', background: 'var(--bp-bg-header)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                            {/* OT / NT */}
+                            <div style={{ display: 'flex', borderBottom: '1px solid var(--bp-border)', flexShrink: 0 }}>
+                                {['OT', 'NT'].map(tab => (
+                                    <button key={tab} onClick={() => setTestament(tab)} style={{
+                                        flex: 1, padding: '10px 0', border: 'none', cursor: 'pointer',
+                                        fontSize: '0.72rem', fontWeight: 800, letterSpacing: '2px',
+                                        background: testament === tab ? 'var(--bp-bg-active)' : 'transparent',
+                                        color: testament === tab ? 'var(--bp-text-accent)' : 'var(--bp-text-light)',
+                                        borderBottom: `2px solid ${testament === tab ? 'var(--bp-text-accent)' : 'transparent'}`,
+                                        transition: 'all 0.2s',
                                     }}>
-                                        <p style={{ margin: 0, fontSize: '0.79rem', fontWeight: active ? 700 : 500, color: active ? 'var(--bp-text-main)' : 'var(--bp-text-muted)', lineHeight: 1.3 }}>{b.en}</p>
-                                        <p style={{ margin: 0, fontSize: '0.68rem', color: active ? 'var(--bp-text-accent-hover)' : 'var(--bp-text-light)', fontFamily: 'serif', lineHeight: 1.3 }}>{b.te}</p>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </div>
-
-                    {/* CENTER: Chapters */}
-                    <div className="bible-chapters" style={{ width: 68, flexShrink: 0, borderRight: '1px solid var(--bp-border)', background: 'var(--bp-bg-alt)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-                        <div style={{ padding: '10px 12px', borderBottom: '1px solid var(--bp-border)', flexShrink: 0 }}>
-                            <p style={{ margin: 0, fontSize: '0.58rem', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--bp-text-accent-light)', fontWeight: 700, textAlign: 'center' }}>Ch</p>
-                            <p style={{ margin: '2px 0 0', fontSize: '0.8rem', fontWeight: 700, color: 'var(--bp-text-dark)', fontFamily: '"Cormorant Garamond", serif', lineHeight: 1.2, wordBreak: 'break-word' }}>
-                                {lang === 'te' ? book.te : book.en}
-                            </p>
-                        </div>
-                        <div style={{ flex: 1, overflowY: 'auto', padding: '6px 4px' }}>
-                            {Array.from({ length: book.ch }, (_, i) => i + 1).map(ch => (
-                                <button key={ch} className="verse-nav-btn" onClick={() => selectChapter(ch)} style={{
-                                    display: 'block', width: '100%', padding: '5px 2px',
-                                    border: 'none', borderRadius: 5, cursor: 'pointer',
-                                    fontSize: '0.72rem', fontWeight: ch === chapter ? 700 : 400,
-                                    background: ch === chapter ? 'var(--bp-text-accent)' : 'transparent',
-                                    color: ch === chapter ? '#fff' : 'var(--bp-text-main)',
-                                    transition: 'all 0.15s', marginBottom: 1,
-                                }}>
-                                    {ch}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* VERSE NAVIGATOR column */}
-                    <div className="bible-verses-col" style={{ width: 68, flexShrink: 0, borderRight: '1px solid var(--bp-border)', background: 'var(--bp-bg-alt)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-                        <div style={{ padding: '10px 8px', borderBottom: '1px solid var(--bp-border)', flexShrink: 0 }}>
-                            <p style={{ margin: 0, fontSize: '0.58rem', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--bp-text-accent-light)', fontWeight: 700, textAlign: 'center' }}>Verse</p>
-                            <p style={{ margin: '2px 0 0', fontSize: '0.7rem', fontWeight: 700, color: 'var(--bp-text-dark)', textAlign: 'center' }}>{chapter}</p>
-                        </div>
-                        <div style={{ flex: 1, overflowY: 'auto', padding: '6px 4px' }}>
-                            {verses.map((v, idx) => {
-                                const isActive = selectedIdx === idx;
-                                return (
-                                    <button
-                                        key={v.v}
-                                        className="verse-nav-btn"
-                                        onClick={() => {
-                                            setSelectedIdx(idx);
-                                            const el = document.getElementById(`verse-${v.v}`);
-                                            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                                        }}
-                                        style={{
-                                            display: 'block', width: '100%', padding: '5px 2px',
-                                            border: 'none', borderRadius: 5, cursor: 'pointer',
-                                            fontSize: '0.72rem', fontWeight: isActive ? 700 : 400,
-                                            background: isActive ? 'var(--bp-text-accent)' : 'transparent',
-                                            color: isActive ? '#fff' : 'var(--bp-text-main)',
-                                            transition: 'all 0.15s', marginBottom: 1,
-                                        }}
-                                    >
-                                        {v.v}
+                                        {tab}
                                     </button>
-                                );
-                            })}
-                            {verses.length === 0 && !loading && (
-                                <p style={{ fontSize: '0.6rem', color: 'var(--bp-text-light)', textAlign: 'center', padding: '8px 0' }}>—</p>
-                            )}
+                                ))}
+                            </div>
+
+                            {/* Book list */}
+                            <div style={{ flex: 1, overflowY: 'auto' }}>
+                                {filteredBooks.map(b => {
+                                    const active = b.id === book.id;
+                                    return (
+                                        <div key={b.id} className="book-item" onClick={() => selectBook(b)} style={{
+                                            padding: '9px 14px', cursor: 'pointer', borderBottom: '1px solid var(--bp-border)',
+                                            background: active ? 'var(--bp-bg-active)' : 'transparent',
+                                            borderLeft: `3px solid ${active ? 'var(--bp-text-accent)' : 'transparent'}`,
+                                            transition: 'all 0.15s',
+                                        }}>
+                                            <p style={{ margin: 0, fontSize: '0.79rem', fontWeight: active ? 700 : 500, color: active ? 'var(--bp-text-main)' : 'var(--bp-text-muted)', lineHeight: 1.3 }}>{b.en}</p>
+                                            <p style={{ margin: 0, fontSize: '0.68rem', color: active ? 'var(--bp-text-accent-hover)' : 'var(--bp-text-light)', fontFamily: 'serif', lineHeight: 1.3 }}>{b.te}</p>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+
+                        {/* CENTER: Chapters */}
+                        <div className="bible-chapters" style={{ width: 68, flexShrink: 0, borderRight: '1px solid var(--bp-border)', background: 'var(--bp-bg-alt)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                            <div style={{ padding: '10px 12px', borderBottom: '1px solid var(--bp-border)', flexShrink: 0 }}>
+                                <p style={{ margin: 0, fontSize: '0.58rem', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--bp-text-accent-light)', fontWeight: 700, textAlign: 'center' }}>Ch</p>
+                                <p style={{ margin: '2px 0 0', fontSize: '0.8rem', fontWeight: 700, color: 'var(--bp-text-dark)', fontFamily: '"Cormorant Garamond", serif', lineHeight: 1.2, wordBreak: 'break-word' }}>
+                                    {lang === 'te' ? book.te : book.en}
+                                </p>
+                            </div>
+                            <div ref={chListRef} style={{ flex: 1, overflowY: 'auto', padding: '6px 4px' }}>
+                                {Array.from({ length: book.ch }, (_, i) => i + 1).map(ch => (
+                                    <button key={ch} className="verse-nav-btn" onClick={() => selectChapter(ch)} style={{
+                                        display: 'block', width: '100%', padding: '5px 2px',
+                                        border: 'none', borderRadius: 5, cursor: 'pointer',
+                                        fontSize: '0.72rem', fontWeight: ch === chapter ? 700 : 400,
+                                        background: ch === chapter ? 'var(--bp-nav-active-bg)' : 'transparent',
+                                        color: ch === chapter ? 'var(--bp-nav-active-text)' : 'var(--bp-text-main)',
+                                        transition: 'all 0.15s', marginBottom: 1,
+                                    }}>
+                                        {ch}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* VERSE NAVIGATOR column */}
+                        <div className="bible-verses-col" style={{ width: 68, flexShrink: 0, borderRight: '1px solid var(--bp-border)', background: 'var(--bp-bg-alt)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                            <div style={{ padding: '10px 8px', borderBottom: '1px solid var(--bp-border)', flexShrink: 0 }}>
+                                <p style={{ margin: 0, fontSize: '0.58rem', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--bp-text-accent-light)', fontWeight: 700, textAlign: 'center' }}>Verse</p>
+                                <p style={{ margin: '2px 0 0', fontSize: '0.7rem', fontWeight: 700, color: 'var(--bp-text-dark)', textAlign: 'center' }}>{chapter}</p>
+                            </div>
+                            <div ref={verseListRef} style={{ flex: 1, overflowY: 'auto', padding: '6px 4px' }}>
+                                {verses.map((v, idx) => {
+                                    const isActive = selectedIdx === idx;
+                                    return (
+                                        <button
+                                            key={v.v}
+                                            className="verse-nav-btn"
+                                            onClick={() => {
+                                                setSelectedIdx(idx);
+                                                if (window.innerWidth <= 768) {
+                                                    setSidebarOpen(false);
+                                                    // Wait for drawer close animation before scrolling
+                                                    setTimeout(() => {
+                                                        const el = document.getElementById(`verse-${v.v}`);
+                                                        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                                    }, 300);
+                                                } else {
+                                                    const el = document.getElementById(`verse-${v.v}`);
+                                                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                                }
+                                            }}
+                                            style={{
+                                                display: 'block', width: '100%', padding: '5px 2px',
+                                                border: 'none', borderRadius: 5, cursor: 'pointer',
+                                                fontSize: '0.72rem', fontWeight: isActive ? 700 : 400,
+                                                background: isActive ? 'var(--bp-nav-active-bg)' : 'transparent',
+                                                color: isActive ? 'var(--bp-nav-active-text)' : 'var(--bp-text-main)',
+                                                transition: 'all 0.15s', marginBottom: 1,
+                                            }}
+                                        >
+                                            {v.v}
+                                        </button>
+                                    );
+                                })}
+                                {verses.length === 0 && !loading && (
+                                    <p style={{ fontSize: '0.6rem', color: 'var(--bp-text-light)', textAlign: 'center', padding: '8px 0' }}>—</p>
+                                )}
+                            </div>
                         </div>
                     </div>
 

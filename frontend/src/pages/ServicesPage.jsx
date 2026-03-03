@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Clock, Calendar as CalendarIcon, MapPin, Users, Star } from 'lucide-react';
+import { Clock, Calendar as CalendarIcon, MapPin, Users, Star, Droplets } from 'lucide-react';
 import axios from 'axios';
 import API_BASE_URL from '../api/apiConfig.js';
 
@@ -17,10 +17,10 @@ const ServicesPage = () => {
             const now = new Date();
             const nextSunday = new Date();
             nextSunday.setDate(now.getDate() + ((7 - now.getDay()) % 7));
-            nextSunday.setHours(9, 0, 0, 0);
+            nextSunday.setHours(10, 30, 0, 0);
 
-            // If today is Sunday and past 9 AM, get next Sunday
-            if (now.getDay() === 0 && now.getHours() >= 9) {
+            // If today is Sunday and past 10:30 AM, get next Sunday
+            if (now.getDay() === 0 && (now.getHours() > 10 || (now.getHours() === 10 && now.getMinutes() >= 30))) {
                 nextSunday.setDate(nextSunday.getDate() + 7);
             }
 
@@ -183,17 +183,10 @@ const ServicesPage = () => {
 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
                     <EventCard
-                        title="First Service"
+                        title="Sunday Service"
                         day="Sunday"
-                        time="9:00 AM - 11:00 AM"
-                        desc="Our early morning service featuring deep worship, corporate prayer, and an empowering message from the Word."
-                        icon={Clock}
-                    />
-                    <EventCard
-                        title="Second Service"
-                        day="Sunday"
-                        time="11:30 AM - 1:30 PM"
-                        desc="Our mid-morning service designed for dynamic praise and prophetic teachings."
+                        time="10:30 AM - 2:00 PM"
+                        desc="Experience powerful worship, the prophetic word, and the transformative presence of the Holy Spirit."
                         icon={Users}
                     />
                     <EventCard
@@ -205,11 +198,12 @@ const ServicesPage = () => {
                         isSpecial={true}
                     />
                     <EventCard
-                        title="Youth ignite"
-                        day="Saturday"
-                        time="5:00 PM - 7:00 PM"
-                        desc="A vibrant gathering for teenagers and young adults focusing on purpose, purity, and power."
-                        icon={Users}
+                        title="Oil Anointing Service"
+                        day="Every Month 1st"
+                        time="6:00 PM"
+                        desc="A special service of divine consecration where we experience the tangible anointing for breakthroughs and preservation."
+                        icon={Droplets}
+                        isSpecial={true}
                     />
                 </div>
             </section>

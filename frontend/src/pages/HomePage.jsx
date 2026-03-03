@@ -245,7 +245,7 @@ const HomePage = () => {
                             </h1>
 
                             <p className="delay-300 animate-fade-in" style={{
-                                color: 'var(--color-text-secondary)',
+                                color: 'rgba(255, 255, 255, 0.8)',
                                 maxWidth: '450px',
                                 lineHeight: 1.5,
                                 marginTop: '0',
@@ -317,11 +317,10 @@ const HomePage = () => {
                             </span>
                             <h2 className="mb-24">Meet <span className="text-secondary">Prophet Joshua</span></h2>
                             <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.1rem', lineHeight: 1.8, marginBottom: '24px' }}>
-                                Dedicated to teaching the uncompromised Word of God, moving in the prophetic and healing ministry.
-                                Under his visionary leadership, Elohim Fire Ministries has grown into a beacon of hope and spiritual awakening.
+                                Prophet Joshua is called, appointed, and anointed by the Lord Jesus Christ to serve the nations with a divine mission of winning souls for the Kingdom of God.
                             </p>
                             <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.1rem', lineHeight: 1.8, marginBottom: '40px' }}>
-                                Our mission is to equip believers, empower the broken, and help you walk in your God-given destiny.
+                                He carries a powerful Prophetic Teaching Ministry and is anointed in prophecy, healing, miracles, and deliverance. Through the leading of the Holy Spirit, his ministry has impacted countless lives with the transforming power of Christ.
                             </p>
                             <Link to="/about" className="btn-outline">
                                 Read Full Story
@@ -345,7 +344,7 @@ const HomePage = () => {
                         gap: '32px'
                     }}>
                         {[
-                            { title: 'Sunday Morning Service', time: '10:30 AM', desc: 'Experience powerful worship and the prophetic word.', icon: Calendar },
+                            { title: 'Sunday Service', time: '10:30 AM - 2:00 PM', desc: 'Experience powerful worship and the prophetic word.', icon: Calendar },
                             { title: 'Fasting Service', time: 'Fridays, 6:00 PM', desc: 'Corporate prayer, fasting, and spiritual renewal.', icon: Heart },
                             { title: 'Oil Anointing Service', time: 'Every Month 1st', desc: 'Hyderabad, India.', icon: Users }
                         ].map((service, idx) => (

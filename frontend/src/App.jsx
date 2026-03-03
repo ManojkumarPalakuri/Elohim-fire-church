@@ -6,6 +6,7 @@ import { ThemeProvider } from './context/ThemeContext';
 
 // Public Layouts & Pages
 import PublicLayout from './layouts/PublicLayout';
+import ScrollToTop from './components/layout/ScrollToTop';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
@@ -48,6 +49,7 @@ const App = () => {
       <ThemeProvider>
         <AuthProvider>
           <BrowserRouter>
+            <ScrollToTop />
             <Routes>
               {/* Public Routes */}
               <Route element={<PublicLayout />}>
