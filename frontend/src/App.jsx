@@ -14,6 +14,7 @@ import GivingPage from './pages/GivingPage';
 
 import ContactPage from './pages/ContactPage';
 import EventsPage from './pages/EventsPage';
+import BiblePage from './pages/BiblePage';
 
 // Admin Layouts & Pages
 import AdminLayout from './layouts/AdminLayout';
@@ -58,6 +59,7 @@ const App = () => {
 
                 <Route path="/giving" element={<GivingPage />} />
                 <Route path="/contact" element={<ContactPage />} />
+                <Route path="/bible" element={<BiblePage />} />
               </Route>
 
               {/* Admin Authentication */}
