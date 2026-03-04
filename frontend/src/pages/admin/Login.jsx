@@ -102,15 +102,10 @@ const Login = () => {
 
                     {/* Logo */}
                     <div style={{
-                        width: '72px', height: '72px',
                         margin: '0 auto 1.5rem',
-                        background: 'rgba(212, 175, 55, 0.1)',
-                        borderRadius: '50%',
-                        border: '2px solid rgba(212, 175, 55, 0.3)',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        overflow: 'hidden'
+                        display: 'flex', alignItems: 'center', justifyContent: 'center'
                     }}>
-                        <img src="/logo.png" alt="Logo" style={{ height: '52px', width: '52px', objectFit: 'contain' }} />
+                        <img src="/logo.png" alt="Logo" style={{ height: '110px', objectFit: 'contain', borderRadius: '8px', border: '1px solid rgba(212, 175, 55, 0.3)', boxShadow: '0 8px 16px rgba(0,0,0,0.4)' }} />
                     </div>
 
                     {/* Shield Icon & Heading */}

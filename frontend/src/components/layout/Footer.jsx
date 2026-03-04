@@ -21,13 +21,7 @@ const Footer = () => {
                     {/* Column 1: Brand & Mission */}
                     <div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
-                            <img src="/logo.png" alt="Elohim Fire Ministries Logo" style={{ height: '35px', objectFit: 'contain' }} />
-                            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                                <h2 style={{ fontSize: '1.2rem', color: 'var(--color-text-primary)', margin: 0, letterSpacing: '1px' }}>
-                                    ELOHIM <span style={{ color: 'var(--color-accent-primary)' }}>FIRE</span>
-                                </h2>
-                                <span style={{ fontSize: '0.6rem', color: 'var(--color-text-secondary)', letterSpacing: '2px' }}>MINISTRIES</span>
-                            </div>
+                            <img src="/logo.png" alt="Elohim Fire Ministries Logo" style={{ height: '90px', objectFit: 'contain', borderRadius: '6px' }} />
                         </div>
                         <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.95rem', lineHeight: 1.6 }}>
                             A global ministry dedicated to teaching the uncompromised Word of God, moving in the prophetic, and experiencing the power of His presence.

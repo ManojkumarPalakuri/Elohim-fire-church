@@ -101,14 +101,8 @@ const Header = () => {
                         }} className="desktop-header-flex">
 
                             {/* Logo (Left) */}
-                            <NavLink to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
-                                <img src="/logo.png" alt="EFM" style={{ height: isScrolled ? '46px' : '56px', objectFit: 'contain', transition: 'height 0.3s ease' }} />
-                                <div className="logo-text" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', borderLeft: '1px solid var(--color-gold-dark)', paddingLeft: '12px', marginLeft: '2px' }}>
-                                    <h1 style={{ fontFamily: 'var(--font-logo)', fontSize: '1.1rem', margin: 0, color: 'var(--color-text-primary)', letterSpacing: '1.5px', lineHeight: 1.1, fontWeight: 700 }}>
-                                        ELOHIM <span className="logo-fire-text" style={{ fontWeight: 800 }}>FIRE</span>
-                                    </h1>
-                                    <span style={{ fontSize: '0.55rem', color: 'var(--color-text-secondary)', letterSpacing: '3px', fontFamily: 'var(--font-body)', fontWeight: 500, marginTop: '1px' }}>MINISTRIES</span>
-                                </div>
+                            <NavLink to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+                                <img src="/logo.png" alt="ELOHIM FIRE MINISTRIES" style={{ height: isScrolled ? '65px' : '90px', objectFit: 'contain', transition: 'height 0.3s ease', borderRadius: '4px' }} />
                             </NavLink>
 
                             {/* Desktop Nav (Center) */}
@@ -141,10 +135,9 @@ const Header = () => {
                             alignItems: 'center',
                             width: '100%',
                         }} className="mobile-header-flex">
-                            {/* Logo Left */}
                             <div style={{ flex: 1 }}>
                                 <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
-                                    <img src="/logo.png" alt="EFM" style={{ height: '34px', objectFit: 'contain' }} />
+                                    <img src="/logo.png" alt="ELOHIM FIRE MINISTRIES" style={{ height: '55px', objectFit: 'contain', borderRadius: '4px' }} />
                                 </Link>
                             </div>
 
@@ -196,7 +189,7 @@ const Header = () => {
                         padding: '0 24px',
                     }}>
                         <Link to="/" onClick={() => setIsMobileMenuOpen(false)} style={{ display: 'flex', alignItems: 'center' }}>
-                            <img src="/logo.png" alt="EFM" style={{ height: '40px', objectFit: 'contain' }} />
+                            <img src="/logo.png" alt="ELOHIM FIRE MINISTRIES" style={{ height: '60px', objectFit: 'contain', borderRadius: '4px' }} />
                         </Link>
                         <button
                             onClick={() => setIsMobileMenuOpen(false)}
