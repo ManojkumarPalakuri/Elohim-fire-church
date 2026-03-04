@@ -449,7 +449,7 @@ const GivingPage = () => {
                                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                                         <div>
                                             <div style={{ fontSize: '0.65rem', opacity: 0.7, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '3px' }}>Account Holder</div>
-                                            <div style={{ fontWeight: '600', fontSize: '0.9rem' }}>Ch. Harish</div>
+                                            <div style={{ fontWeight: '600', fontSize: '0.9rem' }}>CH. Harish</div>
                                         </div>
                                         <div>
                                             <div style={{ fontSize: '0.65rem', opacity: 0.7, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '3px' }}>IFSC Code</div>
@@ -495,7 +495,7 @@ const GivingPage = () => {
                                     <div style={{ marginBottom: '1.5rem' }}>
                                         <div style={{ fontSize: '0.7rem', opacity: 0.7, marginBottom: '4px', letterSpacing: '1px', textTransform: 'uppercase' }}>Account Number</div>
                                         <div style={{ fontFamily: 'monospace', fontSize: '1.3rem', fontWeight: '700', letterSpacing: '3px' }}>
-                                            9449 212 726
+                                            1715 072 726
                                         </div>
                                     </div>
 
@@ -503,69 +503,15 @@ const GivingPage = () => {
                                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                                         <div>
                                             <div style={{ fontSize: '0.65rem', opacity: 0.7, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '3px' }}>Account Holder</div>
-                                            <div style={{ fontWeight: '600', fontSize: '0.9rem' }}>Ch. Harish</div>
+                                            <div style={{ fontWeight: '600', fontSize: '0.9rem' }}>Ch. Harish (Joshua)</div>
                                         </div>
                                         <div>
                                             <div style={{ fontSize: '0.65rem', opacity: 0.7, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '3px' }}>IFSC Code</div>
-                                            <div style={{ fontWeight: '600', fontSize: '0.9rem', fontFamily: 'monospace' }}>KKBK0007469</div>
+                                            <div style={{ fontWeight: '600', fontSize: '0.9rem', fontFamily: 'monospace' }}>KKBK0007454</div>
                                         </div>
                                         <div style={{ gridColumn: '1 / -1' }}>
                                             <div style={{ fontSize: '0.65rem', opacity: 0.7, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '3px' }}>Branch</div>
-                                            <div style={{ fontWeight: '600', fontSize: '0.9rem' }}>Chandanagar</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="bank-card-wrapper">
-                                {/* Axis Card */}
-                                <div style={{
-                                    borderRadius: '20px',
-                                    padding: '2rem',
-                                    background: 'linear-gradient(135deg, #7c1240 0%, #97144d 50%, #6b0c36 100%)',
-                                    boxShadow: '0 8px 32px rgba(151, 20, 77, 0.4)',
-                                    position: 'relative',
-                                    overflow: 'hidden',
-                                    color: '#fff',
-                                    height: '100%',
-                                    boxSizing: 'border-box'
-                                }}>
-                                    {/* Decorative circles */}
-                                    <div style={{ position: 'absolute', top: '-30px', right: '-30px', width: '120px', height: '120px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.08)' }} />
-                                    <div style={{ position: 'absolute', bottom: '-40px', right: '40px', width: '150px', height: '150px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.05)' }} />
-
-                                    {/* Bank name */}
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-                                        <div style={{ width: '36px', height: '36px', borderRadius: '50%', backgroundColor: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                            <span style={{ color: '#97144d', fontWeight: '900', fontSize: '0.6rem' }}>AXIS</span>
-                                        </div>
-                                        <div>
-                                            <div style={{ fontWeight: '700', fontSize: '1rem', letterSpacing: '0.5px' }}>Axis Bank</div>
-                                            <div style={{ fontSize: '0.7rem', opacity: 0.7 }}>Badhti Ka Naam Zindagi</div>
-                                        </div>
-                                    </div>
-
-                                    {/* Account Number */}
-                                    <div style={{ marginBottom: '1.5rem' }}>
-                                        <div style={{ fontSize: '0.7rem', opacity: 0.7, marginBottom: '4px', letterSpacing: '1px', textTransform: 'uppercase' }}>Account Number</div>
-                                        <div style={{ fontFamily: 'monospace', fontSize: '1.3rem', fontWeight: '700', letterSpacing: '3px' }}>
-                                            9210 1004 057 5775
-                                        </div>
-                                    </div>
-
-                                    {/* Holder & details */}
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                                        <div>
-                                            <div style={{ fontSize: '0.65rem', opacity: 0.7, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '3px' }}>Account Holder</div>
-                                            <div style={{ fontWeight: '600', fontSize: '0.9rem' }}>Ch. Harish</div>
-                                        </div>
-                                        <div>
-                                            <div style={{ fontSize: '0.65rem', opacity: 0.7, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '3px' }}>IFSC Code</div>
-                                            <div style={{ fontWeight: '600', fontSize: '0.9rem', fontFamily: 'monospace' }}>UTIB0002133</div>
-                                        </div>
-                                        <div style={{ gridColumn: '1 / -1' }}>
-                                            <div style={{ fontSize: '0.65rem', opacity: 0.7, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '3px' }}>Branch</div>
-                                            <div style={{ fontWeight: '600', fontSize: '0.9rem' }}>Chandanagar</div>
+                                            <div style={{ fontWeight: '600', fontSize: '0.9rem' }}>Patancheru</div>
                                         </div>
                                     </div>
                                 </div>
@@ -573,7 +519,7 @@ const GivingPage = () => {
 
                         </div>
                         <div className="mobile-pagination">
-                            <PaginationDots count={3} activeIndex={activeBankIndex} />
+                            <PaginationDots count={2} activeIndex={activeBankIndex} />
                         </div>
                     </div>
 
