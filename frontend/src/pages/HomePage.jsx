@@ -338,27 +338,30 @@ const HomePage = () => {
                         <h2>Join Us This Week</h2>
                     </div>
 
-                    <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                        gap: '32px'
-                    }}>
-                        {[
-                            { title: 'Sunday Service', time: '10:30 AM - 2:00 PM', desc: 'Experience powerful worship and the prophetic word.', icon: Calendar },
-                            { title: 'Fasting Service', time: 'Fridays, 6:00 PM', desc: 'Corporate prayer, fasting, and spiritual renewal.', icon: Heart },
-                            { title: 'Oil Anointing Service', time: 'Every Month 1st', desc: 'Hyderabad, India.', icon: Users }
-                        ].map((service, idx) => (
-                            <div key={idx} className="modern-card" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                                <service.icon size={32} color="var(--color-accent-primary)" strokeWidth={1.5} />
-                                <div>
-                                    <h3 style={{ fontSize: '1.3rem', marginBottom: '8px' }}>{service.title}</h3>
-                                    <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.95rem', marginBottom: '16px' }}>{service.desc}</p>
-                                    <span style={{ display: 'inline-block', backgroundColor: 'rgba(255,106,0,0.1)', color: 'var(--color-accent-primary)', padding: '6px 12px', borderRadius: '4px', fontSize: '0.85rem', fontWeight: '600' }}>
-                                        {service.time}
-                                    </span>
+                    <div className="mobile-swipe-section bg-card">
+                        <div className="mobile-swipe-hint"><span className="mobile-swipe-hint-arrow">→</span></div>
+                        <div className="mobile-swipe-container" style={{
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                            gap: '32px'
+                        }}>
+                            {[
+                                { title: 'Sunday Service', time: '10:30 AM - 2:00 PM', desc: 'Experience powerful worship and the prophetic word.', icon: Calendar },
+                                { title: 'Fasting Service', time: 'Fridays, 6:00 PM', desc: 'Corporate prayer, fasting, and spiritual renewal.', icon: Heart },
+                                { title: 'Oil Anointing Service', time: 'Every Month 1st', desc: 'Hyderabad, India.', icon: Users }
+                            ].map((service, idx) => (
+                                <div key={idx} className="modern-card" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                                    <service.icon size={32} color="var(--color-accent-primary)" strokeWidth={1.5} />
+                                    <div>
+                                        <h3 style={{ fontSize: '1.3rem', marginBottom: '8px' }}>{service.title}</h3>
+                                        <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.95rem', marginBottom: '16px' }}>{service.desc}</p>
+                                        <span style={{ display: 'inline-block', backgroundColor: 'rgba(255,106,0,0.1)', color: 'var(--color-accent-primary)', padding: '6px 12px', borderRadius: '4px', fontSize: '0.85rem', fontWeight: '600' }}>
+                                            {service.time}
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section >
@@ -372,59 +375,63 @@ const HomePage = () => {
                         <h2>Upcoming Events</h2>
                     </div>
 
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '900px', margin: '0 auto' }}>
-                        {eventsLoading ? (
-                            <div style={{ textAlign: 'center', color: 'var(--color-text-secondary)', padding: '2rem' }}>Loading upcoming events...</div>
-                        ) : upcomingEvents.length > 0 ? (
-                            upcomingEvents.map((event) => {
-                                const eventDate = new Date(event.date);
-                                const month = eventDate.toLocaleString('default', { month: 'short' }).toUpperCase();
-                                const day = eventDate.getDate().toString().padStart(2, '0');
-                                const displayDate = `${month} ${day}`;
-                                const displayImg = event.imageUrl || 'https://images.unsplash.com/photo-1470229722913-7c092bb46961?w=800&q=80';
+                    <div className="mobile-swipe-section bg-card">
+                        <div className="mobile-swipe-hint"><span className="mobile-swipe-hint-arrow">→</span></div>
+                        <div className="mobile-swipe-container" style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '900px', margin: '0 auto' }}>
+                            {eventsLoading ? (
+                                <div style={{ textAlign: 'center', color: 'var(--color-text-secondary)', padding: '2rem' }}>Loading upcoming events...</div>
+                            ) : upcomingEvents.length > 0 ? (
+                                upcomingEvents.map((event) => {
+                                    const eventDate = new Date(event.date);
+                                    const month = eventDate.toLocaleString('default', { month: 'short' }).toUpperCase();
+                                    const day = eventDate.getDate().toString().padStart(2, '0');
+                                    const displayDate = `${month} ${day}`;
+                                    const displayImg = event.imageUrl || 'https://images.unsplash.com/photo-1470229722913-7c092bb46961?w=800&q=80';
 
-                                return (
-                                    <div key={event._id} style={{
-                                        display: 'flex',
-                                        flexDirection: 'row',
-                                        backgroundColor: 'var(--color-bg-dark)',
-                                        borderRadius: '12px',
-                                        overflow: 'hidden',
-                                        border: 'border-thin',
-                                        transition: 'transform 0.3s ease',
-                                        flexWrap: 'wrap'
-                                    }} onMouseEnter={(e) => e.currentTarget.style.transform = 'translateX(10px)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'none'}>
-                                        {/* Event Image */}
-                                        <div style={{ flex: '1 1 250px', minHeight: '200px', backgroundImage: `url(${displayImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+                                    return (
+                                        <div key={event._id} style={{
+                                            display: 'flex',
+                                            flexDirection: 'row',
+                                            backgroundColor: 'var(--color-bg-dark)',
+                                            borderRadius: '12px',
+                                            overflow: 'hidden',
+                                            border: 'border-thin',
+                                            transition: 'transform 0.3s ease',
+                                            flexWrap: 'wrap'
+                                        }} onMouseEnter={(e) => e.currentTarget.style.transform = 'translateX(10px)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'none'}>
+                                            {/* Event Image */}
+                                            <div style={{ flex: '1 1 250px', minHeight: '200px', backgroundImage: `url(${displayImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
 
-                                        {/* Event Details */}
-                                        <div style={{ flex: '2 1 400px', padding: '32px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px' }}>
-                                                <span style={{ backgroundColor: 'var(--color-bg-card)', color: 'var(--color-accent-primary)', padding: '6px 12px', borderRadius: '4px', fontSize: '0.85rem', fontWeight: 'bold', letterSpacing: '1px' }}>
-                                                    {displayDate} {event.time && `| ${event.time}`}
-                                                </span>
+                                            {/* Event Details */}
+                                            <div style={{ flex: '2 1 400px', padding: '32px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px' }}>
+                                                    <span style={{ backgroundColor: 'var(--color-bg-card)', color: 'var(--color-accent-primary)', padding: '6px 12px', borderRadius: '4px', fontSize: '0.85rem', fontWeight: 'bold', letterSpacing: '1px' }}>
+                                                        {displayDate} {event.time && `| ${event.time}`}
+                                                    </span>
+                                                </div>
+                                                <h3 style={{ fontSize: '1.4rem', marginBottom: '12px' }}>{event.title}</h3>
+                                                <p style={{ color: 'var(--color-text-secondary)', fontSize: '1rem', marginBottom: '24px' }}>{event.description}</p>
+                                                <Link to="/services" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'var(--color-text-primary)', fontSize: '0.9rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                                                    Learn More <ChevronRight size={16} color="var(--color-accent-primary)" />
+                                                </Link>
                                             </div>
-                                            <h3 style={{ fontSize: '1.4rem', marginBottom: '12px' }}>{event.title}</h3>
-                                            <p style={{ color: 'var(--color-text-secondary)', fontSize: '1rem', marginBottom: '24px' }}>{event.description}</p>
-                                            <Link to="/services" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'var(--color-text-primary)', fontSize: '0.9rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '1px' }}>
-                                                Learn More <ChevronRight size={16} color="var(--color-accent-primary)" />
-                                            </Link>
                                         </div>
-                                    </div>
-                                )
-                            })
-                        ) : (
-                            <div style={{ textAlign: 'center', color: 'var(--color-text-secondary)', padding: '3rem', backgroundColor: 'var(--color-bg-dark)', borderRadius: '12px', border: '1px dashed var(--color-border-outline)' }}>
-                                <p style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}>No upcoming events currently scheduled.</p>
-                                <p>Please check back later or join us for our regular Sunday services.</p>
-                            </div>
-                        )}
+                                    )
+                                })
+                            ) : (
+                                <div style={{ textAlign: 'center', color: 'var(--color-text-secondary)', padding: '3rem', backgroundColor: 'var(--color-bg-dark)', borderRadius: '12px', border: '1px dashed var(--color-border-outline)' }}>
+                                    <p style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}>No upcoming events currently scheduled.</p>
+                                    <p>Please check back later or join us for our regular Sunday services.</p>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
-            </section >
+            </section>
 
             {/* Media Collection */}
-            < section className="section-padding" style={{ backgroundColor: 'var(--color-bg-dark)' }}>
+            < section className="section-padding" style={{ backgroundColor: 'var(--color-bg-dark)' }
+            }>
                 <div className="container">
                     <div className="mb-64" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '20px' }}>
                         <div>
@@ -434,44 +441,47 @@ const HomePage = () => {
                         <Link to="/media" className="btn-outline" style={{ padding: '10px 24px' }}>View All Sermons</Link>
                     </div>
 
-                    <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-                        gap: '32px'
-                    }}>
-                        {[
-                            "https://www.youtube.com/embed/Wdb2nQyi9QU?si=F2M45NXiYX5H3i5h",
-                            "https://www.youtube.com/embed/odpBYIqEeTk?si=80vUK42yv5UXlvMd",
-                            "https://www.youtube.com/embed/UEBK2hKS504?si=SOMqcgCtLPLTcZVo"
-                        ].map((videoSrc, idx) => (
-                            <div key={idx} style={{
-                                borderRadius: '12px',
-                                overflow: 'hidden',
-                                backgroundColor: '#000',
-                                border: 'var(--border-thin)',
-                                cursor: 'default',
-                                display: 'block',
-                                width: '100%',
-                                aspectRatio: '16/9',
-                                position: 'relative'
-                            }} className="media-card hover-glow">
-                                <iframe
-                                    src={videoSrc}
-                                    title={`YouTube video player ${idx + 1}`}
-                                    frameBorder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    referrerPolicy="strict-origin-when-cross-origin"
-                                    allowFullScreen
-                                    style={{
-                                        position: 'absolute',
-                                        inset: 0,
-                                        width: '100%',
-                                        height: '100%',
-                                        border: 'none'
-                                    }}
-                                ></iframe>
-                            </div>
-                        ))}
+                    <div className="mobile-swipe-section">
+                        <div className="mobile-swipe-hint"><span className="mobile-swipe-hint-arrow">→</span></div>
+                        <div className="mobile-swipe-container" style={{
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+                            gap: '32px'
+                        }}>
+                            {[
+                                "https://www.youtube.com/embed/Wdb2nQyi9QU?si=F2M45NXiYX5H3i5h",
+                                "https://www.youtube.com/embed/odpBYIqEeTk?si=80vUK42yv5UXlvMd",
+                                "https://www.youtube.com/embed/UEBK2hKS504?si=SOMqcgCtLPLTcZVo"
+                            ].map((videoSrc, idx) => (
+                                <div key={idx} style={{
+                                    borderRadius: '12px',
+                                    overflow: 'hidden',
+                                    backgroundColor: '#000',
+                                    border: 'var(--border-thin)',
+                                    cursor: 'default',
+                                    display: 'block',
+                                    width: '100%',
+                                    aspectRatio: '16/9',
+                                    position: 'relative'
+                                }} className="media-card hover-glow">
+                                    <iframe
+                                        src={videoSrc}
+                                        title={`YouTube video player ${idx + 1}`}
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerPolicy="strict-origin-when-cross-origin"
+                                        allowFullScreen
+                                        style={{
+                                            position: 'absolute',
+                                            inset: 0,
+                                            width: '100%',
+                                            height: '100%',
+                                            border: 'none'
+                                        }}
+                                    ></iframe>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section >
@@ -533,10 +543,10 @@ const HomePage = () => {
                         ))}
                     </div>
                 </div>
-            </section >
+            </section>
 
             {/* Give Section */}
-            < section className="section-padding" style={{ backgroundColor: 'var(--color-bg-dark)', borderTop: 'var(--border-thin)' }}>
+            <section className="section-padding" style={{ backgroundColor: 'var(--color-bg-dark)', borderTop: 'var(--border-thin)' }}>
                 <div className="container text-center" style={{ maxWidth: '600px' }}>
                     <Heart size={40} color="var(--color-accent-primary)" strokeWidth={1} style={{ margin: '0 auto 24px auto' }} />
                     <h2 className="mb-24">Partner With Us</h2>
@@ -547,7 +557,7 @@ const HomePage = () => {
                         Give Securely Online
                     </Link>
                 </div>
-            </section >
+            </section>
         </>
     );
 };

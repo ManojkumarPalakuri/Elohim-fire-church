@@ -181,30 +181,33 @@ const ServicesPage = () => {
                     <div style={{ width: '80px', height: '4px', backgroundColor: 'var(--color-gold)', margin: '1.5rem auto 0' }}></div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-                    <EventCard
-                        title="Sunday Service"
-                        day="Sunday"
-                        time="10:30 AM - 2:00 PM"
-                        desc="Experience powerful worship, the prophetic word, and the transformative presence of the Holy Spirit."
-                        icon={Users}
-                    />
-                    <EventCard
-                        title="Friday Fire Prayer"
-                        day="Friday"
-                        time="7:00 PM - 9:00 PM"
-                        desc="A powerful time of intercession, spiritual warfare, and seeking the face of God for breakthroughs."
-                        icon={Star}
-                        isSpecial={true}
-                    />
-                    <EventCard
-                        title="Oil Anointing Service"
-                        day="Every Month 1st"
-                        time="6:00 PM"
-                        desc="A special service of divine consecration where we experience the tangible anointing for breakthroughs and preservation."
-                        icon={Droplets}
-                        isSpecial={true}
-                    />
+                <div className="mobile-swipe-section">
+                    <div className="mobile-swipe-hint"><span className="mobile-swipe-hint-arrow">→</span></div>
+                    <div className="mobile-swipe-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+                        <EventCard
+                            title="Sunday Service"
+                            day="Sunday"
+                            time="10:30 AM - 2:00 PM"
+                            desc="Experience powerful worship, the prophetic word, and the transformative presence of the Holy Spirit."
+                            icon={Users}
+                        />
+                        <EventCard
+                            title="Friday Fire Prayer"
+                            day="Friday"
+                            time="7:00 PM - 9:00 PM"
+                            desc="A powerful time of intercession, spiritual warfare, and seeking the face of God for breakthroughs."
+                            icon={Star}
+                            isSpecial={true}
+                        />
+                        <EventCard
+                            title="Oil Anointing Service"
+                            day="Every Month 1st"
+                            time="6:00 PM"
+                            desc="A special service of divine consecration where we experience the tangible anointing for breakthroughs and preservation."
+                            icon={Droplets}
+                            isSpecial={true}
+                        />
+                    </div>
                 </div>
             </section>
 

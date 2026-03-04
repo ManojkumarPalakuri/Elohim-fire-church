@@ -362,66 +362,79 @@ const Header = () => {
           </div>
         </header>
 
-        {/* ── Mobile Menu Overlay ── */}
+        {/* ── Mobile Menu Backdrop ── */}
+        <div
+          className="mobile-backdrop"
+          onClick={() => setIsMobileMenuOpen(false)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
+            backdropFilter: "blur(4px)",
+            WebkitBackdropFilter: "blur(4px)",
+            zIndex: 1999,
+            opacity: isMobileMenuOpen ? 1 : 0,
+            pointerEvents: isMobileMenuOpen ? "auto" : "none",
+            transition: "opacity 0.4s ease",
+          }}
+        />
+
+        {/* ── Mobile Menu Bottom Sheet ── */}
         <div
           className={`glass-menu ${isMobileMenuOpen ? "active" : ""}`}
           style={{
             position: "fixed",
-            top: 0,
+            top: "auto",
             left: 0,
             right: 0,
             bottom: 0,
-            zIndex: 2000, // Above hero top bar
-            padding: "80px 40px 40px",
+            zIndex: 2000,
+            padding: "16px 24px 40px",
+            maxHeight: "85vh",
             overflowY: "auto",
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
-            backgroundColor: theme === "dark" ? "#0B0B0B" : "#FFFFFF",
-            transition: "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
-            transform: isMobileMenuOpen ? "translateY(0)" : "translateY(-100%)",
-            boxShadow: "0 8px 32px rgba(0,0,0,0.25)",
+            backgroundColor: theme === "dark" ? "#121212" : "#FFFFFF",
+            borderTopLeftRadius: "24px",
+            borderTopRightRadius: "24px",
+            transition: "transform 0.4s cubic-bezier(0.32, 0.72, 0, 1)",
+            transform: isMobileMenuOpen ? "translateY(0)" : "translateY(100%)",
+            boxShadow: "0 -8px 32px rgba(0,0,0,0.25)",
           }}
         >
-          {/* --- Mobile Menu Top Bar (Logo + Close) --- */}
-          <div
+          {/* Drag Handle */}
+          <div style={{
+            width: "48px",
+            height: "5px",
+            backgroundColor: "var(--color-text-secondary)",
+            borderRadius: "4px",
+            opacity: 0.3,
+            margin: "0 auto 24px auto"
+          }}></div>
+
+          <button
+            onClick={() => setIsMobileMenuOpen(false)}
             style={{
               position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              height: "80px",
+              top: "16px",
+              right: "20px",
+              background: "var(--color-bg-dark)",
+              border: "1px solid var(--color-border-outline)",
+              color: "var(--color-text-primary)",
+              width: "32px",
+              height: "32px",
+              borderRadius: "50%",
               display: "flex",
-              justifyContent: "space-between",
               alignItems: "center",
-              padding: "0 24px",
+              justifyContent: "center",
+              cursor: "pointer",
             }}
+            aria-label="Close menu"
           >
-            <Link
-              to="/"
-              onClick={() => setIsMobileMenuOpen(false)}
-              style={{ display: "flex", alignItems: "center" }}
-            >
-              <img
-                src="/logo.png"
-                alt="EFM"
-                style={{ height: "40px", objectFit: "contain" }}
-              />
-            </Link>
-            <button
-              onClick={() => setIsMobileMenuOpen(false)}
-              style={{
-                background: "transparent",
-                border: "none",
-                color: "var(--color-text-primary)",
-                cursor: "pointer",
-                padding: "8px",
-              }}
-            >
-              <X size={28} />
-            </button>
-          </div>
-          <nav style={{ width: "100%" }}>
+            <X size={16} />
+          </button>
+
+          <nav style={{ width: "100%", padding: "0 8px" }}>
             <ul
               style={{
                 listStyle: "none",
@@ -429,15 +442,17 @@ const Header = () => {
                 padding: 0,
                 display: "flex",
                 flexDirection: "column",
-                gap: "0.8rem",
-                textAlign: "center",
+                gap: "0.5rem",
               }}
             >
               {navLinks.map((link, index) => (
                 <li
                   key={link.name}
-                  className="animate-slide-up"
-                  style={{ animationDelay: `${(index + 1) * 0.08}s` }}
+                  style={{
+                    animation: isMobileMenuOpen ? `slideUpMenu 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards ${index * 0.05}s` : "none",
+                    opacity: 0,
+                    transform: "translateY(20px)"
+                  }}
                 >
                   <NavLink
                     to={link.path}
@@ -445,26 +460,17 @@ const Header = () => {
                     style={({ isActive }) => ({
                       color: isActive
                         ? "var(--color-gold)"
-                        : theme === "dark"
-                          ? "#fff"
-                          : "#222",
-                      fontSize: "clamp(1.8rem, 6vw, 2.5rem)",
-                      fontWeight: "700",
-                      fontFamily: "var(--font-logo)",
-                      textTransform: "uppercase",
-                      letterSpacing: "2px",
+                        : "var(--color-text-primary)",
+                      fontSize: "1.2rem",
+                      fontWeight: isActive ? "700" : "500",
+                      fontFamily: "var(--font-heading)",
                       display: "block",
-                      lineHeight: "1.3",
-                      padding: "8px 0",
-                      transition: "all 0.3s ease",
+                      padding: "12px 16px",
+                      borderRadius: "12px",
+                      backgroundColor: isActive ? (theme === "dark" ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.03)") : "transparent",
+                      transition: "all 0.2s ease",
+                      textDecoration: "none"
                     })}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.color = "var(--color-gold)";
-                      e.currentTarget.style.transform = "scale(1.03)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = "scale(1)";
-                    }}
                   >
                     {link.name}
                   </NavLink>
@@ -474,45 +480,45 @@ const Header = () => {
           </nav>
 
           <div
-            className="animate-slide-up"
             style={{
-              marginTop: "2rem",
-              paddingTop: "2rem",
-              borderTop: "1px solid var(--color-gold-dark)",
+              marginTop: "1.5rem",
+              paddingTop: "1.5rem",
+              borderTop: "1px solid var(--color-border-outline)",
               width: "100%",
-              animationDelay: "0.6s",
-              textAlign: "center",
               display: "flex",
               flexDirection: "column",
-              alignItems: "center",
-              gap: "24px",
+              gap: "12px",
+              padding: "0 8px",
+              animation: isMobileMenuOpen ? `slideUpMenu 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s` : "none",
+              opacity: 0,
+              transform: "translateY(20px)"
             }}
           >
-            {/* Inline Theme Toggle for Mobile */}
             <button
               onClick={toggleTheme}
               style={{
-                background: "rgba(212,175,55,0.1)",
-                border: "1px solid rgba(212,175,55,0.2)",
+                background: "var(--color-bg-dark)",
+                border: "1px solid var(--color-border-outline)",
                 color: "var(--color-text-primary)",
                 display: "flex",
                 alignItems: "center",
+                justifyContent: "center",
                 gap: "12px",
-                padding: "12px 24px",
-                borderRadius: "50px",
+                padding: "14px",
+                borderRadius: "16px",
                 cursor: "pointer",
-                fontSize: "0.9rem",
+                fontSize: "1rem",
                 fontWeight: "600",
-                textTransform: "uppercase",
+                width: "100%"
               }}
             >
               {theme === "dark" ? (
                 <>
-                  <Sun size={18} /> Light Mode
+                  <Sun size={20} /> Light Mode
                 </>
               ) : (
                 <>
-                  <Moon size={18} /> Dark Mode
+                  <Moon size={20} /> Dark Mode
                 </>
               )}
             </button>
@@ -520,38 +526,24 @@ const Header = () => {
               to="/giving"
               onClick={() => setIsMobileMenuOpen(false)}
               style={{
-                display: "inline-flex",
+                display: "flex",
                 alignItems: "center",
+                justifyContent: "center",
                 gap: "10px",
-                background: "linear-gradient(135deg, #D4AF37 0%, #FF6A00 100%)",
+                background: "linear-gradient(135deg, #FF6A00 0%, #D4AF37 100%)",
                 color: "#fff",
-                padding: "14px 48px",
-                borderRadius: "50px",
+                padding: "14px",
+                borderRadius: "16px",
                 fontWeight: 700,
-                textTransform: "uppercase",
-                letterSpacing: "1px",
-                fontSize: "0.9rem",
+                fontSize: "1rem",
                 border: "none",
-                boxShadow: "0 8px 24px rgba(212, 175, 55, 0.3)",
+                boxShadow: "0 8px 16px rgba(255, 106, 0, 0.2)",
                 textDecoration: "none",
-                fontFamily: "var(--font-body)",
+                width: "100%"
               }}
             >
-              <Heart size={16} fill="currentColor" /> Give Online
+              <Heart size={18} fill="currentColor" /> Give Online
             </Link>
-
-            <p
-              style={{
-                color: "var(--color-text-secondary)",
-                fontSize: "0.85rem",
-                marginTop: "1.5rem",
-                lineHeight: 1.6,
-                maxWidth: "300px",
-                margin: "1.5rem auto 0",
-              }}
-            >
-              Empowering lives through the uncompromised Word of God.
-            </p>
           </div>
         </div>
 
@@ -560,6 +552,10 @@ const Header = () => {
                 @keyframes pulseGlow {
                     0%, 100% { opacity: 1; }
                     50% { opacity: 0.4; }
+                }
+                @keyframes slideUpMenu {
+                    from { opacity: 0; transform: translateY(20px); }
+                    to { opacity: 1; transform: translateY(0); }
                 }
                 @media (min-width: 992px) {
                     .desktop-nav { display: block !important; }

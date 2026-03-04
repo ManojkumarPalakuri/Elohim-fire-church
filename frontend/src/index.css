@@ -741,3 +741,93 @@ button {
 [data-theme='light'] .mobile-glow-top {
   background: radial-gradient(circle at 50% -10%, rgba(255, 106, 0, 0.1) 0%, transparent 60%);
 }
+
+/* Global Mobile Swipeable Card Layouts */
+@media (max-width: 768px) {
+  .mobile-swipe-section {
+    position: relative;
+  }
+
+  /* Right-side gradient fade indicating more content */
+  .mobile-swipe-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 40px;
+    background: linear-gradient(to right, transparent, var(--color-bg-dark));
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Right-side gradient fade indicating more content inside card-bg sections */
+  .mobile-swipe-section.bg-card::after {
+    background: linear-gradient(to right, transparent, var(--color-bg-card));
+  }
+
+  .mobile-swipe-hint {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 8px;
+    padding-right: 16px;
+    opacity: 0.8;
+  }
+
+  .mobile-swipe-hint::before {
+    content: 'Swipe to see more';
+  }
+
+  .mobile-swipe-hint-arrow {
+    display: inline-block;
+    animation: swipeHintBounce 2s infinite;
+  }
+
+  @keyframes swipeHintBounce {
+
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+
+    50% {
+      transform: translateX(5px);
+    }
+  }
+
+  .mobile-swipe-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory;
+    gap: 16px !important;
+    padding-bottom: 24px !important;
+    /* Make room for scrollbar */
+    padding-right: 48px !important;
+    /* Space at end of scroll */
+    -webkit-overflow-scrolling: touch;
+    /* Hide scrollbar visually but maintain functionality */
+    scrollbar-width: none;
+  }
+
+  .mobile-swipe-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobile-swipe-container>* {
+    flex: 0 0 85% !important;
+    max-width: 85% !important;
+    scroll-snap-align: start;
+  }
+}
+
+/* Hide swipe hint on desktop */
+@media (min-width: 769px) {
+  .mobile-swipe-hint {
+    display: none !important;
+  }
+}

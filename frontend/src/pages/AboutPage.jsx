@@ -123,37 +123,40 @@ const AboutPage = () => {
                         <h2>What We Believe</h2>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '24px' }}>
-                        {[
-                            { title: 'The Trinity', text: 'We believe in one God eternally existing in three persons: Father, Son, and Holy Spirit.' },
-                            { title: 'The Bible', text: 'We believe the Bible is the inspired, infallible, and authoritative Word of God.' },
-                            { title: 'Salvation', text: 'We believe that salvation is a gift from God, received by grace through faith in Jesus Christ.' },
-                            { title: 'The Holy Spirit', text: 'We believe in the baptism of the Holy Spirit, empowering believers for witness and service.' },
-                            { title: 'Divine Healing', text: 'We believe that divine healing is provided for in the atonement of Christ and is the privilege of all believers.' },
-                            { title: 'The Return of Christ', text: 'We believe in the blessed hope—the imminent return of Jesus Christ for His victorious Church.' }
-                        ].map((item, idx) => (
-                            <div key={idx} style={{
-                                padding: '32px',
-                                backgroundColor: 'var(--color-bg-dark)',
-                                borderRadius: '12px',
-                                border: 'var(--border-thin)',
-                                transition: 'all 0.3s ease'
-                            }}
-                                onMouseEnter={(e) => {
-                                    e.currentTarget.style.borderColor = 'rgba(255,106,0,0.3)';
-                                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    <div className="mobile-swipe-section">
+                        <div className="mobile-swipe-hint"><span className="mobile-swipe-hint-arrow">→</span></div>
+                        <div className="mobile-swipe-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '24px' }}>
+                            {[
+                                { title: 'The Trinity', text: 'We believe in one God eternally existing in three persons: Father, Son, and Holy Spirit.' },
+                                { title: 'The Bible', text: 'We believe the Bible is the inspired, infallible, and authoritative Word of God.' },
+                                { title: 'Salvation', text: 'We believe that salvation is a gift from God, received by grace through faith in Jesus Christ.' },
+                                { title: 'The Holy Spirit', text: 'We believe in the baptism of the Holy Spirit, empowering believers for witness and service.' },
+                                { title: 'Divine Healing', text: 'We believe that divine healing is provided for in the atonement of Christ and is the privilege of all believers.' },
+                                { title: 'The Return of Christ', text: 'We believe in the blessed hope—the imminent return of Jesus Christ for His victorious Church.' }
+                            ].map((item, idx) => (
+                                <div key={idx} style={{
+                                    padding: '32px',
+                                    backgroundColor: 'var(--color-bg-dark)',
+                                    borderRadius: '12px',
+                                    border: 'var(--border-thin)',
+                                    transition: 'all 0.3s ease'
                                 }}
-                                onMouseLeave={(e) => {
-                                    e.currentTarget.style.borderColor = 'var(--color-border-thin)';
-                                    e.currentTarget.style.transform = 'none';
-                                }}>
-                                <h3 style={{ color: 'var(--color-text-primary)', marginBottom: '16px', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                    <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--color-accent-primary)' }}></div>
-                                    {item.title}
-                                </h3>
-                                <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.95rem', lineHeight: 1.6 }}>{item.text}</p>
-                            </div>
-                        ))}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.borderColor = 'rgba(255,106,0,0.3)';
+                                        e.currentTarget.style.transform = 'translateY(-2px)';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.borderColor = 'var(--color-border-thin)';
+                                        e.currentTarget.style.transform = 'none';
+                                    }}>
+                                    <h3 style={{ color: 'var(--color-text-primary)', marginBottom: '16px', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                        <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--color-accent-primary)' }}></div>
+                                        {item.title}
+                                    </h3>
+                                    <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.95rem', lineHeight: 1.6 }}>{item.text}</p>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>

@@ -80,56 +80,59 @@ const EventsPage = () => {
                             <div className="animate-pulse" style={{ color: 'var(--color-gold)', fontSize: '1.2rem' }}>Loading Heaven's Calendar...</div>
                         </div>
                     ) : events.length > 0 ? (
-                        <div style={{
-                            display: 'grid',
-                            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-                            gap: '2.5rem'
-                        }}>
-                            {events.map((event) => (
-                                <div key={event._id} className="modern-card" style={{ padding: '0', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                                    <div style={{
-                                        height: '240px',
-                                        backgroundImage: `url(${event.imageUrl || 'https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=800'})`,
-                                        backgroundSize: 'cover',
-                                        backgroundPosition: 'center',
-                                        position: 'relative'
-                                    }}>
+                        <div className="mobile-swipe-section">
+                            <div className="mobile-swipe-hint"><span className="mobile-swipe-hint-arrow">→</span></div>
+                            <div className="mobile-swipe-container" style={{
+                                display: 'grid',
+                                gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+                                gap: '2.5rem'
+                            }}>
+                                {events.map((event) => (
+                                    <div key={event._id} className="modern-card" style={{ padding: '0', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
                                         <div style={{
-                                            position: 'absolute',
-                                            top: '20px',
-                                            left: '20px',
-                                            backgroundColor: 'var(--color-accent-primary)',
-                                            color: '#fff',
-                                            padding: '8px 16px',
-                                            borderRadius: '8px',
-                                            fontWeight: '800',
-                                            fontSize: '0.9rem',
-                                            boxShadow: '0 4px 12px rgba(255, 106, 0, 0.3)'
+                                            height: '240px',
+                                            backgroundImage: `url(${event.imageUrl || 'https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=800'})`,
+                                            backgroundSize: 'cover',
+                                            backgroundPosition: 'center',
+                                            position: 'relative'
                                         }}>
-                                            {new Date(event.date).toLocaleDateString([], { month: 'short', day: 'numeric' })}
-                                        </div>
-                                    </div>
-                                    <div style={{ padding: '2rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                                        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: 'var(--color-text-primary)' }}>{event.title}</h3>
-                                        <p style={{ color: 'var(--color-text-secondary)', marginBottom: '1.5rem', flex: 1, lineHeight: '1.6' }}>{event.description}</p>
-
-                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '2rem' }}>
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--color-text-secondary)', fontSize: '0.9rem' }}>
-                                                <Clock size={16} color="var(--color-gold)" />
-                                                <span>{event.time || 'TBA'}</span>
-                                            </div>
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--color-text-secondary)', fontSize: '0.9rem' }}>
-                                                <MapPin size={16} color="var(--color-gold)" />
-                                                <span>{event.location}</span>
+                                            <div style={{
+                                                position: 'absolute',
+                                                top: '20px',
+                                                left: '20px',
+                                                backgroundColor: 'var(--color-accent-primary)',
+                                                color: '#fff',
+                                                padding: '8px 16px',
+                                                borderRadius: '8px',
+                                                fontWeight: '800',
+                                                fontSize: '0.9rem',
+                                                boxShadow: '0 4px 12px rgba(255, 106, 0, 0.3)'
+                                            }}>
+                                                {new Date(event.date).toLocaleDateString([], { month: 'short', day: 'numeric' })}
                                             </div>
                                         </div>
+                                        <div style={{ padding: '2rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                                            <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: 'var(--color-text-primary)' }}>{event.title}</h3>
+                                            <p style={{ color: 'var(--color-text-secondary)', marginBottom: '1.5rem', flex: 1, lineHeight: '1.6' }}>{event.description}</p>
 
-                                        <button className="btn-outline" style={{ width: '100%', justifyContent: 'space-between' }}>
-                                            Event Details <ArrowRight size={18} />
-                                        </button>
+                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '2rem' }}>
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--color-text-secondary)', fontSize: '0.9rem' }}>
+                                                    <Clock size={16} color="var(--color-gold)" />
+                                                    <span>{event.time || 'TBA'}</span>
+                                                </div>
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--color-text-secondary)', fontSize: '0.9rem' }}>
+                                                    <MapPin size={16} color="var(--color-gold)" />
+                                                    <span>{event.location}</span>
+                                                </div>
+                                            </div>
+
+                                            <button className="btn-outline" style={{ width: '100%', justifyContent: 'space-between' }}>
+                                                Event Details <ArrowRight size={18} />
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
                     ) : (
                         <div style={{

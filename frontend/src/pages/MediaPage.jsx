@@ -530,86 +530,89 @@ const MediaPage = () => {
                         </p>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', maxWidth: '900px', margin: '0 auto' }}>
+                    <div className="mobile-swipe-section">
+                        <div className="mobile-swipe-hint"><span className="mobile-swipe-hint-arrow">→</span></div>
+                        <div className="mobile-swipe-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', maxWidth: '900px', margin: '0 auto' }}>
 
-                        {/* Facebook Card */}
-                        <a href="https://www.facebook.com/profile.php?id=100076227227459&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-                            <div style={{
-                                background: 'linear-gradient(135deg, #1877F2 0%, #0d5cbf 100%)',
-                                borderRadius: '20px',
-                                padding: '2rem',
-                                color: '#fff',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'center',
-                                gap: '1rem',
-                                transition: 'all 0.3s ease',
-                                boxShadow: '0 8px 32px rgba(24, 119, 242, 0.3)',
-                            }}
-                                onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = '0 16px 48px rgba(24, 119, 242, 0.4)'; }}
-                                onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(24, 119, 242, 0.3)'; }}
-                            >
-                                <Facebook size={48} />
-                                <div style={{ textAlign: 'center' }}>
-                                    <div style={{ fontWeight: '800', fontSize: '1.2rem', marginBottom: '4px' }}>Facebook</div>
-                                    <div style={{ opacity: 0.8, fontSize: '0.85rem' }}>Prophet Joshua Official</div>
+                            {/* Facebook Card */}
+                            <a href="https://www.facebook.com/profile.php?id=100076227227459&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                                <div style={{
+                                    background: 'linear-gradient(135deg, #1877F2 0%, #0d5cbf 100%)',
+                                    borderRadius: '20px',
+                                    padding: '2rem',
+                                    color: '#fff',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    gap: '1rem',
+                                    transition: 'all 0.3s ease',
+                                    boxShadow: '0 8px 32px rgba(24, 119, 242, 0.3)',
+                                }}
+                                    onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = '0 16px 48px rgba(24, 119, 242, 0.4)'; }}
+                                    onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(24, 119, 242, 0.3)'; }}
+                                >
+                                    <Facebook size={48} />
+                                    <div style={{ textAlign: 'center' }}>
+                                        <div style={{ fontWeight: '800', fontSize: '1.2rem', marginBottom: '4px' }}>Facebook</div>
+                                        <div style={{ opacity: 0.8, fontSize: '0.85rem' }}>Prophet Joshua Official</div>
+                                    </div>
+                                    <span style={{ backgroundColor: 'rgba(255,255,255,0.2)', padding: '8px 24px', borderRadius: '8px', fontWeight: '700', fontSize: '0.85rem', letterSpacing: '0.5px' }}>Follow Us</span>
                                 </div>
-                                <span style={{ backgroundColor: 'rgba(255,255,255,0.2)', padding: '8px 24px', borderRadius: '8px', fontWeight: '700', fontSize: '0.85rem', letterSpacing: '0.5px' }}>Follow Us</span>
-                            </div>
-                        </a>
+                            </a>
 
-                        {/* Instagram Card */}
-                        <a href="https://instagram.com/prophet_joshua_official?igshid=NGExMmI2YTkyZg==" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-                            <div style={{
-                                background: 'linear-gradient(135deg, #833AB4 0%, #E1306C 50%, #F77737 100%)',
-                                borderRadius: '20px',
-                                padding: '2rem',
-                                color: '#fff',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'center',
-                                gap: '1rem',
-                                transition: 'all 0.3s ease',
-                                boxShadow: '0 8px 32px rgba(225, 48, 108, 0.3)',
-                            }}
-                                onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = '0 16px 48px rgba(225, 48, 108, 0.4)'; }}
-                                onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(225, 48, 108, 0.3)'; }}
-                            >
-                                <Instagram size={48} />
-                                <div style={{ textAlign: 'center' }}>
-                                    <div style={{ fontWeight: '800', fontSize: '1.2rem', marginBottom: '4px' }}>Instagram</div>
-                                    <div style={{ opacity: 0.8, fontSize: '0.85rem' }}>@prophet_joshua_official</div>
+                            {/* Instagram Card */}
+                            <a href="https://instagram.com/prophet_joshua_official?igshid=NGExMmI2YTkyZg==" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                                <div style={{
+                                    background: 'linear-gradient(135deg, #833AB4 0%, #E1306C 50%, #F77737 100%)',
+                                    borderRadius: '20px',
+                                    padding: '2rem',
+                                    color: '#fff',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    gap: '1rem',
+                                    transition: 'all 0.3s ease',
+                                    boxShadow: '0 8px 32px rgba(225, 48, 108, 0.3)',
+                                }}
+                                    onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = '0 16px 48px rgba(225, 48, 108, 0.4)'; }}
+                                    onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(225, 48, 108, 0.3)'; }}
+                                >
+                                    <Instagram size={48} />
+                                    <div style={{ textAlign: 'center' }}>
+                                        <div style={{ fontWeight: '800', fontSize: '1.2rem', marginBottom: '4px' }}>Instagram</div>
+                                        <div style={{ opacity: 0.8, fontSize: '0.85rem' }}>@prophet_joshua_official</div>
+                                    </div>
+                                    <span style={{ backgroundColor: 'rgba(255,255,255,0.2)', padding: '8px 24px', borderRadius: '8px', fontWeight: '700', fontSize: '0.85rem', letterSpacing: '0.5px' }}>Follow Us</span>
                                 </div>
-                                <span style={{ backgroundColor: 'rgba(255,255,255,0.2)', padding: '8px 24px', borderRadius: '8px', fontWeight: '700', fontSize: '0.85rem', letterSpacing: '0.5px' }}>Follow Us</span>
-                            </div>
-                        </a>
+                            </a>
 
-                        {/* YouTube Card */}
-                        <a href="https://youtube.com/@prophetjoshua6374?si=dGfgURVT4xawDOF_" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-                            <div style={{
-                                background: 'linear-gradient(135deg, #FF0000 0%, #CC0000 100%)',
-                                borderRadius: '20px',
-                                padding: '2rem',
-                                color: '#fff',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'center',
-                                gap: '1rem',
-                                transition: 'all 0.3s ease',
-                                boxShadow: '0 8px 32px rgba(255, 0, 0, 0.3)',
-                            }}
-                                onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = '0 16px 48px rgba(255, 0, 0, 0.4)'; }}
-                                onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(255, 0, 0, 0.3)'; }}
-                            >
-                                <Youtube size={48} />
-                                <div style={{ textAlign: 'center' }}>
-                                    <div style={{ fontWeight: '800', fontSize: '1.2rem', marginBottom: '4px' }}>YouTube</div>
-                                    <div style={{ opacity: 0.8, fontSize: '0.85rem' }}>Prophet Joshua</div>
+                            {/* YouTube Card */}
+                            <a href="https://youtube.com/@prophetjoshua6374?si=dGfgURVT4xawDOF_" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                                <div style={{
+                                    background: 'linear-gradient(135deg, #FF0000 0%, #CC0000 100%)',
+                                    borderRadius: '20px',
+                                    padding: '2rem',
+                                    color: '#fff',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    gap: '1rem',
+                                    transition: 'all 0.3s ease',
+                                    boxShadow: '0 8px 32px rgba(255, 0, 0, 0.3)',
+                                }}
+                                    onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = '0 16px 48px rgba(255, 0, 0, 0.4)'; }}
+                                    onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(255, 0, 0, 0.3)'; }}
+                                >
+                                    <Youtube size={48} />
+                                    <div style={{ textAlign: 'center' }}>
+                                        <div style={{ fontWeight: '800', fontSize: '1.2rem', marginBottom: '4px' }}>YouTube</div>
+                                        <div style={{ opacity: 0.8, fontSize: '0.85rem' }}>Prophet Joshua</div>
+                                    </div>
+                                    <span style={{ backgroundColor: 'rgba(255,255,255,0.2)', padding: '8px 24px', borderRadius: '8px', fontWeight: '700', fontSize: '0.85rem', letterSpacing: '0.5px' }}>Subscribe</span>
                                 </div>
-                                <span style={{ backgroundColor: 'rgba(255,255,255,0.2)', padding: '8px 24px', borderRadius: '8px', fontWeight: '700', fontSize: '0.85rem', letterSpacing: '0.5px' }}>Subscribe</span>
-                            </div>
-                        </a>
+                            </a>
 
+                        </div>
                     </div>
                 </div>
             </section>
