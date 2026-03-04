@@ -56,12 +56,25 @@ const AdminLayout = () => {
                     padding: '1.5rem',
                     borderBottom: '1px solid var(--color-border-outline)',
                     display: 'flex',
-                    flexDirection: 'column',
                     alignItems: 'center',
                     gap: '12px',
                 }}>
-                    <img src="/logo.png" alt="Logo" style={{ height: '90px', objectFit: 'contain', borderRadius: '6px', border: '1px solid rgba(212,175,55,0.2)' }} />
-                    <span style={{ fontSize: '0.65rem', color: 'var(--color-gold)', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: '700' }}>Admin Panel</span>
+                    <div style={{
+                        width: '40px', height: '40px',
+                        borderRadius: '10px',
+                        background: 'rgba(212, 175, 55, 0.12)',
+                        border: '1px solid rgba(212, 175, 55, 0.3)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        overflow: 'hidden', flexShrink: 0,
+                    }}>
+                        <img src="/logo.png" alt="Logo" style={{ height: '30px', objectFit: 'contain' }} />
+                    </div>
+                    <div>
+                        <h2 style={{ fontSize: '1rem', margin: 0, color: 'var(--color-text-primary)', letterSpacing: '1px', lineHeight: 1.2 }}>
+                            ELOHIM <span style={{ color: 'var(--color-accent-primary)' }}>FIRE</span>
+                        </h2>
+                        <span style={{ fontSize: '0.6rem', color: 'var(--color-gold)', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: '600' }}>Admin Panel</span>
+                    </div>
                 </div>
 
                 {/* User Info */}
