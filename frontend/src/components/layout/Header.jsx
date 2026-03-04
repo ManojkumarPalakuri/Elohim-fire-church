@@ -293,8 +293,6 @@ const Header = () => {
               </div>
             </div>
           </header>
-
-          {/* ── Mobile Menu Overlay ── */}
 =======
   return (
     <>
