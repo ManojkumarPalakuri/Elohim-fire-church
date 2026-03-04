@@ -102,7 +102,7 @@ const Header = () => {
 
                             {/* Logo (Left) */}
                             <NavLink to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
-                                <img src="/logo.png" alt="EFM" style={{ height: isScrolled ? '46px' : '56px', objectFit: 'contain', transition: 'height 0.3s ease' }} />
+                                <img src="/logo.png" alt="EFM" style={{ height: isScrolled ? '65px' : '75px', margin: '-10px 0', objectFit: 'contain', transition: 'height 0.3s ease' }} />
                                 <div className="logo-text" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', borderLeft: '1px solid var(--color-gold-dark)', paddingLeft: '12px', marginLeft: '2px' }}>
                                     <h1 style={{ fontFamily: 'var(--font-logo)', fontSize: '1.1rem', margin: 0, color: 'var(--color-text-primary)', letterSpacing: '1.5px', lineHeight: 1.1, fontWeight: 700 }}>
                                         ELOHIM <span className="logo-fire-text" style={{ fontWeight: 800 }}>FIRE</span>
@@ -143,7 +143,7 @@ const Header = () => {
                         }} className="mobile-header-flex">
                             <div style={{ flex: 1 }}>
                                 <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
-                                    <img src="/logo.png" alt="EFM" style={{ height: '34px', objectFit: 'contain' }} />
+                                    <img src="/logo.png" alt="EFM" style={{ height: '48px', margin: '-7px 0', objectFit: 'contain' }} />
                                 </Link>
                             </div>
 
