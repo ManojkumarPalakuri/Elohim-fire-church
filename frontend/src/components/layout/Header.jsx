@@ -816,6 +816,8 @@ const Header = () => {
             transition: "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
             transform: isMobileMenuOpen ? "translateY(0)" : "translateY(-100%)",
             boxShadow: "0 8px 32px rgba(0,0,0,0.25)",
+            opacity: 1,
+            backdropFilter: "none",
           }}
         >
           {/* --- Mobile Menu Top Bar (Logo + Close) --- */}
