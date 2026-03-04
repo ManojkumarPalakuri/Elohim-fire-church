@@ -101,7 +101,7 @@ const EventsPage = () => {
                                             backgroundColor: 'var(--color-accent-primary)',
                                             color: '#fff',
                                             padding: '8px 16px',
-                                            borderRadius: '8px',
+                                            borderRadius: '0',
                                             fontWeight: '800',
                                             fontSize: '0.9rem',
                                             boxShadow: '0 4px 12px rgba(255, 106, 0, 0.3)'

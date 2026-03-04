@@ -200,7 +200,7 @@ const Login = () => {
                                 backgroundSize: '200% 200%',
                                 color: '#0a0a0c',
                                 border: 'none',
-                                borderRadius: '10px',
+                                borderRadius: '0',
                                 fontSize: '0.9rem',
                                 fontWeight: '700',
                                 letterSpacing: '2px',

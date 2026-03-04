@@ -62,7 +62,7 @@ const HomePage = () => {
     return (
         <>
             <Helmet>
-                <title>Elohim Fire Ministries | Grace. Power. Fire.</title>
+                <title>Elohim Fire Ministries | Pastor Joshua. Power. Ministries.</title>
                 <meta name="description" content="Join Prophet Joshua at Elohim Fire Ministries and experience the transformative presence of God." />
             </Helmet>
 
@@ -112,14 +112,18 @@ const HomePage = () => {
                     }} className={isLoaded ? 'animate-fade-in' : ''}>
 
                         <span style={{
-                            display: 'block',
-                            color: 'var(--color-accent-primary)',
+                            display: 'inline-block',
+                            backgroundColor: 'rgba(255, 0, 0, 0.85)', // Strong red background
+                            color: '#FFFFFF', // White text for maximum contrast
+                            padding: '6px 14px',
+                            borderRadius: '50px',
                             fontSize: '0.7rem',
-                            letterSpacing: '5px',
+                            letterSpacing: '3px',
                             textTransform: 'uppercase',
                             fontWeight: '800',
                             marginBottom: '24px',
-                            textShadow: '0 2px 10px rgba(0,0,0,0.5)'
+                            boxShadow: '0 4px 15px rgba(255,0,0,0.4)', // Subtle red glow
+                            backdropFilter: 'blur(4px)'
                         }} className="delay-100 animate-fade-in">
                             The Presence of God
                         </span>
@@ -127,35 +131,39 @@ const HomePage = () => {
                         <h1 style={{
                             margin: 0,
                             padding: 0,
-                            fontSize: 'clamp(4rem, 18vw, 5.5rem)',
-                            lineHeight: 1.05,
                             fontWeight: 900,
                             textTransform: 'uppercase',
-                            letterSpacing: '-2px',
+                            letterSpacing: '-1px',
                             color: '#fff',
                             width: '100%',
-                            maxWidth: '90%'
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            lineHeight: 1
                         }} className="delay-200 animate-fade-in">
-                            GRACE.<br />
-                            POWER.<br />
+                            <span style={{ fontSize: 'clamp(3.5rem, 15vw, 5rem)' }}>PROPHET JOSHUA.</span>
                             <span style={{
                                 background: 'linear-gradient(135deg, #FFB703 0%, #FF8C00 100%)',
                                 WebkitBackgroundClip: 'text',
                                 WebkitTextFillColor: 'transparent',
-                                display: 'inline-block'
-                            }}>FIRE.</span>
+                                display: 'inline-block',
+                                fontSize: 'clamp(1.5rem, 7vw, 2.8rem)',
+                                letterSpacing: '4px',
+                                marginTop: '0.5rem'
+                            }}>MINISTRIES.</span>
                         </h1>
 
-                        <div style={{ height: '40px' }}></div> {/* Balanced breathing space */}
+                        <div style={{ height: '32px' }}></div> {/* Balanced breathing space */}
 
                         <p style={{
                             fontSize: '1rem',
                             lineHeight: 1.6,
                             color: 'rgba(255,255,255,0.85)',
-                            maxWidth: '280px',
-                            margin: 0,
+                            maxWidth: '300px',
+                            margin: '0 auto',
                             fontWeight: '400',
-                            textShadow: '0 1px 4px rgba(0,0,0,0.3)'
+                            textShadow: '0 1px 4px rgba(0,0,0,0.3)',
+                            textAlign: 'center'
                         }} className="delay-300 animate-fade-in">
                             Experience the life-transforming ministry of Prophet Joshua.
                         </p>
@@ -172,7 +180,7 @@ const HomePage = () => {
                                 justifyContent: 'center',
                                 background: 'linear-gradient(135deg, #FFB703 0%, #FF6A00 100%)',
                                 color: '#000',
-                                borderRadius: '50px',
+                                borderRadius: '0',
                                 fontWeight: '800',
                                 textTransform: 'uppercase',
                                 letterSpacing: '1px',
@@ -191,7 +199,7 @@ const HomePage = () => {
                                 justifyContent: 'center',
                                 border: '1px solid rgba(255,255,255,0.3)',
                                 color: '#fff',
-                                borderRadius: '50px',
+                                borderRadius: '0',
                                 fontWeight: '700',
                                 textTransform: 'uppercase',
                                 letterSpacing: '1px',
@@ -233,33 +241,102 @@ const HomePage = () => {
                                 margin: '0',
                                 color: 'var(--color-text-primary)',
                                 textTransform: 'uppercase',
-                                fontSize: 'clamp(4rem, 10vw, 7.5rem)',
-                                lineHeight: '0.9',
                                 fontWeight: '900',
-                                letterSpacing: '-3px',
-                                marginBottom: '2rem'
+                                letterSpacing: '-2px',
+                                marginBottom: '2rem',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'flex-start',
+                                lineHeight: '1'
                             }}>
-                                Grace.<br />
-                                Power.<br />
-                                <span className="text-fire-pulse" style={{ display: 'inline', color: '#FFB703' }}>Fire.</span>
+                                <span style={{ fontSize: 'clamp(4rem, 8vw, 7rem)' }}>PROPHET JOSHUA.</span>
+                                <span className="text-fire-pulse" style={{
+                                    display: 'inline-block',
+                                    color: '#FFB703',
+                                    fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+                                    marginTop: '0.5rem',
+                                    letterSpacing: '2px'
+                                }}>MINISTRIES.</span>
                             </h1>
 
                             <p className="delay-300 animate-fade-in" style={{
-                                color: 'rgba(255, 255, 255, 0.8)',
+                                color: 'var(--color-text-primary)', // Adjusts automatically for light/dark mode
                                 maxWidth: '450px',
                                 lineHeight: 1.5,
                                 marginTop: '0',
                                 marginBottom: '32px',
-                                fontSize: '1.1rem'
+                                fontSize: '1.2rem',
+                                fontWeight: '500',
+                                textShadow: '0 1px 2px rgba(0,0,0,0.2)' // Add slight shadow for images
                             }}>
                                 Experience the transforming presence of God with Prophet Joshua.
                             </p>
 
-                            <div className="delay-300 animate-fade-in hero-buttons">
-                                <Link to="/contact#prayer" className="btn-primary">
+                            <div className="delay-300 animate-fade-in" style={{ display: 'flex', gap: '16px' }}>
+                                <Link
+                                    to="/contact#prayer"
+                                    style={{
+                                        display: 'inline-flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        height: '56px',
+                                        padding: '0 32px',
+                                        background: 'var(--color-bg-light)', // Will typically be white or light cool gray
+                                        backgroundColor: '#0056b3', // Primary blue
+                                        color: '#ffffff',
+                                        borderRadius: '0',
+                                        fontWeight: '800',
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '1px',
+                                        fontSize: '0.85rem',
+                                        textDecoration: 'none',
+                                        border: 'none',
+                                        transition: 'all 0.3s ease',
+                                        boxShadow: '0 4px 15px rgba(0, 86, 179, 0.4)'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.backgroundColor = '#004494';
+                                        e.currentTarget.style.transform = 'translateY(-2px)';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.backgroundColor = '#0056b3';
+                                        e.currentTarget.style.transform = 'none';
+                                    }}
+                                >
                                     Prayer Request
                                 </Link>
-                                <a href="https://youtube.com/@prophetjoshua6374?si=dGfgURVT4xawDOF_" target="_blank" rel="noopener noreferrer" className="btn-outline">
+
+                                <a
+                                    href="https://youtube.com/@prophetjoshua6374?si=dGfgURVT4xawDOF_"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{
+                                        display: 'inline-flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        height: '56px',
+                                        padding: '0 32px',
+                                        backgroundColor: '#DC3545', // Strong vibrant Red
+                                        color: '#ffffff',
+                                        borderRadius: '0',
+                                        fontWeight: '800',
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '1px',
+                                        fontSize: '0.85rem',
+                                        textDecoration: 'none',
+                                        border: 'none',
+                                        transition: 'all 0.3s ease',
+                                        boxShadow: '0 4px 15px rgba(220, 53, 69, 0.4)'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.backgroundColor = '#C82333';
+                                        e.currentTarget.style.transform = 'translateY(-2px)';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.backgroundColor = '#DC3545';
+                                        e.currentTarget.style.transform = 'none';
+                                    }}
+                                >
                                     Watch Live
                                 </a>
                             </div>
@@ -313,7 +390,7 @@ const HomePage = () => {
                         {/* Right: Bio */}
                         <div>
                             <span style={{ color: 'var(--color-accent-primary)', letterSpacing: '2px', textTransform: 'uppercase', fontSize: '0.85rem', fontWeight: '600', display: 'block', marginBottom: '16px' }}>
-                                Our Leadership
+                                The Prophet of the House
                             </span>
                             <h2 className="mb-24">Meet <span className="text-secondary">Prophet Joshua</span></h2>
                             <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.1rem', lineHeight: 1.8, marginBottom: '24px' }}>
@@ -322,7 +399,7 @@ const HomePage = () => {
                             <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.1rem', lineHeight: 1.8, marginBottom: '40px' }}>
                                 He carries a powerful Prophetic Teaching Ministry and is anointed in prophecy, healing, miracles, and deliverance. Through the leading of the Holy Spirit, his ministry has impacted countless lives with the transforming power of Christ.
                             </p>
-                            <Link to="/about" className="btn-outline">
+                            <Link to="/about" className="btn-outline" style={{ borderRadius: '0' }}>
                                 Read Full Story
                             </Link>
                         </div>
@@ -538,12 +615,12 @@ const HomePage = () => {
             {/* Give Section */}
             < section className="section-padding" style={{ backgroundColor: 'var(--color-bg-dark)', borderTop: 'var(--border-thin)' }}>
                 <div className="container text-center" style={{ maxWidth: '600px' }}>
-                    <Heart size={40} color="var(--color-accent-primary)" strokeWidth={1} style={{ margin: '0 auto 24px auto' }} />
+                    <Heart size={40} color="#ffffff" fill="#ff0000" strokeWidth={1} style={{ margin: '0 auto 24px auto' }} />
                     <h2 className="mb-24">Partner With Us</h2>
                     <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.1rem', lineHeight: 1.8, marginBottom: '40px' }}>
                         Your generosity helps us take the Gospel of grace and power to the nations. Give securely and be a part of what God is doing.
                     </p>
-                    <Link to="/giving" className="btn-primary" style={{ padding: '16px 40px' }}>
+                    <Link to="/giving" className="btn-primary" style={{ padding: '16px 40px', borderRadius: '0', background: 'var(--color-accent-primary)', border: 'none' }}>
                         Give Securely Online
                     </Link>
                 </div>

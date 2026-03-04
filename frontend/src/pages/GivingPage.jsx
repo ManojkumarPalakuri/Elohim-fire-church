@@ -161,7 +161,7 @@ const QRCard = ({ qr }) => {
                         border: '1px solid rgba(212,175,55,0.3)',
                         color: 'var(--color-gold)',
                         padding: '0.6rem',
-                        borderRadius: '8px',
+                        borderRadius: '0',
                         fontSize: '0.85rem',
                         cursor: 'pointer',
                         display: 'flex',
@@ -229,7 +229,7 @@ const GivingPage = () => {
                 <div className="container">
                     <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
                         <div style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)', padding: '20px', borderRadius: '50%' }}>
-                            <Heart color="var(--color-fire)" size={48} fill="var(--color-fire)" style={{ filter: 'drop-shadow(var(--glow-fire))' }} />
+                            <Heart color="#ffffff" size={48} fill="#ff0000" style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.2))' }} />
                         </div>
                     </div>
                     <h1 style={{ marginBottom: '1rem', textShadow: 'var(--glow-gold)' }}>Give &amp; <span className="text-gold">Partner</span></h1>
@@ -278,11 +278,11 @@ const GivingPage = () => {
                         <h2>Give Online — Secure & Instant</h2>
                         <p style={{ color: 'var(--color-text-secondary)' }}>Sponsor a church member, support poor feeding, or give a general offering using your Credit/Debit Card or Net Banking.</p>
                         <button style={{
-                            backgroundColor: 'var(--color-gold)',
+                            backgroundColor: 'var(--color-accent-primary)',
                             color: '#000',
                             border: 'none',
                             padding: '16px 40px',
-                            borderRadius: '8px',
+                            borderRadius: '0',
                             fontSize: '1.2rem',
                             fontWeight: 'bold',
                             textTransform: 'uppercase',

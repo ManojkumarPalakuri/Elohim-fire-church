@@ -102,7 +102,7 @@ const AdminEvents = () => {
                         color: '#000',
                         border: 'none',
                         padding: '10px 20px',
-                        borderRadius: '4px',
+                        borderRadius: '0',
                         fontWeight: 'bold',
                         display: 'flex',
                         alignItems: 'center',
@@ -230,8 +230,8 @@ const AdminEvents = () => {
                             </div>
 
                             <div style={{ marginTop: '1rem', display: 'flex', justifyContent: 'flex-end', gap: '1rem' }}>
-                                <button type="button" onClick={() => setIsModalOpen(false)} style={{ padding: '12px 24px', backgroundColor: 'transparent', border: '1px solid var(--color-border-outline)', color: 'var(--color-text-primary)', borderRadius: '4px', cursor: 'pointer' }}>Cancel</button>
-                                <button type="submit" style={{ padding: '12px 24px', backgroundColor: 'var(--color-gold)', border: 'none', color: '#000', fontWeight: 'bold', borderRadius: '4px', cursor: 'pointer' }}>Save Event</button>
+                                <button type="button" onClick={() => setIsModalOpen(false)} style={{ padding: '12px 24px', backgroundColor: 'transparent', border: '1px solid var(--color-border-outline)', color: 'var(--color-text-primary)', borderRadius: '0', cursor: 'pointer' }}>Cancel</button>
+                                <button type="submit" style={{ padding: '12px 24px', backgroundColor: 'var(--color-gold)', border: 'none', color: '#000', fontWeight: 'bold', borderRadius: '0', cursor: 'pointer' }}>Save Event</button>
                             </div>
                         </form>
                     </div>
@@ -278,7 +278,7 @@ const AdminEvents = () => {
                                     backgroundColor: 'rgba(255,255,255,0.05)',
                                     border: '1px solid var(--color-border-outline)',
                                     color: 'var(--color-text-primary)',
-                                    borderRadius: '8px', cursor: 'pointer',
+                                    borderRadius: '0', cursor: 'pointer',
                                     fontWeight: '600'
                                 }}
                             >
@@ -291,7 +291,7 @@ const AdminEvents = () => {
                                     backgroundColor: 'var(--color-fire)',
                                     border: 'none',
                                     color: '#fff',
-                                    borderRadius: '8px', cursor: 'pointer',
+                                    borderRadius: '0', cursor: 'pointer',
                                     fontWeight: '700',
                                     boxShadow: '0 4px 15px rgba(255, 69, 0, 0.3)'
                                 }}

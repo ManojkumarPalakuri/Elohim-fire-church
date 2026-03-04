@@ -178,7 +178,7 @@ const MediaPage = () => {
                             color: '#FFFFFF',
                             textDecoration: 'none',
                             padding: '16px 40px',
-                            borderRadius: '12px',
+                            borderRadius: '0',
                             fontWeight: '800',
                             textTransform: 'uppercase',
                             letterSpacing: '1px',
@@ -536,7 +536,7 @@ const MediaPage = () => {
                         <a href="https://www.facebook.com/profile.php?id=100076227227459&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
                             <div style={{
                                 background: 'linear-gradient(135deg, #1877F2 0%, #0d5cbf 100%)',
-                                borderRadius: '20px',
+                                borderRadius: '0',
                                 padding: '2rem',
                                 color: '#fff',
                                 display: 'flex',
@@ -562,7 +562,7 @@ const MediaPage = () => {
                         <a href="https://instagram.com/prophet_joshua_official?igshid=NGExMmI2YTkyZg==" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
                             <div style={{
                                 background: 'linear-gradient(135deg, #833AB4 0%, #E1306C 50%, #F77737 100%)',
-                                borderRadius: '20px',
+                                borderRadius: '0',
                                 padding: '2rem',
                                 color: '#fff',
                                 display: 'flex',
@@ -588,7 +588,7 @@ const MediaPage = () => {
                         <a href="https://youtube.com/@prophetjoshua6374?si=dGfgURVT4xawDOF_" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
                             <div style={{
                                 background: 'linear-gradient(135deg, #FF0000 0%, #CC0000 100%)',
-                                borderRadius: '20px',
+                                borderRadius: '0',
                                 padding: '2rem',
                                 color: '#fff',
                                 display: 'flex',

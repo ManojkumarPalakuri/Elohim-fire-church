@@ -43,55 +43,21 @@ const Header = () => {
         <>
             {/* ── Master Floating Header Wrapper ── */}
             <div style={{
-                position: 'absolute',
+                position: 'fixed',
                 top: 0, left: 0, right: 0,
-                zIndex: 1000
+                zIndex: 1000,
+                transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
             }}>
                 {/* ── Top Info Bar ── */}
-                <div className={`top-info-bar ${isScrolled ? 'hidden' : ''}`}>
-                    <div className="container">
-                        <div style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            gap: 'clamp(12px, 3vw, 32px)',
-                            flexWrap: 'wrap',
-                        }}>
-                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                                <span style={{
-                                    width: '6px', height: '6px',
-                                    borderRadius: '50%',
-                                    backgroundColor: '#22c55e',
-                                    boxShadow: '0 0 8px rgba(34,197,94,0.6)',
-                                    animation: 'pulseGlow 2s infinite',
-                                    display: 'inline-block'
-                                }}></span>
-                                <span style={{ fontWeight: '600' }}>Live Sundays</span>
-                            </span>
-                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
-                                <Clock size={12} style={{ opacity: 0.7 }} />
-                                Sunday Service — 10:30 AM
-                            </span>
-                            <span className="info-bar-divider" style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
-                                <Phone size={12} style={{ opacity: 0.7 }} />
-                                +91 7095409118
-                            </span>
-                            <span className="info-bar-location" style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
-                                <MapPin size={12} style={{ opacity: 0.7 }} />
-                                Hyderabad, India
-                            </span>
-                        </div>
-                    </div>
-                </div>
+
 
                 {/* ── Main Navbar ── */}
                 <header style={{
-                    position: isScrolled ? 'fixed' : 'relative',
+                    position: 'relative',
                     top: 0,
                     left: 0, right: 0,
-                    zIndex: 1000,
-                    transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
-                    padding: isScrolled ? '8px 0' : '14px 0',
+                    padding: isScrolled ? '6px 0' : '12px 0',
+                    transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
                 }} className={`glass-nav ${isScrolled ? 'glass-nav-scrolled' : ''}`}>
                     <div className="container" style={{ position: 'relative', zIndex: 1001 }}>
                         {/* --- DESKTOP NAVBAR --- */}
@@ -130,7 +96,7 @@ const Header = () => {
                                     {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
                                 </button>
                                 <Link to="/giving" className="give-btn-desktop" style={{ textDecoration: 'none' }}>
-                                    <Heart size={14} fill="currentColor" /> Give Online
+                                    <Heart size={14} fill="#ff0000" color="#ffffff" /> Give Online
                                 </Link>
                             </div>
                         </div>
@@ -148,12 +114,7 @@ const Header = () => {
                             </div>
 
                             {/* Center Info */}
-                            <div style={{ flex: 2, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' }}>
-                                <div style={{ width: '6px', height: '6px', backgroundColor: '#22c55e', borderRadius: '50%', boxShadow: '0 0 8px rgba(34,197,94,0.6)', animation: 'pulseGlow 2s infinite' }}></div>
-                                <span style={{ fontSize: '0.65rem', fontWeight: '700', letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--color-text-primary)', whiteSpace: 'nowrap' }}>
-                                    Live Sundays 10:30AM
-                                </span>
-                            </div>
+
 
                             {/* Hamburger Right */}
                             <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
@@ -226,7 +187,7 @@ const Header = () => {
                                         to={link.path}
                                         onClick={() => setIsMobileMenuOpen(false)}
                                         style={({ isActive }) => ({
-                                            color: isActive ? 'var(--color-gold)' : 'var(--color-text-primary)',
+                                            color: isActive ? 'var(--color-accent-primary)' : 'var(--color-text-primary)',
                                             fontSize: 'clamp(1.8rem, 6vw, 2.5rem)',
                                             fontWeight: '700',
                                             fontFamily: 'var(--font-logo)',
@@ -238,7 +199,7 @@ const Header = () => {
                                             transition: 'all 0.3s ease'
                                         })}
                                         onMouseEnter={(e) => {
-                                            e.currentTarget.style.color = 'var(--color-gold)';
+                                            e.currentTarget.style.color = 'var(--color-accent-primary)';
                                             e.currentTarget.style.transform = 'scale(1.03)';
                                         }}
                                         onMouseLeave={(e) => {
@@ -275,7 +236,7 @@ const Header = () => {
                                 alignItems: 'center',
                                 gap: '12px',
                                 padding: '12px 24px',
-                                borderRadius: '50px',
+                                borderRadius: '0',
                                 cursor: 'pointer',
                                 fontSize: '0.9rem',
                                 fontWeight: '600',
@@ -296,20 +257,20 @@ const Header = () => {
                             display: 'inline-flex',
                             alignItems: 'center',
                             gap: '10px',
-                            background: 'linear-gradient(135deg, #D4AF37 0%, #FF6A00 100%)',
+                            background: 'var(--color-accent-primary)',
                             color: '#fff',
                             padding: '14px 48px',
-                            borderRadius: '50px',
+                            borderRadius: '0',
                             fontWeight: 700,
                             textTransform: 'uppercase',
                             letterSpacing: '1px',
                             fontSize: '0.9rem',
                             border: 'none',
-                            boxShadow: '0 8px 24px rgba(212, 175, 55, 0.3)',
+                            boxShadow: '0 8px 24px rgba(255, 106, 0, 0.3)',
                             textDecoration: 'none',
                             fontFamily: 'var(--font-body)',
                         }}>
-                            <Heart size={16} fill="currentColor" /> Give Online
+                            <Heart size={16} fill="#ff0000" color="#ffffff" /> Give Online
                         </Link>
 
                         <p style={{
