@@ -104,7 +104,8 @@ export default function BiblePage() {
                 const fileMap = { 'Song of Solomon': 'Song of Songs' };
                 const fileName = encodeURIComponent((fileMap[b.en] || b.en) + '.json');
                 const teRes = await axios.get(
-                    `https://raw.githubusercontent.com/aruljohn/Bible-telugu/main/${fileName}`
+                    `https://raw.githubusercontent.com/aruljohn/Bible-telugu/main/${fileName}`,
+                    { transformRequest: [(data, headers) => { delete headers.Authorization; return data; }] }
                 );
                 const chapterObj = (teRes.data.chapters || []).find(c => parseInt(c.chapter) === ch);
                 if (chapterObj && chapterObj.verses?.length) {
@@ -120,7 +121,9 @@ export default function BiblePage() {
                     setLoading(false); setFadeIn(true); return;
                 }
             } else {
-                const res = await axios.get(`https://bible-api.com/${encodeURIComponent(b.en + ' ' + ch)}`);
+                const res = await axios.get(`https://bible-api.com/${encodeURIComponent(b.en + ' ' + ch)}`,
+                    { transformRequest: [(data, headers) => { delete headers.Authorization; return data; }] }
+                );
                 result = (res.data.verses || []).map(v => ({
                     v: v.verse,
                     t: v.text.replace(/\n/g, ' ').trim()
