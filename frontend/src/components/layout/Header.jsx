@@ -295,46 +295,6 @@ const Header = () => {
           </header>
 
           {/* ── Mobile Menu Overlay ── */}
-                                <Link to="/giving" className="give-btn-desktop" style={{ textDecoration: 'none' }}>
-                                    <Heart size={14} fill="#ff0000" color="#ffffff" /> Give Online
-                                </Link>
-                            </div>
-                        </div>
-
-                        {/* --- PREMIUM MOBILE NAVBAR (Unified) --- */}
-                        <div style={{
-                          justifyContent: 'space-between',
-                          alignItems: 'center',
-                          width: '100%',
-                        }} className="mobile-header-flex">
-                          <div style={{ flex: 1 }}>
-                            <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
-                              <img src="/logo.png" alt="EFM" style={{ height: '48px', margin: '-7px 0', objectFit: 'contain' }} />
-                            </Link>
-                          </div>
-                          {/* Center Info */}
-                          <div style={{ flex: 2, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' }}>
-                            <div style={{ width: '6px', height: '6px', backgroundColor: '#22c55e', borderRadius: '50%', boxShadow: '0 0 8px rgba(34,197,94,0.6)', animation: 'pulseGlow 2s infinite' }}></div>
-                            <span style={{ fontSize: '0.65rem', fontWeight: '700', letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--color-text-primary)', whiteSpace: 'nowrap' }}>
-                              Live Sundays 10:30AM
-                            </span>
-                          </div>
-                          {/* Hamburger Right */}
-                          <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
-                            <button
-                              onClick={() => setIsMobileMenuOpen(true)}
-                              style={{ background: 'transparent', border: 'none', padding: '4px', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: '6px' }}
-                              aria-label="Menu"
-                            >
-                              <div style={{ width: '22px', height: '1.5px', backgroundColor: 'var(--color-text-primary)', borderRadius: '2px' }}></div>
-                              <div style={{ width: '16px', height: '1.5px', backgroundColor: 'var(--color-text-primary)', borderRadius: '2px', alignSelf: 'flex-end' }}></div>
-                            </button>
-                          </div>
-                        </div>
-                    </div>
-                </header>
-
-                {/* ── Mobile Menu Overlay ── */}
 =======
   return (
     <>
