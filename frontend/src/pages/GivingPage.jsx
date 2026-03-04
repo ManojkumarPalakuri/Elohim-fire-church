@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Heart, CreditCard, Building, QrCode, Download, Smartphone } from 'lucide-react';
+import { Heart, CreditCard, Building, QrCode, Download, Smartphone, Copy, CheckCircle2 } from 'lucide-react';
 
 const qrCodes = [
     {
@@ -34,6 +34,7 @@ const qrCodes = [
 
 const QRCard = ({ qr }) => {
     const [hovered, setHovered] = useState(false);
+    const [copied, setCopied] = useState(false);
 
     const handleDownload = () => {
         const a = document.createElement('a');
@@ -42,140 +43,186 @@ const QRCard = ({ qr }) => {
         a.click();
     };
 
+    const handleCopy = () => {
+        navigator.clipboard.writeText(qr.upiId);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
+
     return (
         <div
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
             style={{
-                backgroundColor: 'var(--color-bg-darker)',
-                borderRadius: '20px',
-                border: hovered ? '1px solid var(--color-gold)' : '1px solid var(--color-gold-dark)',
-                boxShadow: hovered ? 'var(--glow-gold)' : 'none',
+                background: 'linear-gradient(180deg, #121212, #0a0a0a)',
+                borderRadius: '22px',
+                border: '1px solid rgba(255,255,255,0.08)',
+                boxShadow: hovered ? 'var(--glow-gold)' : '0 8px 30px rgba(0,0,0,0.4)',
                 overflow: 'hidden',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 transition: 'all 0.3s ease',
                 transform: hovered ? 'translateY(-4px)' : 'translateY(0)',
-                width: '100%',
             }}
         >
-            {/* Card Header */}
             <div style={{
                 width: '100%',
-                background: `linear-gradient(135deg, ${qr.color}22, ${qr.color}44)`,
-                borderBottom: `1px solid ${qr.color}55`,
-                padding: '1.2rem 1.5rem',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-            }}>
+                margin: '0 auto',
+            }} className="qr-card-inner-mobile">
+                <style>{`
+                    @media (min-width: 769px) {
+                        .qr-card-inner-mobile {
+                            max-width: 360px !important;
+                        }
+                    }
+                `}</style>
+                {/* Card Header */}
                 <div style={{
-                    width: '36px',
-                    height: '36px',
-                    borderRadius: '50%',
-                    backgroundColor: qr.color,
+                    width: '100%',
+                    padding: '20px 22px 14px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    flexShrink: 0,
+                    gap: '10px',
                 }}>
-                    <span style={{ color: '#fff', fontWeight: 'bold', fontSize: '0.65rem', textAlign: 'center', lineHeight: 1 }}>{qr.badge}</span>
-                </div>
-                <div style={{ textAlign: 'left' }}>
-                    <div style={{ color: 'var(--color-text-primary)', fontWeight: '600', fontSize: '0.95rem' }}>{qr.bank}</div>
-                    <div style={{ color: 'var(--color-text-secondary)', fontSize: '0.8rem' }}>A/C ending ••• {qr.accountEnd}</div>
-                </div>
-            </div>
-
-            {/* QR Image */}
-            <div style={{ padding: '1.5rem', width: '100%', boxSizing: 'border-box', display: 'flex', justifyContent: 'center' }}>
-                <div style={{
-                    width: '240px',
-                    height: '240px',
-                    borderRadius: '12px',
-                    overflow: 'hidden',
-                    border: '3px solid rgba(212,175,55,0.2)',
-                    boxShadow: hovered ? '0 0 20px rgba(212,175,55,0.15)' : 'none',
-                    transition: 'box-shadow 0.3s ease',
-                    backgroundColor: '#000',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
-                }}>
-                    <img
-                        src={qr.image}
-                        alt={`UPI QR Code for ${qr.bank}`}
-                        style={{
-                            width: '240px',
-                            height: '240px',
-                            objectFit: 'contain',
-                            transform: 'none',
-                            display: 'block',
-                        }}
-                    />
-                </div>
-            </div>
-
-            {/* Footer */}
-            <div style={{ padding: '0 1.5rem 1.5rem', width: '100%', boxSizing: 'border-box' }}>
-                {/* UPI ID */}
-                <div style={{
-                    backgroundColor: 'rgba(212,175,55,0.07)',
-                    border: '1px solid rgba(212,175,55,0.2)',
-                    borderRadius: '8px',
-                    padding: '0.6rem 1rem',
-                    textAlign: 'center',
-                    marginBottom: '0.75rem',
-                }}>
-                    <span style={{ color: 'var(--color-text-secondary)', fontSize: '0.72rem', display: 'block', marginBottom: '3px' }}>UPI ID</span>
-                    <span style={{ color: 'var(--color-gold)', fontWeight: '600', fontSize: '0.88rem', letterSpacing: '0.5px', wordBreak: 'break-all' }}>{qr.upiId}</span>
-                </div>
-                <div style={{
-                    backgroundColor: 'rgba(212,175,55,0.04)',
-                    border: '1px solid rgba(212,175,55,0.1)',
-                    borderRadius: '8px',
-                    padding: '0.5rem 1rem',
-                    textAlign: 'center',
-                    marginBottom: '0.75rem',
-                }}>
-                    <span style={{ color: 'var(--color-text-secondary)', fontSize: '0.72rem' }}>Scan with any UPI app</span>
-                    <div style={{ display: 'flex', justifyContent: 'center', gap: '6px', marginTop: '4px' }}>
-                        {['PhonePe', 'GPay', 'Paytm', 'BHIM'].map(app => (
-                            <span key={app} style={{
-                                fontSize: '0.65rem',
-                                backgroundColor: 'rgba(255,255,255,0.06)',
-                                color: 'var(--color-text-secondary)',
-                                padding: '2px 6px',
-                                borderRadius: '4px',
-                            }}>{app}</span>
-                        ))}
-                    </div>
-                </div>
-                <button
-                    onClick={handleDownload}
-                    style={{
-                        width: '100%',
-                        backgroundColor: 'transparent',
-                        border: '1px solid rgba(212,175,55,0.3)',
-                        color: 'var(--color-gold)',
-                        padding: '0.6rem',
-                        borderRadius: '8px',
-                        fontSize: '0.85rem',
-                        cursor: 'pointer',
+                    <div style={{
+                        width: '32px',
+                        height: '32px',
+                        borderRadius: '50%',
+                        backgroundColor: qr.color,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        gap: '6px',
-                        transition: 'background 0.2s',
-                    }}
-                    onMouseEnter={e => e.currentTarget.style.backgroundColor = 'rgba(212,175,55,0.08)'}
-                    onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
-                >
-                    <Download size={14} />
-                    Save QR
-                </button>
+                        flexShrink: 0,
+                    }}>
+                        <span style={{ color: '#fff', fontWeight: 'bold', fontSize: '0.6rem', textAlign: 'center', lineHeight: 1 }}>{qr.badge}</span>
+                    </div>
+                    <div style={{ textAlign: 'left' }}>
+                        <div style={{ color: '#ffffff', fontWeight: '600', fontSize: '1.1rem' }}>{qr.bank}</div>
+                    </div>
+                </div>
+
+                {/* Main Content Area */}
+                <div style={{ padding: '0 22px 24px', width: '100%', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+
+                    {/* QR Image */}
+                    <div style={{
+                        width: '100%',
+                        maxWidth: '220px',
+                        height: 'auto',
+                        aspectRatio: '1/1',
+                        borderRadius: '16px',
+                        overflow: 'hidden',
+                        border: '3px solid rgba(212,175,55,0.15)',
+                        boxShadow: hovered ? '0 0 20px rgba(212,175,55,0.15)' : 'none',
+                        transition: 'box-shadow 0.3s ease',
+                        backgroundColor: '#fff',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0,
+                        marginBottom: '20px',
+                        margin: '0 auto 20px auto',
+                    }}>
+                        <img
+                            src={qr.image}
+                            alt={`UPI QR Code for ${qr.bank}`}
+                            style={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'contain',
+                                display: 'block',
+                            }}
+                        />
+                    </div>
+
+                    {/* UPI ID */}
+                    <div style={{
+                        width: '100%',
+                        backgroundColor: 'rgba(212,175,55,0.05)',
+                        border: '1px solid rgba(212,175,55,0.15)',
+                        borderRadius: '14px',
+                        padding: '0.9rem',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        marginBottom: '20px',
+                        boxSizing: 'border-box',
+                    }}>
+                        <div style={{ textAlign: 'left' }}>
+                            <span style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.75rem', display: 'block', marginBottom: '4px' }}>UPI ID</span>
+                            <span style={{ color: 'var(--color-gold)', fontWeight: '600', fontSize: '1rem', letterSpacing: '0.5px', wordBreak: 'break-all' }}>{qr.upiId}</span>
+                        </div>
+                        <button
+                            onClick={handleCopy}
+                            style={{
+                                background: copied ? 'rgba(34, 197, 94, 0.15)' : 'rgba(212,175,55,0.1)',
+                                border: 'none',
+                                borderRadius: '10px',
+                                padding: '8px',
+                                color: copied ? '#22c55e' : 'var(--color-gold)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                cursor: 'pointer',
+                                transition: 'all 0.2s ease',
+                                flexShrink: 0,
+                                marginLeft: '12px'
+                            }}
+                            title="Copy UPI ID"
+                        >
+                            {copied ? <CheckCircle2 size={18} /> : <Copy size={18} />}
+                        </button>
+                    </div>
+
+                    {/* Scan with any UPI app info */}
+                    <div style={{
+                        width: '100%',
+                        textAlign: 'center',
+                        marginBottom: '24px',
+                    }}>
+                        <div style={{ display: 'flex', justifyContent: 'center', gap: '8px' }}>
+                            {['PhonePe', 'GPay', 'Paytm', 'BHIM'].map(app => (
+                                <span key={app} style={{
+                                    fontSize: '0.75rem',
+                                    fontWeight: '500',
+                                    backgroundColor: 'rgba(255,255,255,0.06)',
+                                    color: '#ffffff',
+                                    padding: '6px 14px',
+                                    borderRadius: '20px',
+                                    border: '1px solid rgba(255,255,255,0.08)'
+                                }}>{app}</span>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Save Button */}
+                    <button
+                        onClick={handleDownload}
+                        style={{
+                            width: '100%',
+                            backgroundColor: 'transparent',
+                            border: '1px solid var(--color-gold)',
+                            color: 'var(--color-gold)',
+                            padding: '0.85rem',
+                            borderRadius: '14px',
+                            fontSize: '1rem',
+                            fontWeight: '600',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '8px',
+                            transition: 'all 0.2s',
+                        }}
+                        onMouseEnter={e => { e.currentTarget.style.backgroundColor = 'rgba(212,175,55,0.1)'; e.currentTarget.style.transform = 'scale(1.02)'; }}
+                        onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.transform = 'scale(1)'; }}
+                    >
+                        <Download size={18} />
+                        Save QR Code
+                    </button>
+                </div>
             </div>
         </div>
     );
@@ -184,7 +231,7 @@ const QRCard = ({ qr }) => {
 const GivingPage = () => {
     const qrScrollRef = useRef(null);
     const bankScrollRef = useRef(null);
-    const [activeQrIndex, setActiveQrIndex] = useState(1); // Default to middle (Kotak)
+    const [activeQrIndex, setActiveQrIndex] = useState(0); // Default to first (SBI)
     const [activeBankIndex, setActiveBankIndex] = useState(0);
 
     const handleScroll = (ref, setIndex) => {
@@ -197,11 +244,17 @@ const GivingPage = () => {
     };
 
     useEffect(() => {
-        // Scroll to middle card on mobile load
+        // Scroll to first card on mobile load
         if (window.innerWidth <= 768 && qrScrollRef.current) {
             const container = qrScrollRef.current;
-            // Center the middle (index 1) card
-            container.scrollLeft = container.offsetWidth;
+            // Center the first (index 0) card
+            requestAnimationFrame(() => {
+                const cardWidth = container.offsetWidth;
+                container.scrollTo({
+                    left: 0,
+                    behavior: 'smooth'
+                });
+            });
         }
     }, []);
 
@@ -229,7 +282,7 @@ const GivingPage = () => {
                 <div className="container">
                     <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
                         <div style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)', padding: '20px', borderRadius: '50%' }}>
-                            <Heart color="var(--color-fire)" size={48} fill="var(--color-fire)" style={{ filter: 'drop-shadow(var(--glow-fire))' }} />
+                            <Heart color="#ffffff" size={48} fill="#ff0000" style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.2))' }} />
                         </div>
                     </div>
                     <h1 style={{ marginBottom: '1rem', textShadow: 'var(--glow-gold)' }}>Give &amp; <span className="text-gold">Partner</span></h1>
@@ -258,7 +311,7 @@ const GivingPage = () => {
             </section>
 
             {/* Giving Methods */}
-            <section className="container" style={{ padding: '2rem 20px 6rem' }}>
+            <section className="container giving-methods-container" style={{ padding: '2rem 20px 6rem' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem', maxWidth: '1100px', margin: '0 auto' }}>
 
                     {/* Secure Online Gateway */}
@@ -278,11 +331,11 @@ const GivingPage = () => {
                         <h2>Give Online — Secure & Instant</h2>
                         <p style={{ color: 'var(--color-text-secondary)' }}>Sponsor a church member, support poor feeding, or give a general offering using your Credit/Debit Card or Net Banking.</p>
                         <button style={{
-                            backgroundColor: 'var(--color-gold)',
+                            backgroundColor: 'var(--color-accent-primary)',
                             color: '#000',
                             border: 'none',
                             padding: '16px 40px',
-                            borderRadius: '8px',
+                            borderRadius: '0',
                             fontSize: '1.2rem',
                             fontWeight: 'bold',
                             textTransform: 'uppercase',
@@ -303,8 +356,32 @@ const GivingPage = () => {
                         padding: '3rem',
                         borderRadius: '16px',
                         border: '1px solid var(--color-gold-dark)',
-                    }}>
-                        <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+                    }} className="qr-section-wrapper">
+                        <style>{`
+                            @media (max-width: 768px) {
+                                .giving-methods-container {
+                                    padding-left: 16px !important;
+                                    padding-right: 16px !important;
+                                    max-width: 100% !important;
+                                    overflow: hidden;
+                                }
+                                .qr-section-wrapper {
+                                    padding-left: 0 !important;
+                                    padding-right: 0 !important;
+                                    border-left: none !important;
+                                    border-right: none !important;
+                                    border-radius: 0 !important;
+                                    /* Offset parent 16px padding for edge-to-edge UPI */
+                                    margin-left: -16px;
+                                    margin-right: -16px;
+                                }
+                                .qr-section-header-text {
+                                    padding-left: 20px;
+                                    padding-right: 20px;
+                                }
+                            }
+                        `}</style>
+                        <div style={{ textAlign: 'center', marginBottom: '2.5rem' }} className="qr-section-header-text">
                             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '12px', marginBottom: '0.75rem' }}>
                                 <Smartphone size={32} color="var(--color-gold)" />
                                 <h2 style={{ margin: 0 }}>UPI / PhonePe Payment</h2>
@@ -314,43 +391,52 @@ const GivingPage = () => {
                             </p>
                         </div>
 
-                        <div className="mobile-swipe-section bg-card">
-                            <div className="mobile-swipe-hint"><span className="mobile-swipe-hint-arrow">→</span></div>
+                        <div className="mobile-swipe-section">
+                            <div className="mobile-swipe-hint" style={{ textAlign: 'center', marginBottom: '8px', color: 'rgba(255, 255, 255, 0.5)', fontSize: '0.85rem' }}>Swipe to see more <span className="mobile-swipe-hint-arrow">→</span></div>
                             <div
                                 ref={qrScrollRef}
                                 onScroll={() => handleScroll(qrScrollRef, setActiveQrIndex)}
                                 style={{
                                     display: 'flex',
+                                    flexDirection: 'row',
                                     flexWrap: 'nowrap',
+                                    width: '100%',
                                     overflowX: 'auto',
-                                    paddingBottom: '10px',
+                                    paddingLeft: '8vw',
+                                    paddingRight: '8vw',
+                                    paddingBottom: '24px',
+                                    paddingTop: '10px',
                                     WebkitOverflowScrolling: 'touch',
                                     scrollbarWidth: 'none',
                                     msOverflowStyle: 'none',
-                                    scrollSnapType: 'x mandatory'
+                                    scrollSnapType: 'x mandatory',
+                                    scrollBehavior: 'smooth',
+                                    gap: '24px'
                                 }} className="qr-container-mobile mobile-swipe-container">
                                 <style>{`
                                 .qr-container-mobile::-webkit-scrollbar {
                                     display: none;
                                 }
-                                @media (min-width: 769px) {
-                                    .qr-container-mobile {
-                                        display: grid !important;
-                                        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
-                                        gap: 2rem !important;
-                                        overflow-x: visible !important;
-                                        padding: 0 !important;
-                                        scroll-snap-type: none !important;
-                                    }
-                                    .mobile-pagination { display: none !important; }
-                                }
                                 @media (max-width: 768px) {
                                     .qr-card-wrapper {
-                                        min-width: 100%;
-                                        flex-shrink: 0;
+                                        width: 80vw !important;
+                                        min-width: 80vw !important;
+                                        max-width: 420px !important;
+                                        flex: 0 0 80vw !important;
                                         scroll-snap-align: center;
-                                        padding: 0 10px;
                                         box-sizing: border-box;
+                                        padding: 0;
+                                    }
+                                }
+                                @media (min-width: 769px) {
+                                    .qr-card-wrapper {
+                                        width: 80vw !important;
+                                        min-width: 80vw !important;
+                                        max-width: 420px !important;
+                                        flex: 0 0 80vw !important;
+                                        scroll-snap-align: center;
+                                        box-sizing: border-box;
+                                        padding: 0;
                                     }
                                 }
                             `}</style>
@@ -378,52 +464,155 @@ const GivingPage = () => {
                             </p>
                         </div>
 
-                        <div className="mobile-swipe-section">
-                            <div className="mobile-swipe-hint"><span className="mobile-swipe-hint-arrow">→</span></div>
+                        <div>
                             <div
-                                ref={bankScrollRef}
-                                onScroll={() => handleScroll(bankScrollRef, setActiveBankIndex)}
                                 style={{
-                                    display: 'flex',
-                                    overflowX: 'auto',
-                                    gap: '1rem',
-                                    scrollbarWidth: 'none',
-                                    msOverflowStyle: 'none',
-                                    scrollSnapType: 'x mandatory',
-                                    WebkitOverflowScrolling: 'touch'
-                                }} className="bank-container-mobile mobile-swipe-container">
+                                    display: 'grid',
+                                    gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+                                    gap: '60px',
+                                    width: '100%',
+                                }}
+                                className="premium-bank-cards-grid"
+                            >
                                 <style>{`
-                                    .bank-container-mobile::-webkit-scrollbar { display: none; }
-                                    @media (min-width: 769px) {
-                                        .bank-container-mobile {
-                                            display: grid !important;
-                                            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
-                                            gap: 1.5rem !important;
-                                            overflow-x: visible !important;
-                                            scroll-snap-type: none !important;
-                                        }
-                                    }
                                     @media (max-width: 768px) {
+                                        .premium-bank-cards-grid {
+                                            grid-template-columns: 1fr !important;
+                                            gap: 24px !important;
+                                        }
                                         .bank-card-wrapper {
-                                            min-width: 100%;
-                                            flex-shrink: 0;
-                                            scroll-snap-align: center;
-                                            padding: 0 5px;
-                                            box-sizing: border-box;
+                                            width: 100%;
+                                        }
+                                        .bank-card-inner {
+                                            width: 100% !important;
+                                            max-width: 100% !important;
+                                            height: auto !important;
+                                            min-height: 260px;
+                                            max-height: 83vh;
+                                            overflow-y: auto !important;
                                         }
                                     }
                                 `}</style>
 
-                                <div className="bank-card-wrapper">
-                                    {/* ... existing bank cards code omitted to fit replace logic... */}
+                                <div className="bank-card-wrapper" style={{ padding: '0' }}>
+                                    <div
+                                        className="bank-card-inner"
+                                        style={{
+                                            padding: '32px',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            width: '100%',
+                                            minHeight: '260px',
+                                            maxHeight: '83vh',
+                                            overflowY: 'auto',
+                                            background: 'linear-gradient(135deg, #1d5bbf, #2d74da)',
+                                            borderRadius: '24px',
+                                            position: 'relative',
+                                            boxShadow: '0 16px 32px rgba(45,116,218,0.35)',
+                                            transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                                        }}
+                                        onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-8px)'; e.currentTarget.style.boxShadow = '0 24px 48px rgba(45,116,218,0.45)'; }}
+                                        onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 16px 32px rgba(45,116,218,0.35)'; }}
+                                    >
+                                        <div style={{ position: 'absolute', width: '250px', height: '250px', borderRadius: '50%', background: 'rgba(255,255,255,0.08)', top: '-50px', right: '-50px', pointerEvents: 'none', zIndex: 0 }}></div>
+                                        <div style={{ position: 'absolute', width: '150px', height: '150px', borderRadius: '50%', background: 'rgba(255,255,255,0.08)', bottom: '-30px', right: '40px', pointerEvents: 'none', zIndex: 0 }}></div>
+
+                                        <div style={{ display: 'flex', alignItems: 'center', zIndex: 1, gap: '12px' }}>
+                                            <div style={{ background: '#fff', borderRadius: '50%', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                                <Building size={20} color="#1d5bbf" />
+                                            </div>
+                                            <div>
+                                                <h3 style={{ fontSize: '1.05rem', fontWeight: '700', margin: 0, color: '#ffffff', letterSpacing: '0.5px' }}>State Bank of India</h3>
+                                                <span style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.8)', marginTop: '2px', display: 'block' }}>The Banker to Every Indian</span>
+                                            </div>
+                                        </div>
+
+                                        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1 }}>
+                                            <strong style={{ fontSize: '26px', color: '#ffffff', letterSpacing: '4px', fontFamily: '"Courier New", Courier, monospace', textShadow: '1px 1px 2px rgba(0,0,0,0.2)' }}>
+                                                2037 5309 251
+                                            </strong>
+                                        </div>
+
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', zIndex: 1 }}>
+                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                                                <div>
+                                                    <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '2px' }}>Account Holder</div>
+                                                    <div style={{ fontSize: '0.95rem', color: '#ffffff', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '1px' }}>CH. Harish</div>
+                                                </div>
+                                                <div>
+                                                    <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '2px' }}>Branch</div>
+                                                    <div style={{ fontSize: '0.85rem', color: '#ffffff', fontWeight: '500' }}>Beeramguda</div>
+                                                </div>
+                                            </div>
+                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', textAlign: 'right' }}>
+                                                <div style={{ marginTop: 'auto' }}>
+                                                    <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '2px' }}>IFSC Code</div>
+                                                    <div style={{ fontSize: '1.1rem', color: '#ffffff', fontFamily: '"Courier New", Courier, monospace', letterSpacing: '1px' }}>SBIN0010689</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="bank-card-wrapper">
-                                    {/* ... existing bank cards code omitted to fit replace logic... */}
+                                <div className="bank-card-wrapper" style={{ padding: '0' }}>
+                                    <div
+                                        className="bank-card-inner"
+                                        style={{
+                                            padding: '32px',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            width: '100%',
+                                            minHeight: '260px',
+                                            maxHeight: '83vh',
+                                            overflowY: 'auto',
+                                            background: 'linear-gradient(135deg, #d61a00, #ff3b1a)',
+                                            borderRadius: '24px',
+                                            position: 'relative',
+                                            boxShadow: '0 16px 32px rgba(255,59,26,0.35)',
+                                            transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                                        }}
+                                        onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-8px)'; e.currentTarget.style.boxShadow = '0 24px 48px rgba(255,59,26,0.45)'; }}
+                                        onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 16px 32px rgba(255,59,26,0.35)'; }}
+                                    >
+                                        <div style={{ position: 'absolute', width: '250px', height: '250px', borderRadius: '50%', background: 'rgba(255,255,255,0.08)', top: '-50px', right: '-50px', pointerEvents: 'none', zIndex: 0 }}></div>
+                                        <div style={{ position: 'absolute', width: '150px', height: '150px', borderRadius: '50%', background: 'rgba(255,255,255,0.08)', bottom: '-30px', right: '40px', pointerEvents: 'none', zIndex: 0 }}></div>
+
+                                        <div style={{ display: 'flex', alignItems: 'center', zIndex: 1, gap: '12px' }}>
+                                            <div style={{ background: '#fff', borderRadius: '50%', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                                <Building size={20} color="#d61a00" />
+                                            </div>
+                                            <div>
+                                                <h3 style={{ fontSize: '1.05rem', fontWeight: '700', margin: 0, color: '#ffffff', letterSpacing: '0.5px' }}>Kotak Mahindra Bank</h3>
+                                                <span style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.8)', marginTop: '2px', display: 'block' }}>Let's make money simple</span>
+                                            </div>
+                                        </div>
+
+                                        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1 }}>
+                                            <strong style={{ fontSize: '26px', color: '#ffffff', letterSpacing: '4px', fontFamily: '"Courier New", Courier, monospace', textShadow: '1px 1px 2px rgba(0,0,0,0.2)' }}>
+                                                1715 0727 26
+                                            </strong>
+                                        </div>
+
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', zIndex: 1 }}>
+                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                                                <div>
+                                                    <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '2px' }}>Account Holder</div>
+                                                    <div style={{ fontSize: '0.95rem', color: '#ffffff', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '1px' }}>Ch. Harish (Joshua)</div>
+                                                </div>
+                                                <div>
+                                                    <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '2px' }}>Branch</div>
+                                                    <div style={{ fontSize: '0.85rem', color: '#ffffff', fontWeight: '500' }}>Patancheru</div>
+                                                </div>
+                                            </div>
+                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', textAlign: 'right' }}>
+                                                <div style={{ marginTop: 'auto' }}>
+                                                    <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '2px' }}>IFSC Code</div>
+                                                    <div style={{ fontSize: '1.1rem', color: '#ffffff', fontFamily: '"Courier New", Courier, monospace', letterSpacing: '1px' }}>KKBK0007454</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="mobile-pagination">
-                            <PaginationDots count={2} activeIndex={activeBankIndex} />
                         </div>
                     </div>
 

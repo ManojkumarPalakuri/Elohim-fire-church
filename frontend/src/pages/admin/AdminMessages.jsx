@@ -77,7 +77,7 @@ const AdminMessages = () => {
                         border: '1px solid var(--color-border-outline)',
                         color: 'var(--color-text-primary)',
                         padding: '8px 16px',
-                        borderRadius: '6px',
+                        borderRadius: '0',
                         display: 'flex',
                         alignItems: 'center',
                         gap: '8px',
@@ -157,11 +157,11 @@ const AdminMessages = () => {
                             {/* Actions */}
                             <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem', marginTop: '0.5rem' }}>
                                 {!msg.isRead && (
-                                    <button onClick={() => markAsRead(msg._id)} style={{ background: 'transparent', border: '1px solid var(--color-gold)', color: 'var(--color-gold)', padding: '6px 16px', borderRadius: '4px', display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer', fontSize: '0.9rem' }}>
+                                    <button onClick={() => markAsRead(msg._id)} style={{ background: 'transparent', border: '1px solid var(--color-gold)', color: 'var(--color-gold)', padding: '6px 16px', borderRadius: '0', display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer', fontSize: '0.9rem' }}>
                                         Mark as Read <CheckCircle size={16} />
                                     </button>
                                 )}
-                                <button onClick={() => deleteMessage(msg._id)} style={{ background: 'transparent', border: '1px solid var(--color-fire-dark)', color: 'var(--color-fire)', padding: '6px 16px', borderRadius: '4px', display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer', fontSize: '0.9rem' }}>
+                                <button onClick={() => deleteMessage(msg._id)} style={{ background: 'transparent', border: '1px solid var(--color-fire-dark)', color: 'var(--color-fire)', padding: '6px 16px', borderRadius: '0', display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer', fontSize: '0.9rem' }}>
                                     Delete <Trash2 size={16} />
                                 </button>
                             </div>

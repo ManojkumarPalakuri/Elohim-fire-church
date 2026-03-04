@@ -301,7 +301,7 @@ export default function BiblePage() {
                     .bible-chapters { width: 60px !important; }
                     .bible-verses-col { width: 60px !important; }
                 }
-
+// improve 
                 .bible-top-header {
                     background: var(--bp-bg-header) !important;
                     backdrop-filter: blur(12px) !important;
@@ -334,7 +334,7 @@ export default function BiblePage() {
                 <div className="bible-top-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 16px', height: 50, borderBottom: '1px solid var(--bp-border)', flexShrink: 0, zIndex: 10 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                         <button onClick={() => setSidebarOpen(o => !o)}
-                            style={{ display: 'none', background: 'none', border: 'none', cursor: 'pointer', padding: '4px 6px', borderRadius: 6 }}
+                            style={{ display: 'none', background: 'none', border: 'none', cursor: 'pointer', padding: '4px 6px', borderRadius: 0 }}
                             className="mobile-menu-btn">
                             ☰
                         </button>
@@ -349,9 +349,9 @@ export default function BiblePage() {
                     {/* EN / TE toggle */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
                         <span className="bible-brand-text" style={{ fontSize: '0.72rem', fontWeight: 700, color: lang === 'en' ? 'var(--bp-text-main)' : 'var(--bp-text-light)', transition: 'color 0.2s' }}>EN</span>
-                        <button onClick={toggleLang} style={{ width: 36, height: 20, borderRadius: 10, background: lang === 'te' ? 'var(--bp-text-accent)' : 'var(--bp-border)', border: 'none', cursor: 'pointer', position: 'relative', transition: 'background 0.3s', flexShrink: 0 }}>
+                        <button onClick={toggleLang} style={{ width: 36, height: 20, borderRadius: 0, background: lang === 'te' ? 'var(--bp-text-accent)' : 'var(--bp-border)', border: 'none', cursor: 'pointer', position: 'relative', transition: 'background 0.3s', flexShrink: 0 }}>
                             <span style={{
-                                position: 'absolute', top: 2, left: lang === 'te' ? 18 : 2, width: 16, height: 16, borderRadius: '50%', background: 'var(--bp-bg-header)', boxShadow: '0 1px 4px rgba(0,0,0,0.25)', transition: 'left 0.3s', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                position: 'absolute', top: 2, left: lang === 'te' ? 18 : 2, width: 16, height: 16, borderRadius: '0', background: 'var(--bp-bg-header)', boxShadow: '0 1px 4px rgba(0,0,0,0.25)', transition: 'left 0.3s', display: 'flex', alignItems: 'center', justifyContent: 'center',
                                 fontSize: '0.55rem', fontWeight: 900, color: 'var(--bp-text-dark)', lineHeight: 1
                             }}>
                                 {lang === 'en' ? 'E' : 'తె'}
@@ -365,7 +365,7 @@ export default function BiblePage() {
                             onClick={toggleTheme}
                             style={{
                                 background: 'transparent', border: 'none', color: 'var(--bp-text-dark)',
-                                cursor: 'pointer', padding: '6px', borderRadius: '8px',
+                                cursor: 'pointer', padding: '6px', borderRadius: '0',
                                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                                 transition: 'background 0.2s'
                             }}
@@ -379,7 +379,7 @@ export default function BiblePage() {
                             onClick={() => navigate('/')}
                             style={{
                                 display: 'flex', alignItems: 'center', gap: 6,
-                                padding: '6px 10px', borderRadius: 20, border: '1px solid var(--bp-border)',
+                                padding: '6px 10px', borderRadius: 0, border: '1px solid var(--bp-border)',
                                 background: 'rgba(0,0,0,0.05)', cursor: 'pointer', fontSize: '0.75rem',
                                 fontWeight: 700, color: 'var(--bp-text-dark)', transition: 'all 0.2s',
                             }}
@@ -445,7 +445,7 @@ export default function BiblePage() {
                                 {Array.from({ length: book.ch }, (_, i) => i + 1).map(ch => (
                                     <button key={ch} className="verse-nav-btn" onClick={() => selectChapter(ch)} style={{
                                         display: 'block', width: '100%', padding: '5px 2px',
-                                        border: 'none', borderRadius: 5, cursor: 'pointer',
+                                        border: 'none', borderRadius: 0, cursor: 'pointer',
                                         fontSize: '0.72rem', fontWeight: ch === chapter ? 700 : 400,
                                         background: ch === chapter ? 'var(--bp-nav-active-bg)' : 'transparent',
                                         color: ch === chapter ? 'var(--bp-nav-active-text)' : 'var(--bp-text-main)',
@@ -486,7 +486,7 @@ export default function BiblePage() {
                                             }}
                                             style={{
                                                 display: 'block', width: '100%', padding: '5px 2px',
-                                                border: 'none', borderRadius: 5, cursor: 'pointer',
+                                                border: 'none', borderRadius: 0, cursor: 'pointer',
                                                 fontSize: '0.72rem', fontWeight: isActive ? 700 : 400,
                                                 background: isActive ? 'var(--bp-nav-active-bg)' : 'transparent',
                                                 color: isActive ? 'var(--bp-nav-active-text)' : 'var(--bp-text-main)',
@@ -586,7 +586,7 @@ export default function BiblePage() {
                                 disabled={chapter === 1 && (selectedIdx === null || selectedIdx === 0)}
                                 style={{
                                     display: 'flex', alignItems: 'center', gap: 6,
-                                    padding: '7px 16px', borderRadius: 8, border: '1px solid var(--bp-border)',
+                                    padding: '7px 16px', borderRadius: 0, border: '1px solid var(--bp-border)',
                                     background: 'transparent', cursor: 'pointer', fontSize: '0.8rem',
                                     fontWeight: 600, color: 'var(--bp-text-main)', fontFamily: 'Inter, sans-serif',
                                     opacity: chapter === 1 && (selectedIdx === null || selectedIdx === 0) ? 0.3 : 1,

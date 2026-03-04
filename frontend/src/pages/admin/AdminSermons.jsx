@@ -38,7 +38,7 @@ const AdminSermons = () => {
                     color: '#000',
                     border: 'none',
                     padding: '10px 20px',
-                    borderRadius: '8px',
+                    borderRadius: '0',
                     fontWeight: 'bold',
                     display: 'flex',
                     alignItems: 'center',

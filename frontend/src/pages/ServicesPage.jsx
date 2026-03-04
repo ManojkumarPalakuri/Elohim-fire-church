@@ -164,7 +164,7 @@ const ServicesPage = () => {
                             color: '#fff',
                             border: 'none',
                             padding: '12px 30px',
-                            borderRadius: '30px',
+                            borderRadius: '0',
                             fontSize: '1rem',
                             fontWeight: 'bold',
                             textTransform: 'uppercase',

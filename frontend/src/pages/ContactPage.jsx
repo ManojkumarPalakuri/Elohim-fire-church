@@ -157,7 +157,7 @@ const ContactPage = () => {
                             <div style={{ backgroundColor: 'rgba(40,167,69,0.05)', border: '1px solid rgba(40,167,69,0.2)', padding: '32px', borderRadius: '8px', textAlign: 'center', color: '#28a745' }}>
                                 <h3 style={{ marginBottom: '16px' }}>Message Sent!</h3>
                                 <p style={{ marginBottom: '24px' }}>Thank you for reaching out. Our team will read your message and pray for your request.</p>
-                                <button onClick={() => setStatus({ ...status, success: false })} className="btn-outline" style={{ color: '#28a745', borderColor: '#28a745' }}>Send Another</button>
+                                <button onClick={() => setStatus({ ...status, success: false })} className="btn-outline" style={{ color: '#28a745', borderColor: '#28a745', borderRadius: '0' }}>Send Another</button>
                             </div>
                         ) : (
                             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -257,6 +257,7 @@ const ContactPage = () => {
                                     style={{
                                         marginTop: '16px',
                                         width: '100%',
+                                        borderRadius: '0',
                                         opacity: status.loading ? 0.7 : 1,
                                         cursor: status.loading ? 'not-allowed' : 'pointer'
                                     }}
