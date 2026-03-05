@@ -176,15 +176,19 @@ const HomePage = () => {
             className={isLoaded ? "animate-fade-in" : ""}
           >
             {/* Badge Alignment Row (Spacer for Header logo) */}
-            <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "24px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "24px", width: "100%" }}>
               {/* This spacer accounts for the global Header logo position */}
               <div style={{ width: "48px", height: "48px", flexShrink: 0 }}></div>
               <span style={{
                 backgroundColor: "#E60000",
                 color: "#FFFFFF",
-                padding: "6px 16px",
+                height: "48px",
+                flex: 1,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 borderRadius: "50px",
-                fontSize: "12px",
+                fontSize: "12.5px",
                 letterSpacing: "1.5px",
                 textTransform: "uppercase",
                 fontWeight: "900",
