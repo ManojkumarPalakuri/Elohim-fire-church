@@ -34,14 +34,18 @@ const Footer = () => {
                     width: 44px;
                     height: 44px;
                     border-radius: 50%;
-                    background: rgba(255, 255, 255, 0.05);
-                    border: 1px solid rgba(255, 255, 255, 0.1);
                     color: #FFFFFF;
                     transition: all 0.3s ease;
+                    border: none;
                 }
-                .facebook-hover:hover { color: #1877F2 !important; border-color: #1877F2 !important; background: rgba(24, 119, 242, 0.1) !important; }
-                .instagram-hover:hover { color: #E4405F !important; border-color: #E4405F !important; background: rgba(228, 64, 95, 0.1) !important; }
-                .youtube-hover:hover { color: #FF0000 !important; border-color: #FF0000 !important; background: rgba(255, 0, 0, 0.1) !important; }
+                .facebook-color { background: #1877F2; }
+                .instagram-color { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+                .youtube-color { background: #FF0000; }
+                .social-icon-circle:hover {
+                    transform: translateY(-5px);
+                    filter: brightness(1.2);
+                    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+                }
                 .social-icon-circle:hover {
                     background: rgba(212, 175, 55, 0.15);
                     color: var(--color-gold) !important;
@@ -202,9 +206,9 @@ const Footer = () => {
                             </li>
                         </ul>
                         <div style={{ display: 'flex', gap: '12px', marginTop: '20px' }}>
-                            <a href="#" className="social-icon-circle facebook-hover"><Facebook size={18} /></a>
-                            <a href="#" className="social-icon-circle instagram-hover"><Instagram size={18} /></a>
-                            <a href="#" className="social-icon-circle youtube-hover"><Youtube size={18} /></a>
+                            <a href="#" className="social-icon-circle facebook-color"><Facebook size={18} fill="#fff" /></a>
+                            <a href="#" className="social-icon-circle instagram-color"><Instagram size={18} fill="#fff" /></a>
+                            <a href="#" className="social-icon-circle youtube-color"><Youtube size={18} fill="#fff" /></a>
                         </div>
                     </div>
                 </div>
@@ -278,40 +282,40 @@ const Footer = () => {
                     {/* Contact Cards */}
                     <div style={{ marginBottom: '40px' }}>
                         <h3 className="footer-section-title">Get In Touch</h3>
-                        <div className="contact-card-mobile" style={{ background: 'rgba(255, 255, 255, 0.05)', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
-                            <div style={{ background: 'rgba(212, 175, 55, 0.15)', padding: '10px', borderRadius: '10px', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
-                                <MapPin size={20} color="var(--color-gold)" />
+                        <div className="contact-card-mobile" style={{ background: 'rgba(255, 255, 255, 0.08)', border: '1px solid rgba(255, 255, 255, 0.15)', boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }}>
+                            <div style={{ background: 'linear-gradient(135deg, #D4AF37 0%, #B8860B 100%)', padding: '10px', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.2)' }}>
+                                <MapPin size={22} color="#fff" />
                             </div>
                             <div>
-                                <p style={{ margin: 0, fontSize: '12px', color: '#FFFFFF' }}>Our Location</p>
-                                <p style={{ margin: 0, fontSize: '14px', color: '#fff', fontWeight: 500 }}>Hyderabad, India</p>
+                                <p style={{ margin: 0, fontSize: '11px', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '1px' }}>Our Location</p>
+                                <p style={{ margin: 0, fontSize: '15px', color: '#fff', fontWeight: 600 }}>Hyderabad, India</p>
                             </div>
                         </div>
-                        <div className="contact-card-mobile" style={{ background: 'rgba(255, 255, 255, 0.05)', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
-                            <div style={{ background: 'rgba(212, 175, 55, 0.15)', padding: '10px', borderRadius: '10px', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
-                                <Phone size={20} color="var(--color-gold)" />
+                        <div className="contact-card-mobile" style={{ background: 'rgba(255, 255, 255, 0.08)', border: '1px solid rgba(255, 255, 255, 0.15)', boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }}>
+                            <div style={{ background: 'linear-gradient(135deg, #D4AF37 0%, #B8860B 100%)', padding: '10px', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.2)' }}>
+                                <Phone size={22} color="#fff" />
                             </div>
                             <div>
-                                <p style={{ margin: 0, fontSize: '12px', color: '#FFFFFF' }}>Call Us</p>
-                                <p style={{ margin: 0, fontSize: '14px', color: '#fff', fontWeight: 500 }}>+91 7095409118</p>
+                                <p style={{ margin: 0, fontSize: '11px', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '1px' }}>Call Us</p>
+                                <p style={{ margin: 0, fontSize: '15px', color: '#fff', fontWeight: 600 }}>+91 7095409118</p>
                             </div>
                         </div>
-                        <div className="contact-card-mobile" style={{ background: 'rgba(255, 255, 255, 0.05)', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
-                            <div style={{ background: 'rgba(212, 175, 55, 0.15)', padding: '10px', borderRadius: '10px', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
-                                <Mail size={20} color="var(--color-gold)" />
+                        <div className="contact-card-mobile" style={{ background: 'rgba(255, 255, 255, 0.08)', border: '1px solid rgba(255, 255, 255, 0.15)', boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }}>
+                            <div style={{ background: 'linear-gradient(135deg, #FF6A00 0%, #EE5D00 100%)', padding: '10px', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.2)' }}>
+                                <Mail size={22} color="#fff" />
                             </div>
                             <div>
-                                <p style={{ margin: 0, fontSize: '12px', color: '#FFFFFF' }}>Email Address</p>
-                                <p style={{ margin: 0, fontSize: '13px', color: '#fff', fontWeight: 500 }}>chevvaharish87@gmail.com</p>
+                                <p style={{ margin: 0, fontSize: '11px', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '1px' }}>Email Address</p>
+                                <p style={{ margin: 0, fontSize: '14px', color: '#fff', fontWeight: 600 }}>chevvaharish87@gmail.com</p>
                             </div>
                         </div>
                     </div>
 
                     {/* Socials Mobile */}
                     <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginBottom: '40px' }}>
-                        <a href="https://facebook.com" className="social-icon-circle facebook-hover"><Facebook size={20} /></a>
-                        <a href="https://instagram.com" className="social-icon-circle instagram-hover"><Instagram size={20} /></a>
-                        <a href="https://youtube.com" className="social-icon-circle youtube-hover"><Youtube size={20} /></a>
+                        <a href="https://facebook.com" className="social-icon-circle facebook-color"><Facebook size={20} fill="#fff" /></a>
+                        <a href="https://instagram.com" className="social-icon-circle instagram-color"><Instagram size={20} fill="#fff" /></a>
+                        <a href="https://youtube.com" className="social-icon-circle youtube-color"><Youtube size={20} fill="#fff" /></a>
                     </div>
                 </div>
 
