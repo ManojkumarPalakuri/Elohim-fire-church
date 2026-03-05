@@ -161,39 +161,64 @@ const HomePage = () => {
             }}
           ></div>
 
-          {/* Top Block: Branding next to Logo clearance */}
+          {/* Top Block: Logo + Badge Row & Title */}
           <div
             style={{
-              padding: "24px 20px",
+              width: "90%",
+              margin: "0 auto",
+              paddingTop: "24px",
               position: "relative",
               zIndex: 10,
               display: "flex",
+              flexDirection: "column",
               alignItems: "flex-start",
-              gap: "12px"
             }}
             className={isLoaded ? "animate-fade-in" : ""}
           >
-            {/* Spacer to align with the Header logo */}
-            <div style={{ width: "48px", height: "48px", flexShrink: 0 }}></div>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: "2px", paddingTop: "4px" }}>
+            {/* Logo + Badge Row */}
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              <img
+                src="/logo.png"
+                alt="EFM"
+                style={{ height: "38px", width: "38px", objectFit: "contain" }}
+              />
               <span style={{
-                backgroundColor: "rgba(255, 0, 0, 0.9)",
+                backgroundColor: "#FF0000",
                 color: "#FFFFFF",
-                padding: "3px 10px",
+                padding: "6px 14px",
                 borderRadius: "50px",
-                fontSize: "0.65rem",
-                letterSpacing: "1.5px",
+                fontSize: "12.5px",
+                letterSpacing: "1px",
                 textTransform: "uppercase",
                 fontWeight: "800",
-                width: "fit-content",
-                boxShadow: "0 2px 8px rgba(255,0,0,0.3)",
+                boxShadow: "0 0 15px rgba(255,0,0,0.3)",
               }}>
                 The Presence of God
               </span>
-              <div style={{ color: "#fff", display: "flex", flexDirection: "column", lineHeight: "1.2" }}>
-                <span style={{ fontSize: "18px", fontWeight: "900", letterSpacing: "0.5px", textTransform: "uppercase" }}>PROPHET JOSHUA</span>
-                <span style={{ fontSize: "11px", fontWeight: "700", letterSpacing: "2.5px", color: "var(--color-accent-secondary)", textTransform: "uppercase" }}>MINISTRIES</span>
+            </div>
+
+            {/* Main Title Block */}
+            <div style={{ marginTop: "18px", textAlign: "left" }}>
+              <h1 style={{
+                fontSize: "48px",
+                fontWeight: "900",
+                color: "#fff",
+                margin: 0,
+                lineHeight: "1",
+                textTransform: "uppercase",
+                fontFamily: "var(--font-logo, serif)"
+              }}>
+                PROPHET<br />JOSHUA
+              </h1>
+              <div style={{
+                fontSize: "22px",
+                fontWeight: "800",
+                color: "var(--color-gold-dark, #FFB703)",
+                marginTop: "12px",
+                letterSpacing: "4px",
+                textTransform: "uppercase"
+              }}>
+                MINISTRIES
               </div>
             </div>
           </div>
