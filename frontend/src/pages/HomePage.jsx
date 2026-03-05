@@ -161,10 +161,10 @@ const HomePage = () => {
             }}
           ></div>
 
-          {/* Top Block: Logo + Badge Row & Title */}
+          {/* Top Block: Header Alignment Spacer & Title */}
           <div
             style={{
-              width: "92%",
+              width: "90%",
               margin: "0 auto",
               paddingTop: "32px",
               position: "relative",
@@ -175,52 +175,47 @@ const HomePage = () => {
             }}
             className={isLoaded ? "animate-fade-in" : ""}
           >
-            {/* Logo + Badge Row */}
-            <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "22px" }}>
-              <img
-                src="/logo.png"
-                alt="EFM"
-                style={{ height: "40px", width: "40px", objectFit: "contain", filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.5))" }}
-              />
+            {/* Badge Alignment Row (Spacer for Header logo) */}
+            <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "24px" }}>
+              {/* This spacer accounts for the global Header logo position */}
+              <div style={{ width: "48px", height: "48px", flexShrink: 0 }}></div>
               <span style={{
                 backgroundColor: "#E60000",
                 color: "#FFFFFF",
-                padding: "5px 14px",
+                padding: "6px 16px",
                 borderRadius: "50px",
                 fontSize: "12px",
                 letterSpacing: "1.5px",
                 textTransform: "uppercase",
-                fontWeight: "800",
-                boxShadow: "0 4px 12px rgba(230,0,0,0.3)",
-                display: "flex",
-                alignItems: "center"
+                fontWeight: "900",
+                boxShadow: "0 4px 15px rgba(230,0,0,0.4)",
               }}>
                 The Presence of God
               </span>
             </div>
 
-            {/* Main Title Block */}
+            {/* Big Impact Title Block */}
             <div style={{ textAlign: "left", width: "100%" }}>
               <h1 style={{
-                fontSize: "46px",
+                fontSize: "56px",
                 fontWeight: "900",
                 color: "#FFFFFF",
                 margin: 0,
-                lineHeight: "1.1",
+                lineHeight: "0.95",
                 textTransform: "uppercase",
                 fontFamily: "var(--font-logo, serif)",
-                letterSpacing: "-0.5px"
+                letterSpacing: "-1.5px"
               }}>
                 PROPHET<br />JOSHUA
               </h1>
               <div style={{
-                fontSize: "20px",
+                fontSize: "26px",
                 fontWeight: "800",
                 color: "#FFB000",
-                marginTop: "14px",
-                letterSpacing: "5px",
+                marginTop: "16px",
+                letterSpacing: "6px",
                 textTransform: "uppercase",
-                opacity: 0.95
+                textShadow: "0 2px 10px rgba(0,0,0,0.3)"
               }}>
                 MINISTRIES
               </div>
