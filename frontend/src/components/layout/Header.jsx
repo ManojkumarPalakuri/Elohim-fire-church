@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { Sun, Moon, Heart, MapPin, Phone, Clock, X } from "lucide-react";
 import { useTheme } from "../../context/ThemeContext";
 
@@ -7,6 +7,8 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -200,17 +202,19 @@ const Header = () => {
             }}
             className="mobile-header-only"
           >
-            <Link to="/">
-              <img
-                src="/logo.png"
-                alt="EFM"
-                className="mobile-logo-img"
-                style={{
-                  height: "36px",
-                  objectFit: "contain",
-                }}
-              />
-            </Link>
+            {!isHomePage && (
+              <Link to="/">
+                <img
+                  src="/logo.png"
+                  alt="EFM"
+                  className="mobile-logo-img"
+                  style={{
+                    height: "36px",
+                    objectFit: "contain",
+                  }}
+                />
+              </Link>
+            )}
           </div>
         </div>
       </header>
