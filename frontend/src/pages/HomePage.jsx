@@ -271,7 +271,7 @@ const HomePage = () => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                background: "var(--color-accent-primary)",
+                background: "linear-gradient(135deg, #FF0000 0%, #B20000 100%)",
                 color: "#fff",
                 borderRadius: "0",
                 fontWeight: "700",
@@ -292,7 +292,7 @@ const HomePage = () => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                background: "transparent",
+                background: "linear-gradient(135deg, #0056b3 0%, #003d80 100%)",
                 color: "#fff",
                 borderRadius: "0",
                 fontWeight: "700",
@@ -300,7 +300,7 @@ const HomePage = () => {
                 letterSpacing: "1.5px",
                 fontSize: "16px",
                 textDecoration: "none",
-                border: "2px solid #fff",
+                border: "none",
               }}
             >
               Prayer Request
@@ -661,11 +661,11 @@ const HomePage = () => {
                   <span
                     style={{
                       display: "inline-block",
-                      backgroundColor: "rgba(255, 106, 0, 0.2)",
-                      border: "1px solid #FFFFFF",
-                      color: "#FFFFFF",
+                      backgroundColor: "rgba(255, 106, 0, 0.15)",
+                      border: "1px solid var(--color-accent-primary)",
+                      color: "var(--color-accent-primary)",
                       padding: "6px 14px",
-                      borderRadius: "0",
+                      borderRadius: "4px",
                       fontSize: "0.85rem",
                       fontWeight: "700",
                       letterSpacing: "0.5px"
