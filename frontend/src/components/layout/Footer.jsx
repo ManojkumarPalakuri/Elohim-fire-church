@@ -36,7 +36,7 @@ const Footer = () => {
                     border-radius: 50%;
                     background: rgba(255, 255, 255, 0.03);
                     border: 1px solid rgba(255, 255, 255, 0.08);
-                    color: rgba(255, 255, 255, 0.7);
+                    color: #FFFFFF;
                     transition: all 0.3s ease;
                 }
                 .social-icon-circle:hover {
@@ -48,7 +48,7 @@ const Footer = () => {
                 }
 
                 .footer-link {
-                    color: rgba(255, 255, 255, 0.7);
+                    color: #FFFFFF;
                     font-size: 0.95rem;
                     transition: all 0.2s ease;
                     display: flex;
@@ -157,10 +157,10 @@ const Footer = () => {
                             <img src="/logo.png" alt="EFM" style={{ height: '40px' }} />
                             <div>
                                 <h2 style={{ fontSize: '1.2rem', color: '#fff', margin: 0, fontFamily: 'var(--font-logo)' }}>ELOHIM FIRE</h2>
-                                <span style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.5)', letterSpacing: '2px' }}>MINISTRIES</span>
+                                <span style={{ fontSize: '0.6rem', color: '#FFFFFF', letterSpacing: '2px' }}>MINISTRIES</span>
                             </div>
                         </div>
-                        <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem', lineHeight: 1.6 }}>
+                        <p style={{ color: '#FFFFFF', fontSize: '0.9rem', lineHeight: 1.6 }}>
                             Global ministry dedicated to teaching the Word, prophetic movement, and the power of His presence.
                         </p>
                     </div>
@@ -179,7 +179,7 @@ const Footer = () => {
                     {/* Column 3: Support */}
                     <div className="footer-col-3">
                         <h3 style={{ fontSize: '1.1rem', color: '#fff', marginBottom: '20px' }}>Support</h3>
-                        <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem', marginBottom: '20px' }}>
+                        <p style={{ color: '#FFFFFF', fontSize: '0.9rem', marginBottom: '20px' }}>
                             Partner with us in spreading the Gospel worldwide.
                         </p>
                         <Link to="/giving" className="give-btn-desktop">
@@ -191,10 +191,10 @@ const Footer = () => {
                     <div className="footer-col-4">
                         <h3 style={{ fontSize: '1.1rem', color: '#fff', marginBottom: '20px' }}>Contact</h3>
                         <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                            <li style={{ display: 'flex', gap: '10px', color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem' }}>
+                            <li style={{ display: 'flex', gap: '10px', color: '#FFFFFF', fontSize: '0.9rem' }}>
                                 <MapPin size={16} color="var(--color-gold)" /> Hyderabad, India
                             </li>
-                            <li style={{ display: 'flex', gap: '10px', color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem' }}>
+                            <li style={{ display: 'flex', gap: '10px', color: '#FFFFFF', fontSize: '0.9rem' }}>
                                 <Phone size={16} color="var(--color-gold)" /> +91 7095409118
                             </li>
                         </ul>
@@ -212,7 +212,7 @@ const Footer = () => {
                     <div style={{ textAlign: 'center', marginBottom: '40px' }}>
                         <img src="/logo.png" alt="EFM" style={{ height: '54px', marginBottom: '16px' }} />
                         <h2 style={{ fontSize: '1.6rem', color: '#fff', margin: 0, fontFamily: 'var(--font-logo)' }}>ELOHIM <span style={{ color: 'var(--color-gold)' }}>FIRE</span></h2>
-                        <span style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)', letterSpacing: '4px' }}>MINISTRIES</span>
+                        <span style={{ fontSize: '0.7rem', color: '#FFFFFF', letterSpacing: '4px' }}>MINISTRIES</span>
                     </div>
 
                     {/* Quick & Premium Links Card */}
@@ -264,7 +264,7 @@ const Footer = () => {
                     {/* Support Card */}
                     <div className="mobile-footer-card" style={{ textAlign: 'center', background: 'linear-gradient(135deg, rgba(212,175,55,0.05) 0%, rgba(255,106,0,0.05) 100%)', borderColor: 'rgba(212,175,55,0.1)' }}>
                         <h3 className="footer-section-title">Support The Ministry</h3>
-                        <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '24px' }}>
+                        <p style={{ color: '#FFFFFF', fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '24px' }}>
                             Your generosity helps us spread the gospel message locally and globally.
                         </p>
                         <Link to="/giving" className="btn-primary" style={{ width: '100%', borderRadius: '12px', textDecoration: 'none' }}>
@@ -280,7 +280,7 @@ const Footer = () => {
                                 <MapPin size={20} color="var(--color-gold)" />
                             </div>
                             <div>
-                                <p style={{ margin: 0, fontSize: '12px', color: 'rgba(255,255,255,0.5)' }}>Our Location</p>
+                                <p style={{ margin: 0, fontSize: '12px', color: '#FFFFFF' }}>Our Location</p>
                                 <p style={{ margin: 0, fontSize: '14px', color: '#fff', fontWeight: 500 }}>Hyderabad, India</p>
                             </div>
                         </div>
@@ -289,7 +289,7 @@ const Footer = () => {
                                 <Phone size={20} color="var(--color-gold)" />
                             </div>
                             <div>
-                                <p style={{ margin: 0, fontSize: '12px', color: 'rgba(255,255,255,0.5)' }}>Call Us</p>
+                                <p style={{ margin: 0, fontSize: '12px', color: '#FFFFFF' }}>Call Us</p>
                                 <p style={{ margin: 0, fontSize: '14px', color: '#fff', fontWeight: 500 }}>+91 7095409118</p>
                             </div>
                         </div>
@@ -298,7 +298,7 @@ const Footer = () => {
                                 <Mail size={20} color="var(--color-gold)" />
                             </div>
                             <div>
-                                <p style={{ margin: 0, fontSize: '12px', color: 'rgba(255,255,255,0.5)' }}>Email Address</p>
+                                <p style={{ margin: 0, fontSize: '12px', color: '#FFFFFF' }}>Email Address</p>
                                 <p style={{ margin: 0, fontSize: '13px', color: '#fff', fontWeight: 500 }}>chevvaharish87@gmail.com</p>
                             </div>
                         </div>

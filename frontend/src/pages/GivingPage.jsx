@@ -151,7 +151,7 @@ const QRCard = ({ qr }) => {
                         boxSizing: 'border-box',
                     }}>
                         <div style={{ textAlign: 'left' }}>
-                            <span style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.75rem', display: 'block', marginBottom: '4px' }}>UPI ID</span>
+                            <span style={{ color: '#FFFFFF', fontSize: '0.75rem', display: 'block', marginBottom: '4px' }}>UPI ID</span>
                             <span style={{ color: 'var(--color-gold)', fontWeight: '600', fontSize: '1rem', letterSpacing: '0.5px', wordBreak: 'break-all' }}>{qr.upiId}</span>
                         </div>
                         <button
@@ -488,7 +488,7 @@ const GivingPage = () => {
                                             </div>
                                             <div>
                                                 <h3 style={{ fontSize: '1.05rem', fontWeight: '700', margin: 0, color: '#ffffff', letterSpacing: '0.5px' }}>State Bank of India</h3>
-                                                <span style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.8)', marginTop: '2px', display: 'block' }}>The Banker to Every Indian</span>
+                                                <span style={{ fontSize: '0.7rem', color: '#FFFFFF', marginTop: '2px', display: 'block' }}>The Banker to Every Indian</span>
                                             </div>
                                         </div>
 
@@ -501,17 +501,17 @@ const GivingPage = () => {
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', zIndex: 1 }}>
                                             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                                                 <div>
-                                                    <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '2px' }}>Account Holder</div>
+                                                    <div style={{ fontSize: '0.65rem', color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '2px' }}>Account Holder</div>
                                                     <div style={{ fontSize: '0.95rem', color: '#ffffff', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '1px' }}>CH. Harish</div>
                                                 </div>
                                                 <div>
-                                                    <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '2px' }}>Branch</div>
+                                                    <div style={{ fontSize: '0.65rem', color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '2px' }}>Branch</div>
                                                     <div style={{ fontSize: '0.85rem', color: '#ffffff', fontWeight: '500' }}>Beeramguda</div>
                                                 </div>
                                             </div>
                                             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', textAlign: 'right' }}>
                                                 <div style={{ marginTop: 'auto' }}>
-                                                    <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '2px' }}>IFSC Code</div>
+                                                    <div style={{ fontSize: '0.65rem', color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '2px' }}>IFSC Code</div>
                                                     <div style={{ fontSize: '1.1rem', color: '#ffffff', fontFamily: '"Courier New", Courier, monospace', letterSpacing: '1px' }}>SBIN0010689</div>
                                                 </div>
                                             </div>
@@ -547,7 +547,7 @@ const GivingPage = () => {
                                             </div>
                                             <div>
                                                 <h3 style={{ fontSize: '1.05rem', fontWeight: '700', margin: 0, color: '#ffffff', letterSpacing: '0.5px' }}>Kotak Mahindra Bank</h3>
-                                                <span style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.8)', marginTop: '2px', display: 'block' }}>Let's make money simple</span>
+                                                <span style={{ fontSize: '0.7rem', color: '#FFFFFF', marginTop: '2px', display: 'block' }}>Let's make money simple</span>
                                             </div>
                                         </div>
 
@@ -560,17 +560,17 @@ const GivingPage = () => {
                                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', zIndex: 1 }}>
                                             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                                                 <div>
-                                                    <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '2px' }}>Account Holder</div>
+                                                    <div style={{ fontSize: '0.65rem', color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '2px' }}>Account Holder</div>
                                                     <div style={{ fontSize: '0.95rem', color: '#ffffff', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '1px' }}>Ch. Harish (Joshua)</div>
                                                 </div>
                                                 <div>
-                                                    <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '2px' }}>Branch</div>
+                                                    <div style={{ fontSize: '0.65rem', color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '2px' }}>Branch</div>
                                                     <div style={{ fontSize: '0.85rem', color: '#ffffff', fontWeight: '500' }}>Patancheru</div>
                                                 </div>
                                             </div>
                                             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', textAlign: 'right' }}>
                                                 <div style={{ marginTop: 'auto' }}>
-                                                    <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '2px' }}>IFSC Code</div>
+                                                    <div style={{ fontSize: '0.65rem', color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '2px' }}>IFSC Code</div>
                                                     <div style={{ fontSize: '1.1rem', color: '#ffffff', fontFamily: '"Courier New", Courier, monospace', letterSpacing: '1px' }}>KKBK0007454</div>
                                                 </div>
                                             </div>

@@ -552,7 +552,7 @@ const MediaPage = () => {
                                 <Facebook size={48} />
                                 <div style={{ textAlign: 'center' }}>
                                     <div style={{ fontWeight: '800', fontSize: '1.2rem', marginBottom: '4px' }}>Facebook</div>
-                                    <div style={{ opacity: 0.8, fontSize: '0.85rem' }}>Prophet Joshua Official</div>
+                                    <div style={{ opacity: 1, fontSize: '0.85rem' }}>Prophet Joshua Official</div>
                                 </div>
                                 <span style={{ backgroundColor: 'rgba(255,255,255,0.2)', padding: '8px 24px', borderRadius: '8px', fontWeight: '700', fontSize: '0.85rem', letterSpacing: '0.5px' }}>Follow Us</span>
                             </div>
@@ -578,7 +578,7 @@ const MediaPage = () => {
                                 <Instagram size={48} />
                                 <div style={{ textAlign: 'center' }}>
                                     <div style={{ fontWeight: '800', fontSize: '1.2rem', marginBottom: '4px' }}>Instagram</div>
-                                    <div style={{ opacity: 0.8, fontSize: '0.85rem' }}>@prophet_joshua_official</div>
+                                    <div style={{ opacity: 1, fontSize: '0.85rem' }}>@prophet_joshua_official</div>
                                 </div>
                                 <span style={{ backgroundColor: 'rgba(255,255,255,0.2)', padding: '8px 24px', borderRadius: '8px', fontWeight: '700', fontSize: '0.85rem', letterSpacing: '0.5px' }}>Follow Us</span>
                             </div>

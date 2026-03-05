@@ -184,7 +184,7 @@ const Header = () => {
                   gap: '6px'
                 }}
               >
-                <Heart size={16} fill="#ff0000" stroke="#ffffff" strokeWidth={2} /> Give Online
+                <Heart size={16} fill="#ff0000" stroke="#FFFFFF" strokeWidth={2} /> Give Online
               </Link>
             </div>
           </div>

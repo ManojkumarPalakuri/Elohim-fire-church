@@ -237,7 +237,7 @@ const HomePage = () => {
               style={{
                 fontSize: "1rem",
                 lineHeight: 1.6,
-                color: "rgba(255,255,255,0.85)",
+                color: "#FFFFFF",
                 maxWidth: "300px",
                 margin: "0 auto",
                 fontWeight: "400",

@@ -11,9 +11,9 @@
   --color-accent-primary: #FF6A00;
   --color-accent-secondary: #FFB703;
 
-  --color-text-primary: #EAEAEA;
-  --color-text-secondary: #A0A0A0;
-  --color-text-muted: #666666;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #FFFFFF;
+  --color-text-muted: #D1D1D1;
 
   --color-border-outline: rgba(255, 255, 255, 0.2);
 
@@ -372,7 +372,7 @@ button {
   justify-content: center;
   flex: 1;
   height: 100%;
-  color: #9CA3AF;
+  color: #FFFFFF;
   /* Inactive Color */
   gap: 3px;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
