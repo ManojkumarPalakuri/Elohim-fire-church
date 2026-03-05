@@ -179,7 +179,7 @@ const HomePage = () => {
             <div style={{
               display: "flex",
               alignItems: "center",
-              gap: "12px",
+              gap: "clamp(20px, 5vw, 50px)",
               marginBottom: "28px",
               width: "100%",
               justifyContent: "flex-start"
@@ -199,7 +199,7 @@ const HomePage = () => {
               <span style={{
                 backgroundColor: "#E60000",
                 color: "#FFFFFF",
-                padding: "8px 18px",
+                padding: "8px 20px",
                 borderRadius: "999px",
                 fontSize: "13px",
                 letterSpacing: "1px",
