@@ -665,7 +665,7 @@ const HomePage = () => {
                     style={{
                       display: "inline-block",
                       backgroundColor: "rgba(255, 106, 0, 0.2)",
-                      border: "1px solid rgba(255, 106, 0, 0.4)",
+                      border: "1px solid #FFFFFF",
                       color: "#FFFFFF",
                       padding: "6px 14px",
                       borderRadius: "0",
