@@ -140,6 +140,7 @@ const HomePage = () => {
             minHeight: "100vh",
             display: "flex",
             flexDirection: "column",
+            justifyContent: "space-between",
             backgroundColor: "#050505",
             backgroundImage:
               'url("https://images.unsplash.com/photo-1438232992991-995b7058bbb3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80")', // Focused spiritual lighting/hand
@@ -155,7 +156,7 @@ const HomePage = () => {
               position: "absolute",
               inset: 0,
               background:
-                "linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.75) 100%)",
+                "linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.85) 100%)",
               zIndex: 1,
             }}
           ></div>
@@ -256,8 +257,8 @@ const HomePage = () => {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              gap: "15px",
-              padding: "0 20px 100px 20px",
+              gap: "16px",
+              padding: "0 20px 90px 20px",
             }}
             className="delay-300 animate-fade-in"
           >
@@ -267,19 +268,20 @@ const HomePage = () => {
               rel="noopener noreferrer"
               style={{
                 width: "100%",
-                height: "54px",
+                height: "56px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                background: "linear-gradient(135deg, #FF0000 0%, #B20000 100%)",
+                background: "var(--color-accent-primary)",
                 color: "#fff",
-                borderRadius: "0",
-                fontWeight: "700",
+                borderRadius: "12px",
+                fontWeight: "800",
                 textTransform: "uppercase",
                 letterSpacing: "1.5px",
                 fontSize: "16px",
                 textDecoration: "none",
                 border: "none",
+                boxShadow: "0 6px 20px rgba(255, 106, 0, 0.3)",
               }}
             >
               Watch Live Now
@@ -288,19 +290,19 @@ const HomePage = () => {
               to="/contact"
               style={{
                 width: "100%",
-                height: "54px",
+                height: "56px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                background: "linear-gradient(135deg, #0056b3 0%, #003d80 100%)",
+                background: "transparent",
                 color: "#fff",
-                borderRadius: "0",
-                fontWeight: "700",
+                borderRadius: "12px",
+                fontWeight: "800",
                 textTransform: "uppercase",
                 letterSpacing: "1.5px",
                 fontSize: "16px",
                 textDecoration: "none",
-                border: "none",
+                border: "2px solid #fff",
               }}
             >
               Prayer Request
