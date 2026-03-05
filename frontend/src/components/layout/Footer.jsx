@@ -206,9 +206,9 @@ const Footer = () => {
                             </li>
                         </ul>
                         <div style={{ display: 'flex', gap: '12px', marginTop: '20px' }}>
-                            <a href="#" className="social-icon-circle facebook-color"><Facebook size={18} fill="#fff" /></a>
-                            <a href="#" className="social-icon-circle instagram-color"><Instagram size={18} fill="#fff" /></a>
-                            <a href="#" className="social-icon-circle youtube-color"><Youtube size={18} fill="#fff" /></a>
+                            <a href="#" className="social-icon-circle facebook-color"><Facebook size={18} color="#fff" /></a>
+                            <a href="#" className="social-icon-circle instagram-color"><Instagram size={18} color="#fff" /></a>
+                            <a href="#" className="social-icon-circle youtube-color"><Youtube size={18} color="#fff" /></a>
                         </div>
                     </div>
                 </div>
@@ -313,9 +313,9 @@ const Footer = () => {
 
                     {/* Socials Mobile */}
                     <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginBottom: '40px' }}>
-                        <a href="https://facebook.com" className="social-icon-circle facebook-color"><Facebook size={20} fill="#fff" /></a>
-                        <a href="https://instagram.com" className="social-icon-circle instagram-color"><Instagram size={20} fill="#fff" /></a>
-                        <a href="https://youtube.com" className="social-icon-circle youtube-color"><Youtube size={20} fill="#fff" /></a>
+                        <a href="https://facebook.com" className="social-icon-circle facebook-color"><Facebook size={20} color="#fff" /></a>
+                        <a href="https://instagram.com" className="social-icon-circle instagram-color"><Instagram size={20} color="#fff" /></a>
+                        <a href="https://youtube.com" className="social-icon-circle youtube-color"><Youtube size={20} color="#fff" /></a>
                     </div>
                 </div>
 
