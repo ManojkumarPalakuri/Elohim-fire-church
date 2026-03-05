@@ -124,13 +124,23 @@
   padding: 0;
 }
 
+html,
+body {
+  overflow-x: hidden;
+  background-color: #0b0b0f;
+  /* Explicit dark background to prevent white flashes */
+  overscroll-behavior: none;
+  /* Disable iOS rubber-band and overscroll */
+}
+
 body {
   font-family: var(--font-body);
   background-color: var(--color-bg-dark);
   color: var(--color-text-primary);
   line-height: 1.6;
-  overflow-x: hidden;
   scroll-behavior: smooth;
+  touch-action: pan-y;
+  /* Prevent unwanted sideways movement on mobile */
 }
 
 h1,
