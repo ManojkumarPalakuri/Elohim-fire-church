@@ -174,7 +174,7 @@ const HomePage = () => {
               justifyContent: "center",
               alignItems: "center",
               textAlign: "center",
-              padding: "0 20px",
+              padding: "0 24px",
             }}
             className={isLoaded ? "animate-fade-in" : ""}
           >
@@ -183,13 +183,13 @@ const HomePage = () => {
                 display: "inline-block",
                 backgroundColor: "rgba(255, 0, 0, 0.85)",
                 color: "#FFFFFF",
-                padding: "4px 12px",
+                padding: "4px 14px",
                 borderRadius: "50px",
-                fontSize: "0.7rem",
+                fontSize: "0.75rem",
                 letterSpacing: "3px",
                 textTransform: "uppercase",
                 fontWeight: "800",
-                marginBottom: "20px",
+                marginBottom: "28px",
                 boxShadow: "0 4px 15px rgba(255,0,0,0.4)",
                 backdropFilter: "blur(4px)",
               }}
@@ -199,14 +199,14 @@ const HomePage = () => {
             </span>
             <h1
               style={{
-                margin: "0 0 16px 0",
+                margin: "0 0 20px 0",
                 padding: 0,
                 fontWeight: 900,
                 textTransform: "uppercase",
-                letterSpacing: "-1px",
+                letterSpacing: "-1.5px",
                 color: "#fff",
-                fontSize: "44px",
-                lineHeight: "1.15",
+                fontSize: "52px",
+                lineHeight: "1.05",
                 width: "100%",
                 display: "flex",
                 flexDirection: "column",
@@ -221,11 +221,11 @@ const HomePage = () => {
                 background: "linear-gradient(135deg, #FFB703 0%, #FF8C00 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
-                fontSize: "18px",
-                letterSpacing: "2px",
+                fontSize: "20px",
+                letterSpacing: "2.5px",
                 fontWeight: "800",
                 textTransform: "uppercase",
-                marginBottom: "20px",
+                marginBottom: "24px",
               }}
               className="delay-200 animate-fade-in"
             >
@@ -233,10 +233,10 @@ const HomePage = () => {
             </div>
             <p
               style={{
-                fontSize: "16px",
+                fontSize: "17px",
                 lineHeight: 1.6,
                 color: "#FFFFFF",
-                maxWidth: "320px",
+                maxWidth: "340px",
                 margin: "0",
                 fontWeight: "400",
                 textShadow: "0 1px 4px rgba(0,0,0,0.3)",
@@ -258,10 +258,32 @@ const HomePage = () => {
               flexDirection: "column",
               alignItems: "center",
               gap: "16px",
-              padding: "0 20px 90px 20px",
+              padding: "0 20px 95px 20px",
             }}
             className="delay-300 animate-fade-in"
           >
+            <Link
+              to="/contact"
+              style={{
+                width: "100%",
+                height: "56px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                background: "linear-gradient(135deg, #0056b3 0%, #003d80 100%)",
+                color: "#fff",
+                borderRadius: "12px",
+                fontWeight: "800",
+                textTransform: "uppercase",
+                letterSpacing: "1.5px",
+                fontSize: "16px",
+                textDecoration: "none",
+                border: "none",
+                boxShadow: "0 6px 20px rgba(0, 86, 179, 0.3)",
+              }}
+            >
+              Prayer Request
+            </Link>
             <a
               href="https://youtube.com/@prophetjoshua6374"
               target="_blank"
@@ -272,7 +294,7 @@ const HomePage = () => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                background: "var(--color-accent-primary)",
+                background: "linear-gradient(135deg, #FF0000 0%, #B20000 100%)",
                 color: "#fff",
                 borderRadius: "12px",
                 fontWeight: "800",
@@ -281,32 +303,11 @@ const HomePage = () => {
                 fontSize: "16px",
                 textDecoration: "none",
                 border: "none",
-                boxShadow: "0 6px 20px rgba(255, 106, 0, 0.3)",
+                boxShadow: "0 6px 20px rgba(255, 0, 0, 0.3)",
               }}
             >
               Watch Live Now
             </a>
-            <Link
-              to="/contact"
-              style={{
-                width: "100%",
-                height: "56px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                background: "transparent",
-                color: "#fff",
-                borderRadius: "12px",
-                fontWeight: "800",
-                textTransform: "uppercase",
-                letterSpacing: "1.5px",
-                fontSize: "16px",
-                textDecoration: "none",
-                border: "2px solid #fff",
-              }}
-            >
-              Prayer Request
-            </Link>
           </div>
         </div>
 
