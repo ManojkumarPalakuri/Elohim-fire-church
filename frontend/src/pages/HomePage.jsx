@@ -569,8 +569,13 @@ const HomePage = () => {
               </p>
               <Link
                 to="/about"
-                className="btn-outline"
-                style={{ borderRadius: "0" }}
+                className="btn-primary"
+                style={{
+                  borderRadius: "0",
+                  background: "linear-gradient(135deg, #007bff 0%, #0056b3 100%)",
+                  border: "none",
+                  color: "#FFFFFF"
+                }}
               >
                 Read Full Story
               </Link>
@@ -659,12 +664,14 @@ const HomePage = () => {
                   <span
                     style={{
                       display: "inline-block",
-                      backgroundColor: "rgba(255,106,0,0.1)",
+                      backgroundColor: "rgba(255, 106, 0, 0.12)",
+                      border: "1px solid rgba(255, 106, 0, 0.25)",
                       color: "var(--color-accent-primary)",
-                      padding: "6px 12px",
-                      borderRadius: "4px",
+                      padding: "6px 14px",
+                      borderRadius: "0",
                       fontSize: "0.85rem",
-                      fontWeight: "600",
+                      fontWeight: "700",
+                      letterSpacing: "0.5px"
                     }}
                   >
                     {service.time}
@@ -886,8 +893,12 @@ const HomePage = () => {
             </div>
             <Link
               to="/media"
-              className="btn-outline"
-              style={{ padding: "10px 24px" }}
+              className="btn-primary"
+              style={{
+                padding: "10px 24px",
+                background: "linear-gradient(135deg, #FF0000 0%, #B20000 100%)",
+                border: "none"
+              }}
             >
               View All Sermons
             </Link>

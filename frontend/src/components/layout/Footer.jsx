@@ -34,11 +34,14 @@ const Footer = () => {
                     width: 44px;
                     height: 44px;
                     border-radius: 50%;
-                    background: rgba(255, 255, 255, 0.03);
-                    border: 1px solid rgba(255, 255, 255, 0.08);
+                    background: rgba(255, 255, 255, 0.05);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
                     color: #FFFFFF;
                     transition: all 0.3s ease;
                 }
+                .facebook-hover:hover { color: #1877F2 !important; border-color: #1877F2 !important; background: rgba(24, 119, 242, 0.1) !important; }
+                .instagram-hover:hover { color: #E4405F !important; border-color: #E4405F !important; background: rgba(228, 64, 95, 0.1) !important; }
+                .youtube-hover:hover { color: #FF0000 !important; border-color: #FF0000 !important; background: rgba(255, 0, 0, 0.1) !important; }
                 .social-icon-circle:hover {
                     background: rgba(212, 175, 55, 0.15);
                     color: var(--color-gold) !important;
@@ -199,9 +202,9 @@ const Footer = () => {
                             </li>
                         </ul>
                         <div style={{ display: 'flex', gap: '12px', marginTop: '20px' }}>
-                            <a href="#" className="social-icon-circle"><Facebook size={18} /></a>
-                            <a href="#" className="social-icon-circle"><Instagram size={18} /></a>
-                            <a href="#" className="social-icon-circle"><Youtube size={18} /></a>
+                            <a href="#" className="social-icon-circle facebook-hover"><Facebook size={18} /></a>
+                            <a href="#" className="social-icon-circle instagram-hover"><Instagram size={18} /></a>
+                            <a href="#" className="social-icon-circle youtube-hover"><Youtube size={18} /></a>
                         </div>
                     </div>
                 </div>
@@ -219,7 +222,7 @@ const Footer = () => {
                     <div className="mobile-footer-card">
                         <h3 className="footer-section-title">Quick Links</h3>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                            <Link to="/about" className="footer-cta-btn" style={{ background: 'linear-gradient(135deg, #D4AF37 0%, #B8860B 100%)' }}>
+                            <Link to="/about" className="footer-cta-btn" style={{ background: 'linear-gradient(135deg, #FF6A00 0%, #EE5D00 100%)' }}>
                                 <Info size={20} />
                                 <span>About Us</span>
                             </Link>
@@ -231,7 +234,7 @@ const Footer = () => {
                                 <Radio size={20} />
                                 <span>Watch Live</span>
                             </Link>
-                            <Link to="/contact" className="footer-cta-btn" style={{ background: '#333333' }}>
+                            <Link to="/contact" className="footer-cta-btn" style={{ background: 'linear-gradient(135deg, #FF6A00 0%, #EE5D00 100%)' }}>
                                 <Hand size={20} />
                                 <span>Prayer Request</span>
                             </Link>
@@ -275,8 +278,8 @@ const Footer = () => {
                     {/* Contact Cards */}
                     <div style={{ marginBottom: '40px' }}>
                         <h3 className="footer-section-title">Get In Touch</h3>
-                        <div className="contact-card-mobile">
-                            <div style={{ background: 'rgba(212,175,55,0.1)', padding: '10px', borderRadius: '10px' }}>
+                        <div className="contact-card-mobile" style={{ background: 'rgba(255, 255, 255, 0.05)', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                            <div style={{ background: 'rgba(212, 175, 55, 0.15)', padding: '10px', borderRadius: '10px', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
                                 <MapPin size={20} color="var(--color-gold)" />
                             </div>
                             <div>
@@ -284,8 +287,8 @@ const Footer = () => {
                                 <p style={{ margin: 0, fontSize: '14px', color: '#fff', fontWeight: 500 }}>Hyderabad, India</p>
                             </div>
                         </div>
-                        <div className="contact-card-mobile">
-                            <div style={{ background: 'rgba(212,175,55,0.1)', padding: '10px', borderRadius: '10px' }}>
+                        <div className="contact-card-mobile" style={{ background: 'rgba(255, 255, 255, 0.05)', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                            <div style={{ background: 'rgba(212, 175, 55, 0.15)', padding: '10px', borderRadius: '10px', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
                                 <Phone size={20} color="var(--color-gold)" />
                             </div>
                             <div>
@@ -293,8 +296,8 @@ const Footer = () => {
                                 <p style={{ margin: 0, fontSize: '14px', color: '#fff', fontWeight: 500 }}>+91 7095409118</p>
                             </div>
                         </div>
-                        <div className="contact-card-mobile">
-                            <div style={{ background: 'rgba(212,175,55,0.1)', padding: '10px', borderRadius: '10px' }}>
+                        <div className="contact-card-mobile" style={{ background: 'rgba(255, 255, 255, 0.05)', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                            <div style={{ background: 'rgba(212, 175, 55, 0.15)', padding: '10px', borderRadius: '10px', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
                                 <Mail size={20} color="var(--color-gold)" />
                             </div>
                             <div>
@@ -306,9 +309,9 @@ const Footer = () => {
 
                     {/* Socials Mobile */}
                     <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginBottom: '40px' }}>
-                        <a href="https://facebook.com" className="social-icon-circle"><Facebook size={20} /></a>
-                        <a href="https://instagram.com" className="social-icon-circle"><Instagram size={20} /></a>
-                        <a href="https://youtube.com" className="social-icon-circle"><Youtube size={20} /></a>
+                        <a href="https://facebook.com" className="social-icon-circle facebook-hover"><Facebook size={20} /></a>
+                        <a href="https://instagram.com" className="social-icon-circle instagram-hover"><Instagram size={20} /></a>
+                        <a href="https://youtube.com" className="social-icon-circle youtube-hover"><Youtube size={20} /></a>
                     </div>
                 </div>
 
