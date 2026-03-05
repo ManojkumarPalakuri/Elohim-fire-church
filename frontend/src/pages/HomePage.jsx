@@ -664,9 +664,9 @@ const HomePage = () => {
                   <span
                     style={{
                       display: "inline-block",
-                      backgroundColor: "rgba(255, 106, 0, 0.12)",
-                      border: "1px solid rgba(255, 106, 0, 0.25)",
-                      color: "var(--color-accent-primary)",
+                      backgroundColor: "rgba(255, 106, 0, 0.2)",
+                      border: "1px solid rgba(255, 106, 0, 0.4)",
+                      color: "#FFFFFF",
                       padding: "6px 14px",
                       borderRadius: "0",
                       fontSize: "0.85rem",
@@ -904,13 +904,20 @@ const HomePage = () => {
             </Link>
           </div>
 
-          <div className="recent-messages-wrapper" style={{ position: 'relative' }}>
+          <div className="mobile-swipe-hint">
+            <span className="mobile-swipe-hint-arrow">→</span>
+          </div>
+          <div className="recent-messages-wrapper mobile-swipe-section" style={{ position: 'relative' }}>
             <div
-              className="recent-messages-container"
+              className="recent-messages-container mobile-swipe-container"
               style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-                gap: "32px",
+                display: "flex",
+                flexWrap: "nowrap",
+                gap: "24px",
+                overflowX: "auto",
+                scrollSnapType: "x mandatory",
+                WebkitOverflowScrolling: "touch",
+                paddingBottom: "20px"
               }}
             >
               {[
