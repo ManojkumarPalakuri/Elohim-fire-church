@@ -155,12 +155,10 @@ const HomePage = () => {
               position: "absolute",
               inset: 0,
               background:
-                "linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 20%), linear-gradient(to top, rgba(5,5,5,1) 0%, rgba(5,5,5,0.7) 30%, rgba(5,5,5,0.2) 60%, rgba(0,0,0,0) 100%)",
+                "linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.75) 100%)",
               zIndex: 1,
             }}
           ></div>
-
-          {/* Redundant Mobile Top Bar removed - now handled by global Header.jsx */}
 
           {/* Centered Hero Content */}
           <div
@@ -173,24 +171,23 @@ const HomePage = () => {
               justifyContent: "center",
               alignItems: "center",
               textAlign: "center",
-              padding: "0 24px",
-              marginTop: "-40px", // Slight vertical lift
+              padding: "0 20px",
             }}
             className={isLoaded ? "animate-fade-in" : ""}
           >
             <span
               style={{
                 display: "inline-block",
-                backgroundColor: "rgba(255, 0, 0, 0.85)", // Strong red background
-                color: "#FFFFFF", // White text for maximum contrast
-                padding: "6px 14px",
+                backgroundColor: "rgba(255, 0, 0, 0.85)",
+                color: "#FFFFFF",
+                padding: "4px 12px",
                 borderRadius: "50px",
                 fontSize: "0.7rem",
                 letterSpacing: "3px",
                 textTransform: "uppercase",
                 fontWeight: "800",
-                marginBottom: "24px",
-                boxShadow: "0 4px 15px rgba(255,0,0,0.4)", // Subtle red glow
+                marginBottom: "20px",
+                boxShadow: "0 4px 15px rgba(255,0,0,0.4)",
                 backdropFilter: "blur(4px)",
               }}
               className="delay-100 animate-fade-in"
@@ -199,114 +196,110 @@ const HomePage = () => {
             </span>
             <h1
               style={{
-                margin: 0,
+                margin: "0 0 16px 0",
                 padding: 0,
                 fontWeight: 900,
                 textTransform: "uppercase",
                 letterSpacing: "-1px",
                 color: "#fff",
+                fontSize: "44px",
+                lineHeight: "1.15",
                 width: "100%",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                lineHeight: 1,
               }}
               className="delay-200 animate-fade-in"
             >
-              <span style={{ fontSize: "clamp(3.5rem, 15vw, 5rem)" }}>
-                PROPHET JOSHUA.
-              </span>
-              <span
-                style={{
-                  background:
-                    "linear-gradient(135deg, #FFB703 0%, #FF8C00 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  display: "inline-block",
-                  fontSize: "clamp(1.5rem, 7vw, 2.8rem)",
-                  letterSpacing: "4px",
-                  marginTop: "0.5rem",
-                }}
-              >
-                MINISTRIES.
-              </span>
+              PROPHET JOSHUA
             </h1>
-            <div style={{ height: "32px" }}></div>{" "}
-            {/* Balanced breathing space */}
+            <div
+              style={{
+                background: "linear-gradient(135deg, #FFB703 0%, #FF8C00 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                fontSize: "18px",
+                letterSpacing: "2px",
+                fontWeight: "800",
+                textTransform: "uppercase",
+                marginBottom: "20px",
+              }}
+              className="delay-200 animate-fade-in"
+            >
+              Power. Ministries.
+            </div>
             <p
               style={{
-                fontSize: "1rem",
+                fontSize: "16px",
                 lineHeight: 1.6,
                 color: "#FFFFFF",
-                maxWidth: "300px",
-                margin: "0 auto",
+                maxWidth: "320px",
+                margin: "0 auto 30px auto",
                 fontWeight: "400",
                 textShadow: "0 1px 4px rgba(0,0,0,0.3)",
                 textAlign: "center",
               }}
               className="delay-300 animate-fade-in"
             >
-              Experience the life-transforming ministry of Prophet Joshua.
+              Experience the life-transforming ministry of Prophet Joshua through power and grace.
             </p>
-            <div style={{ height: "48px" }}></div>
-            {/* Premium Flush Buttons */}
+
+            {/* Premium Vertical Stack Buttons */}
             <div
               style={{
                 width: "100%",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                gap: "16px",
+                gap: "15px",
+                marginTop: "15px",
               }}
               className="delay-300 animate-fade-in"
             >
-              <Link
-                to="/contact#prayer"
-                style={{
-                  width: "92%",
-                  height: "58px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  background: "#0056b3",
-                  color: "#fff",
-                  borderRadius: "0",
-                  fontWeight: "700",
-                  textTransform: "uppercase",
-                  letterSpacing: "1.5px",
-                  fontSize: "17px",
-                  textDecoration: "none",
-                  border: "none",
-                  boxShadow: "0 6px 20px rgba(0, 86, 179, 0.3)",
-                }}
-              >
-                Prayer Request
-              </Link>
-
               <a
                 href="https://youtube.com/@prophetjoshua6374"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  width: "92%",
-                  height: "58px",
+                  width: "100%",
+                  height: "54px",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  background: "linear-gradient(135deg, #FF0000 0%, #B20000 100%)",
+                  background: "var(--color-accent-primary)",
                   color: "#fff",
                   borderRadius: "0",
                   fontWeight: "700",
                   textTransform: "uppercase",
                   letterSpacing: "1.5px",
-                  fontSize: "17px",
+                  fontSize: "16px",
                   textDecoration: "none",
                   border: "none",
-                  boxShadow: "0 6px 20px rgba(255, 0, 0, 0.3)",
                 }}
               >
-                Watch Live
+                Watch Live Now
               </a>
+              <Link
+                to="/contact"
+                style={{
+                  width: "100%",
+                  height: "54px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  background: "transparent",
+                  color: "#fff",
+                  borderRadius: "0",
+                  fontWeight: "700",
+                  textTransform: "uppercase",
+                  letterSpacing: "1.5px",
+                  fontSize: "16px",
+                  textDecoration: "none",
+                  border: "2px solid #fff",
+                }}
+              >
+                Prayer Request
+              </Link>
             </div>
           </div>
         </div>
