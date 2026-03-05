@@ -587,7 +587,7 @@ const HomePage = () => {
       {/* Service Times Section */}
       <section
         className="section-padding"
-        style={{ backgroundColor: "var(--color-bg-card)" }}
+        style={{ backgroundColor: "#0F0F12", borderTop: "1px solid rgba(255,255,255,0.05)" }}
       >
         <div className="container">
           <div className="text-center mb-64">
@@ -686,7 +686,7 @@ const HomePage = () => {
       {/* Upcoming Events Section (Horizontal Cards) */}
       <section
         className="section-padding"
-        style={{ backgroundColor: "var(--color-bg-card)" }}
+        style={{ backgroundColor: "#0F0F12", borderTop: "1px solid rgba(255,255,255,0.05)" }}
       >
         <div className="container">
           <div className="text-center mb-64">
