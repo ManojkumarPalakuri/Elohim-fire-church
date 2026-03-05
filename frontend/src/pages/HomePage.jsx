@@ -207,6 +207,7 @@ const HomePage = () => {
                 fontWeight: "600",
                 boxShadow: "0 4px 15px rgba(230,0,0,0.4)",
                 display: "flex",
+                flex: 1, // Use remaining space
                 alignItems: "center",
                 justifyContent: "center"
               }}>
