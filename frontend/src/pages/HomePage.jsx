@@ -175,24 +175,40 @@ const HomePage = () => {
             }}
             className={isLoaded ? "animate-fade-in" : ""}
           >
-            {/* Badge Alignment Row (Spacer for Header logo) */}
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "24px", width: "100%" }}>
-              {/* This spacer accounts for the global Header logo position */}
-              <div style={{ width: "48px", height: "48px", flexShrink: 0 }}></div>
+            {/* Precision Logo + Badge Branding Row */}
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              marginBottom: "28px",
+              width: "100%",
+              justifyContent: "flex-start"
+            }}>
+              <img
+                src="/logo.png"
+                alt="EFM"
+                style={{
+                  width: "36px",
+                  height: "36px",
+                  borderRadius: "50%",
+                  objectFit: "contain",
+                  flexShrink: 0,
+                  filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.5))"
+                }}
+              />
               <span style={{
                 backgroundColor: "#E60000",
                 color: "#FFFFFF",
-                height: "48px",
-                flex: 1,
+                padding: "8px 18px",
+                borderRadius: "999px",
+                fontSize: "13px",
+                letterSpacing: "1px",
+                textTransform: "uppercase",
+                fontWeight: "600",
+                boxShadow: "0 4px 15px rgba(230,0,0,0.4)",
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "center",
-                borderRadius: "50px",
-                fontSize: "12.5px",
-                letterSpacing: "1.5px",
-                textTransform: "uppercase",
-                fontWeight: "900",
-                boxShadow: "0 4px 15px rgba(230,0,0,0.4)",
+                justifyContent: "center"
               }}>
                 The Presence of God
               </span>
