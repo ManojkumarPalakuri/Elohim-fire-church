@@ -161,94 +161,47 @@ const HomePage = () => {
             }}
           ></div>
 
-          {/* Top Block: Spacer for Logo clearance */}
-          <div style={{ height: "80px", position: "relative", zIndex: 10 }}></div>
-
-          {/* Middle Block: Hero Text Content */}
+          {/* Top Block: Branding next to Logo clearance */}
           <div
             style={{
+              padding: "24px 20px",
               position: "relative",
               zIndex: 10,
               display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              textAlign: "center",
-              padding: "0 24px",
+              alignItems: "flex-start",
+              gap: "12px"
             }}
             className={isLoaded ? "animate-fade-in" : ""}
           >
-            <span
-              style={{
-                display: "inline-block",
-                backgroundColor: "rgba(255, 0, 0, 0.85)",
+            {/* Spacer to align with the Header logo */}
+            <div style={{ width: "48px", height: "48px", flexShrink: 0 }}></div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "2px", paddingTop: "4px" }}>
+              <span style={{
+                backgroundColor: "rgba(255, 0, 0, 0.9)",
                 color: "#FFFFFF",
-                padding: "4px 14px",
+                padding: "3px 10px",
                 borderRadius: "50px",
-                fontSize: "0.75rem",
-                letterSpacing: "3px",
+                fontSize: "0.65rem",
+                letterSpacing: "1.5px",
                 textTransform: "uppercase",
                 fontWeight: "800",
-                marginBottom: "28px",
-                boxShadow: "0 4px 15px rgba(255,0,0,0.4)",
-                backdropFilter: "blur(4px)",
-              }}
-              className="delay-100 animate-fade-in"
-            >
-              The Presence of God
-            </span>
-            <h1
-              style={{
-                margin: "0 0 20px 0",
-                padding: 0,
-                fontWeight: 900,
-                textTransform: "uppercase",
-                letterSpacing: "-1.5px",
-                color: "#fff",
-                fontSize: "52px",
-                lineHeight: "1.05",
-                width: "100%",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-              className="delay-200 animate-fade-in"
-            >
-              PROPHET JOSHUA
-            </h1>
-            <div
-              style={{
-                background: "linear-gradient(135deg, #FFB703 0%, #FF8C00 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                fontSize: "20px",
-                letterSpacing: "2.5px",
-                fontWeight: "800",
-                textTransform: "uppercase",
-                marginBottom: "24px",
-              }}
-              className="delay-200 animate-fade-in"
-            >
-              Power. Ministries.
+                width: "fit-content",
+                boxShadow: "0 2px 8px rgba(255,0,0,0.3)",
+              }}>
+                The Presence of God
+              </span>
+              <div style={{ color: "#fff", display: "flex", flexDirection: "column", lineHeight: "1.2" }}>
+                <span style={{ fontSize: "18px", fontWeight: "900", letterSpacing: "0.5px", textTransform: "uppercase" }}>PROPHET JOSHUA</span>
+                <span style={{ fontSize: "11px", fontWeight: "700", letterSpacing: "2.5px", color: "var(--color-accent-secondary)", textTransform: "uppercase" }}>MINISTRIES</span>
+              </div>
             </div>
-            <p
-              style={{
-                fontSize: "17px",
-                lineHeight: 1.6,
-                color: "#FFFFFF",
-                maxWidth: "340px",
-                margin: "0",
-                fontWeight: "400",
-                textShadow: "0 1px 4px rgba(0,0,0,0.3)",
-                textAlign: "center",
-              }}
-              className="delay-300 animate-fade-in"
-            >
-              Experience the life-transforming ministry of Prophet Joshua through power and grace.
-            </p>
           </div>
 
-          {/* Bottom Block: CTA Buttons (with Navbar clearance) */}
+          {/* Middle Block: Clear for Hero Image focus */}
+          <div style={{ flex: 1 }}></div>
+
+          {/* Bottom Block: CTA Buttons & Description (with Navbar clearance) */}
           <div
             style={{
               position: "relative",
@@ -262,6 +215,21 @@ const HomePage = () => {
             }}
             className="delay-300 animate-fade-in"
           >
+            <p
+              style={{
+                fontSize: "16px",
+                lineHeight: 1.5,
+                color: "#FFFFFF",
+                maxWidth: "320px",
+                margin: "0 0 8px 0",
+                fontWeight: "400",
+                textShadow: "0 1px 4px rgba(0,0,0,0.3)",
+                textAlign: "center",
+              }}
+            >
+              Experience the life-transforming ministry of Prophet Joshua through power and grace.
+            </p>
+
             <Link
               to="/contact"
               style={{
