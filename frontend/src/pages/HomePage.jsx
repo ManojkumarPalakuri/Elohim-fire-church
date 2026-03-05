@@ -188,8 +188,8 @@ const HomePage = () => {
                 src="/logo.png"
                 alt="EFM"
                 style={{
-                  width: "36px",
-                  height: "36px",
+                  width: "48px",
+                  height: "48px",
                   borderRadius: "50%",
                   objectFit: "contain",
                   flexShrink: 0,
@@ -677,9 +677,9 @@ const HomePage = () => {
                   <span
                     style={{
                       display: "inline-block",
-                      backgroundColor: "rgba(255, 106, 0, 0.15)",
-                      border: "1px solid var(--color-accent-primary)",
-                      color: "var(--color-accent-primary)",
+                      backgroundColor: "#FF6A00",
+                      border: "1px solid #FFFFFF",
+                      color: "#FFFFFF",
                       padding: "6px 14px",
                       borderRadius: "4px",
                       fontSize: "0.85rem",
