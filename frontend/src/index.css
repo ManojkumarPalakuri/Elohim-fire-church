@@ -341,6 +341,117 @@ button {
   gap: 32px;
 }
 
+/* Modern Minimalist Mobile Bottom Navigation */
+.mobile-bottom-nav-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 75px;
+  z-index: 1500;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 8px;
+  padding-bottom: env(safe-area-inset-bottom, 12px);
+  background: rgba(15, 15, 15, 0.9);
+  /* Slightly more solid for better contrast */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.mobile-nav-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
+  color: #9CA3AF;
+  /* Inactive Color */
+  gap: 3px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-nav-item:active {
+  transform: scale(0.92);
+}
+
+.mobile-nav-item.active {
+  color: #FF8A00;
+  /* Warm Gold/Orange Active Color */
+}
+
+.mobile-nav-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+}
+
+/* Bottom Sheet Drawer */
+.bottom-nav-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.bottom-nav-drawer.active {
+  pointer-events: auto;
+}
+
+.drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.bottom-nav-drawer.active .drawer-backdrop {
+  opacity: 1;
+}
+
+.drawer-content {
+  position: relative;
+  width: 100%;
+  background: var(--color-bg-dark);
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  padding: 24px;
+  padding-bottom: env(safe-area-inset-bottom, 24px);
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-top: 1px solid var(--color-border-outline);
+}
+
+.bottom-nav-drawer.active .drawer-content {
+  transform: translateY(0);
+}
+
+.drawer-handle {
+  width: 40px;
+  height: 4px;
+  background: var(--color-text-muted);
+  border-radius: 2px;
+  margin: 0 auto 24px;
+}
+
+[data-theme='light'] .drawer-content {
+  background: #FFFFFF;
+}
+
 /* Animations */
 @keyframes fadeIn {
   from {
@@ -473,7 +584,7 @@ button {
   background: var(--color-accent-primary);
   color: #fff !important;
   padding: 10px 22px;
-  border-radius: 0;
+  border-radius: 0 !important;
   font-weight: 700;
   font-size: 0.85rem;
   text-transform: uppercase;
@@ -497,7 +608,7 @@ button {
   background: linear-gradient(135deg, var(--color-accent-primary) 0%, var(--color-accent-secondary) 100%);
   color: #fff;
   padding: 14px 32px;
-  border-radius: 0;
+  border-radius: 0 !important;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -523,7 +634,7 @@ button {
   /* Very subtle tint */
   color: var(--color-text-primary);
   padding: 12px 30px;
-  border-radius: 0;
+  border-radius: 0 !important;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -538,7 +649,7 @@ button {
 .btn-primary {
   height: 48px;
   /* Consistent height */
-  border-radius: 0;
+  border-radius: 0 !important;
 }
 
 .btn-outline:hover {

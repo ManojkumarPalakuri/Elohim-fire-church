@@ -27,7 +27,7 @@ app.use('/api/auth', require('./src/routes/auth'));
 app.use('/api/messages', require('./src/routes/messages'));
 app.use('/api/events', require('./src/routes/events'));
 app.use('/api/analytics', require('./src/routes/analytics'));
-// app.use('/api/sermons', require('./src/routes/sermons'));
+app.use('/api/sermons', require('./src/routes/sermons'));
 
 app.get('/', (req, res) => {
     res.send('Elohim Fire Ministries API is running...');

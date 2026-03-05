@@ -159,7 +159,7 @@ const QRCard = ({ qr }) => {
                             style={{
                                 background: copied ? 'rgba(34, 197, 94, 0.15)' : 'rgba(212,175,55,0.1)',
                                 border: 'none',
-                                borderRadius: '10px',
+                                borderRadius: '0',
                                 padding: '8px',
                                 color: copied ? '#22c55e' : 'var(--color-gold)',
                                 display: 'flex',
@@ -206,7 +206,7 @@ const QRCard = ({ qr }) => {
                             border: '1px solid var(--color-gold)',
                             color: 'var(--color-gold)',
                             padding: '0.85rem',
-                            borderRadius: '14px',
+                            borderRadius: '0',
                             fontSize: '1rem',
                             fontWeight: '600',
                             cursor: 'pointer',
@@ -230,41 +230,6 @@ const QRCard = ({ qr }) => {
 
 const GivingPage = () => {
     const qrScrollRef = useRef(null);
-    const bankScrollRef = useRef(null);
-    const [activeQrIndex, setActiveQrIndex] = useState(0); // Default to first (SBI)
-    const [activeBankIndex, setActiveBankIndex] = useState(0);
-
-    const handleScroll = (ref, setIndex) => {
-        if (!ref.current) return;
-        const scrollLeft = ref.current.scrollLeft;
-        const width = ref.current.offsetWidth;
-        if (width === 0) return;
-        const newIndex = Math.round(scrollLeft / width);
-        setIndex(newIndex);
-    };
-
-    useEffect(() => {
-        // Scroll to first card on mobile load
-        if (window.innerWidth <= 768 && qrScrollRef.current) {
-            const container = qrScrollRef.current;
-            // Center the first (index 0) card
-            requestAnimationFrame(() => {
-                const cardWidth = container.offsetWidth;
-                container.scrollTo({
-                    left: 0,
-                    behavior: 'smooth'
-                });
-            });
-        }
-    }, []);
-
-    const PaginationDots = ({ count, activeIndex }) => (
-        <div className="pagination-dots">
-            {[...Array(count)].map((_, i) => (
-                <div key={i} className={`dot ${i === activeIndex ? 'active' : ''}`} />
-            ))}
-        </div>
-    );
 
     return (
         <>
@@ -387,68 +352,68 @@ const GivingPage = () => {
                                 <h2 style={{ margin: 0 }}>UPI / PhonePe Payment</h2>
                             </div>
                             <p style={{ color: 'var(--color-text-secondary)', margin: '0 auto', maxWidth: '500px' }}>
-                                Scan any QR code below using PhonePe, Google Pay, Paytm, or any UPI app to give instantly.
+                                Swipe left to see more bank options and scan to give instantly.
                             </p>
                         </div>
 
-                        <div className="mobile-swipe-section">
-                            <div className="mobile-swipe-hint" style={{ textAlign: 'center', marginBottom: '8px', color: 'rgba(255, 255, 255, 0.5)', fontSize: '0.85rem' }}>Swipe to see more <span className="mobile-swipe-hint-arrow">→</span></div>
+                        <div className="upi-scroll-container-wrapper" style={{ position: 'relative' }}>
                             <div
                                 ref={qrScrollRef}
-                                onScroll={() => handleScroll(qrScrollRef, setActiveQrIndex)}
                                 style={{
                                     display: 'flex',
                                     flexDirection: 'row',
                                     flexWrap: 'nowrap',
                                     width: '100%',
                                     overflowX: 'auto',
-                                    paddingLeft: '8vw',
-                                    paddingRight: '8vw',
-                                    paddingBottom: '24px',
-                                    paddingTop: '10px',
+                                    padding: '10px 0 30px',
                                     WebkitOverflowScrolling: 'touch',
                                     scrollbarWidth: 'none',
                                     msOverflowStyle: 'none',
                                     scrollSnapType: 'x mandatory',
                                     scrollBehavior: 'smooth',
-                                    gap: '24px'
-                                }} className="qr-container-mobile mobile-swipe-container">
+                                    gap: '20px'
+                                }} className="upi-scroll-container">
                                 <style>{`
-                                .qr-container-mobile::-webkit-scrollbar {
-                                    display: none;
-                                }
-                                @media (max-width: 768px) {
-                                    .qr-card-wrapper {
-                                        width: 80vw !important;
-                                        min-width: 80vw !important;
-                                        max-width: 420px !important;
-                                        flex: 0 0 80vw !important;
-                                        scroll-snap-align: center;
-                                        box-sizing: border-box;
-                                        padding: 0;
+                                    .upi-scroll-container::-webkit-scrollbar {
+                                        display: none;
                                     }
-                                }
-                                @media (min-width: 769px) {
-                                    .qr-card-wrapper {
-                                        width: 80vw !important;
-                                        min-width: 80vw !important;
-                                        max-width: 420px !important;
-                                        flex: 0 0 80vw !important;
+                                    .upi-card-fixed-wrapper {
+                                        min-width: 300px;
+                                        width: 300px;
+                                        flex: 0 0 300px;
                                         scroll-snap-align: center;
-                                        box-sizing: border-box;
-                                        padding: 0;
+                                        padding: 0 4px;
                                     }
-                                }
-                            `}</style>
+                                    @media (max-width: 768px) {
+                                        .upi-scroll-container {
+                                            padding-left: 20px !important;
+                                            padding-right: 20px !important;
+                                        }
+                                        .upi-card-fixed-wrapper {
+                                            min-width: 280px;
+                                            width: 280px;
+                                            flex: 0 0 280px;
+                                        }
+                                    }
+                                    /* Gradient hint for desktop/mobile */
+                                    .upi-scroll-fade {
+                                        position: absolute;
+                                        top: 0;
+                                        right: 0;
+                                        bottom: 30px;
+                                        width: 80px;
+                                        background: linear-gradient(to left, var(--color-bg-card), transparent);
+                                        pointer-events: none;
+                                        z-index: 5;
+                                    }
+                                `}</style>
                                 {qrCodes.map(qr => (
-                                    <div key={qr.id} className="qr-card-wrapper">
+                                    <div key={qr.id} className="upi-card-fixed-wrapper">
                                         <QRCard qr={qr} />
                                     </div>
                                 ))}
                             </div>
-                        </div>
-                        <div className="mobile-pagination">
-                            <PaginationDots count={qrCodes.length} activeIndex={activeQrIndex} />
+                            <div className="upi-scroll-fade"></div>
                         </div>
                     </div>
 

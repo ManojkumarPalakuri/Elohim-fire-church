@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Instagram, Facebook, Youtube, Heart } from 'lucide-react';
+import { MapPin, Phone, Mail, Instagram, Facebook, Youtube, Heart, Info, Book, Clock, Radio, Hand } from 'lucide-react';
 
 const Footer = () => {
     return (
@@ -10,7 +10,9 @@ const Footer = () => {
             paddingTop: 'var(--footer-pt, 80px)',
             paddingBottom: 'var(--footer-pb, 40px)',
             paddingLeft: '20px',
-            paddingRight: '20px'
+            paddingRight: '20px',
+            position: 'relative',
+            zIndex: 10
         }} className="dynamic-footer-padding">
             <style>{`
                 .footer-grid {
@@ -48,12 +50,60 @@ const Footer = () => {
                 .footer-link {
                     color: rgba(255, 255, 255, 0.7);
                     font-size: 0.95rem;
-                    transition: color 0.2s ease, transform 0.2s ease;
-                    display: inline-block;
+                    transition: all 0.2s ease;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
                 }
                 .footer-link:hover {
                     color: var(--color-gold);
                     transform: translateX(4px);
+                }
+
+                /* Mobile Footer Cards */
+                .mobile-footer-card {
+                    background: rgba(255, 255, 255, 0.03);
+                    border: 1px solid rgba(255, 255, 255, 0.05);
+                    border-radius: 20px;
+                    padding: 24px;
+                    margin-bottom: 32px;
+                }
+
+                .quick-links-grid {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 12px;
+                }
+
+                .link-card {
+                    background: rgba(255, 255, 255, 0.04);
+                    border: 1px solid rgba(255, 255, 255, 0.08);
+                    border-radius: 12px;
+                    padding: 12px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 8px;
+                    transition: all 0.2s ease;
+                    text-align: center;
+                }
+                .link-card:active {
+                    transform: scale(0.95);
+                    background: rgba(212, 175, 55, 0.1);
+                    border-color: var(--color-gold);
+                }
+
+                .contact-card-mobile {
+                    background: rgba(255, 255, 255, 0.04);
+                    border: 1px solid rgba(255, 255, 255, 0.08);
+                    border-radius: 16px;
+                    padding: 16px;
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                    width: 100%;
+                    margin-bottom: 12px;
+                    text-align: left;
                 }
 
                 @media (max-width: 1024px) {
@@ -63,151 +113,212 @@ const Footer = () => {
                     }
                 }
                 
-                @media (max-width: 768px) {
+                @media (max-width: 1024px) {
                     .footer-grid {
-                        grid-template-columns: 1fr;
-                        gap: 40px;
-                        text-align: center;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0;
+                        margin-bottom: 32px;
                     }
-                    /* Mobile Order: Logo -> Give -> Links -> Contact & Social */
-                    .footer-col-1 { order: 1; }
-                    .footer-col-2 { order: 2; }
-                    .footer-col-3 { order: 3; }
-                    .footer-col-4 { order: 4; }
+                    
+                    .desktop-only-footer-content {
+                        display: none;
+                    }
 
-                    /* Contact & Social Grouping */
-                    .footer-contact-list {
-                        align-items: center !important;
-                        gap: 12px !important;
-                        margin-bottom: 20px !important;
-                    }
-                    .social-icons-wrapper {
-                        justify-content: center !important;
-                    }
-                    
-                    /* Dynamic Padding */
-                    .dynamic-footer-padding {
-                        --footer-pt: 48px;
-                        --footer-pb: 32px;
-                    }
-                    
-                    /* Visual Dividers */
-                    .mobile-divider {
+                    .mobile-only-footer-content {
                         display: block;
-                        width: 100%;
-                        height: 1px;
-                        background: rgba(255,255,255,0.06);
-                        margin: 32px 0;
+                    }
+
+                    .dynamic-footer-padding {
+                        --footer-pt: 40px;
+                        --footer-pb: 100px; /* Space for bottom nav */
+                    }
+
+                    .footer-section-title {
+                        font-size: 1.25rem !important;
+                        font-weight: 700 !important;
+                        margin-bottom: 24px !important;
+                        text-align: center;
+                        color: #fff;
                     }
                 }
-                @media (min-width: 769px) {
-                    .mobile-divider { display: none; }
+
+                @media (min-width: 1025px) {
+                    .mobile-only-footer-content { display: none; }
                 }
             `}</style>
-            <div className="container">
-                <div className="footer-grid">
 
-                    {/* Column 1: Brand & Mission */}
+            <div className="container">
+                {/* --- DESKTOP VIEW --- */}
+                <div className="footer-grid desktop-only-footer-content">
+                    {/* Column 1: Brand */}
                     <div className="footer-col-1">
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px', justifyContent: 'inherit' }} className="mobile-center-flex">
-                            <style>{`
-                                @media (max-width: 768px) {
-                                    .mobile-center-flex { justify-content: center !important; }
-                                    .mobile-center-text { text-align: center !important; }
-                                }
-                            `}</style>
-                            <img src="/logo.png" alt="Elohim Fire Ministries Logo" style={{ height: '45px', objectFit: 'contain' }} />
-                            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'left' }} className="mobile-center-text">
-                                <h2 style={{ fontSize: '1.4rem', color: '#ffffff', margin: 0, letterSpacing: '1px', fontFamily: 'var(--font-logo)' }}>
-                                    ELOHIM <span style={{ color: 'var(--color-gold)' }}>FIRE</span>
-                                </h2>
-                                <span style={{ fontSize: '0.65rem', color: 'rgba(255, 255, 255, 0.7)', letterSpacing: '3px', marginTop: '2px' }}>MINISTRIES</span>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
+                            <img src="/logo.png" alt="EFM" style={{ height: '40px' }} />
+                            <div>
+                                <h2 style={{ fontSize: '1.2rem', color: '#fff', margin: 0, fontFamily: 'var(--font-logo)' }}>ELOHIM FIRE</h2>
+                                <span style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.5)', letterSpacing: '2px' }}>MINISTRIES</span>
                             </div>
                         </div>
-                        <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.95rem', lineHeight: 1.6, maxWidth: '280px' }} className="mobile-center-margin">
-                            <style>{`@media (max-width: 768px) { .mobile-center-margin { margin: 0 auto; } }`}</style>
-                            A global ministry dedicated to teaching the uncompromised Word of God, moving in the prophetic, and experiencing the power of His presence.
+                        <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem', lineHeight: 1.6 }}>
+                            Global ministry dedicated to teaching the Word, prophetic movement, and the power of His presence.
                         </p>
                     </div>
 
-                    <div className="mobile-divider"></div>
-
-                    {/* Column 3: Quick Links */}
+                    {/* Column 2: Links */}
                     <div className="footer-col-2">
-                        <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '20px', letterSpacing: '0.5px' }}>Quick Links</h3>
-                        <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                            <li><Link to="/about" className="footer-link" style={{ padding: '4px 0' }}>About Us</Link></li>
-                            <li><Link to="/services" className="footer-link" style={{ padding: '4px 0' }}>Service Times</Link></li>
-                            <li><Link to="/media" className="footer-link" style={{ padding: '4px 0' }}>Watch Live</Link></li>
-                            <li><Link to="/bible" className="footer-link" style={{ padding: '4px 0' }}>Online Bible</Link></li>
+                        <h3 style={{ fontSize: '1.1rem', color: '#fff', marginBottom: '20px' }}>Quick Links</h3>
+                        <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                            <li><Link to="/about" className="footer-link">About Us</Link></li>
+                            <li><Link to="/services" className="footer-link">Service Times</Link></li>
+                            <li><Link to="/media" className="footer-link">Watch Live</Link></li>
+                            <li><Link to="/bible" className="footer-link">Online Bible</Link></li>
                         </ul>
                     </div>
 
-                    <div className="mobile-divider"></div>
-
-                    {/* Column 3: Support Ministry */}
+                    {/* Column 3: Support */}
                     <div className="footer-col-3">
-                        <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '24px', letterSpacing: '0.5px' }}>Support The Ministry</h3>
-                        <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '24px' }}>
-                            Partner with us to spread the gospel message worldwide through your generous giving.
+                        <h3 style={{ fontSize: '1.1rem', color: '#fff', marginBottom: '20px' }}>Support</h3>
+                        <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem', marginBottom: '20px' }}>
+                            Partner with us in spreading the Gospel worldwide.
                         </p>
-                        <Link
-                            to="/giving"
-                            className="give-btn-desktop"
-                            style={{ textDecoration: 'none' }}
-                        >
-                            <Heart size={16} fill="#ff0000" stroke="#ffffff" strokeWidth={2} /> Give Online
+                        <Link to="/giving" className="give-btn-desktop">
+                            <Heart size={16} fill="#ff0000" stroke="#fff" /> Give Online
                         </Link>
                     </div>
 
-                    <div className="mobile-divider"></div>
-
-                    {/* Column 4: Contact & Social */}
+                    {/* Column 4: Contact */}
                     <div className="footer-col-4">
-                        <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '24px', letterSpacing: '0.5px' }}>Get In Touch</h3>
-                        <ul className="footer-contact-list" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '32px', alignItems: 'flex-start' }}>
-                            <li style={{ display: 'flex', alignItems: 'center', gap: '14px', color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.95rem' }}>
-                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(212, 175, 55, 0.1)' }}>
-                                    <MapPin size={16} color="var(--color-gold)" />
-                                </div>
-                                <span>Hyderabad, India</span>
+                        <h3 style={{ fontSize: '1.1rem', color: '#fff', marginBottom: '20px' }}>Contact</h3>
+                        <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                            <li style={{ display: 'flex', gap: '10px', color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem' }}>
+                                <MapPin size={16} color="var(--color-gold)" /> Hyderabad, India
                             </li>
-                            <li style={{ display: 'flex', alignItems: 'center', gap: '14px', color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.95rem' }}>
-                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(212, 175, 55, 0.1)' }}>
-                                    <Phone size={16} color="var(--color-gold)" />
-                                </div>
-                                <span>+91 7095409118</span>
-                            </li>
-                            <li style={{ display: 'flex', alignItems: 'center', gap: '14px', color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.95rem' }}>
-                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(212, 175, 55, 0.1)' }}>
-                                    <Mail size={16} color="var(--color-gold)" />
-                                </div>
-                                <span>chevvaharish87@gmail.com</span>
+                            <li style={{ display: 'flex', gap: '10px', color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem' }}>
+                                <Phone size={16} color="var(--color-gold)" /> +91 7095409118
                             </li>
                         </ul>
+                        <div style={{ display: 'flex', gap: '12px', marginTop: '20px' }}>
+                            <a href="#" className="social-icon-circle"><Facebook size={18} /></a>
+                            <a href="#" className="social-icon-circle"><Instagram size={18} /></a>
+                            <a href="#" className="social-icon-circle"><Youtube size={18} /></a>
+                        </div>
+                    </div>
+                </div>
 
-                        <div className="social-icons-wrapper" style={{ display: 'flex', gap: '16px', justifyContent: 'flex-start' }}>
-                            <a href="https://www.facebook.com/profile.php?id=100076227227459&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" className="social-icon-circle"><Facebook size={18} /></a>
-                            <a href="https://instagram.com/prophet_joshua_official?igshid=NGExMmI2YTkyZg==" target="_blank" rel="noopener noreferrer" className="social-icon-circle"><Instagram size={18} /></a>
-                            <a href="https://youtube.com/@prophetjoshua6374?si=dGfgURVT4xawDOF_" target="_blank" rel="noopener noreferrer" className="social-icon-circle"><Youtube size={18} /></a>
+                {/* --- MOBILE VIEW --- */}
+                <div className="mobile-only-footer-content">
+                    {/* Brand Card */}
+                    <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+                        <img src="/logo.png" alt="EFM" style={{ height: '54px', marginBottom: '16px' }} />
+                        <h2 style={{ fontSize: '1.6rem', color: '#fff', margin: 0, fontFamily: 'var(--font-logo)' }}>ELOHIM <span style={{ color: 'var(--color-gold)' }}>FIRE</span></h2>
+                        <span style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)', letterSpacing: '4px' }}>MINISTRIES</span>
+                    </div>
+
+                    {/* Quick & Premium Links Card */}
+                    <div className="mobile-footer-card">
+                        <h3 className="footer-section-title">Quick Links</h3>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                            <Link to="/about" className="footer-cta-btn" style={{ background: 'linear-gradient(135deg, #D4AF37 0%, #B8860B 100%)' }}>
+                                <Info size={20} />
+                                <span>About Us</span>
+                            </Link>
+                            <Link to="/services" className="footer-cta-btn" style={{ background: '#0056b3' }}>
+                                <Clock size={20} />
+                                <span>Service Times</span>
+                            </Link>
+                            <Link to="/media" className="footer-cta-btn" style={{ background: 'linear-gradient(135deg, #FF0000 0%, #B20000 100%)' }}>
+                                <Radio size={20} />
+                                <span>Watch Live</span>
+                            </Link>
+                            <Link to="/contact" className="footer-cta-btn" style={{ background: '#333333' }}>
+                                <Hand size={20} />
+                                <span>Prayer Request</span>
+                            </Link>
                         </div>
                     </div>
 
+                    <style>{`
+                        .footer-cta-btn {
+                            width: 100%;
+                            height: 54px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 12px;
+                            border-radius: 0;
+                            color: #fff;
+                            text-decoration: none;
+                            font-weight: 700;
+                            text-transform: uppercase;
+                            letter-spacing: 1px;
+                            font-size: 0.85rem;
+                            transition: all 0.2s ease;
+                            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                        }
+                        .footer-cta-btn:active {
+                            transform: scale(0.96);
+                        }
+                    `}</style>
+
+                    {/* Support Card */}
+                    <div className="mobile-footer-card" style={{ textAlign: 'center', background: 'linear-gradient(135deg, rgba(212,175,55,0.05) 0%, rgba(255,106,0,0.05) 100%)', borderColor: 'rgba(212,175,55,0.1)' }}>
+                        <h3 className="footer-section-title">Support The Ministry</h3>
+                        <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '24px' }}>
+                            Your generosity helps us spread the gospel message locally and globally.
+                        </p>
+                        <Link to="/giving" className="btn-primary" style={{ width: '100%', borderRadius: '12px', textDecoration: 'none' }}>
+                            <Heart size={18} fill="#fff" /> Give Online
+                        </Link>
+                    </div>
+
+                    {/* Contact Cards */}
+                    <div style={{ marginBottom: '40px' }}>
+                        <h3 className="footer-section-title">Get In Touch</h3>
+                        <div className="contact-card-mobile">
+                            <div style={{ background: 'rgba(212,175,55,0.1)', padding: '10px', borderRadius: '10px' }}>
+                                <MapPin size={20} color="var(--color-gold)" />
+                            </div>
+                            <div>
+                                <p style={{ margin: 0, fontSize: '12px', color: 'rgba(255,255,255,0.5)' }}>Our Location</p>
+                                <p style={{ margin: 0, fontSize: '14px', color: '#fff', fontWeight: 500 }}>Hyderabad, India</p>
+                            </div>
+                        </div>
+                        <div className="contact-card-mobile">
+                            <div style={{ background: 'rgba(212,175,55,0.1)', padding: '10px', borderRadius: '10px' }}>
+                                <Phone size={20} color="var(--color-gold)" />
+                            </div>
+                            <div>
+                                <p style={{ margin: 0, fontSize: '12px', color: 'rgba(255,255,255,0.5)' }}>Call Us</p>
+                                <p style={{ margin: 0, fontSize: '14px', color: '#fff', fontWeight: 500 }}>+91 7095409118</p>
+                            </div>
+                        </div>
+                        <div className="contact-card-mobile">
+                            <div style={{ background: 'rgba(212,175,55,0.1)', padding: '10px', borderRadius: '10px' }}>
+                                <Mail size={20} color="var(--color-gold)" />
+                            </div>
+                            <div>
+                                <p style={{ margin: 0, fontSize: '12px', color: 'rgba(255,255,255,0.5)' }}>Email Address</p>
+                                <p style={{ margin: 0, fontSize: '13px', color: '#fff', fontWeight: 500 }}>chevvaharish87@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Socials Mobile */}
+                    <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginBottom: '40px' }}>
+                        <a href="https://facebook.com" className="social-icon-circle"><Facebook size={20} /></a>
+                        <a href="https://instagram.com" className="social-icon-circle"><Instagram size={20} /></a>
+                        <a href="https://youtube.com" className="social-icon-circle"><Youtube size={20} /></a>
+                    </div>
                 </div>
 
-                {/* Bottom Line */}
+                {/* Bottom Copyright */}
                 <div style={{
-                    borderTop: 'none',
-                    paddingTop: '8px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    gap: '12px',
-                    paddingBottom: '0'
+                    borderTop: '1px solid rgba(255,255,255,0.05)',
+                    paddingTop: '24px',
+                    textAlign: 'center'
                 }}>
-                    <img src="/logo.png" alt="EFM Logo Mark" style={{ height: '24px', opacity: 0.3 }} />
-                    <p style={{ color: 'rgba(255, 255, 255, 0.5)', fontSize: '0.85rem', letterSpacing: '0.5px', textAlign: 'center', margin: 0 }}>
+                    <p style={{ color: 'rgba(255, 255, 255, 0.4)', fontSize: '0.8rem', margin: 0 }}>
                         &copy; {new Date().getFullYear()} Elohim Fire Ministries. All rights reserved.
                     </p>
                 </div>

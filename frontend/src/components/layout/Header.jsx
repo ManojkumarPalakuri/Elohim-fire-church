@@ -169,7 +169,7 @@ const Header = () => {
                   color: "var(--color-text-primary)",
                   cursor: "pointer",
                   padding: "6px",
-                  borderRadius: "8px",
+                  borderRadius: "0",
                 }}
               >
                 {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
@@ -189,322 +189,73 @@ const Header = () => {
             </div>
           </div>
 
-          {/* --- PREMIUM MOBILE NAVBAR (Unified) --- */}
+          {/* --- MINIMAL MOBILE HEADER (Branding only) --- */}
           <div
             style={{
-              justifyContent: "space-between",
+              display: "flex",
+              justifyContent: "center",
               alignItems: "center",
               width: "100%",
+              height: "56px",
             }}
-            className="mobile-header-flex"
+            className="mobile-header-only"
           >
-            <div style={{ flex: 1 }}>
-              <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
-                <img
-                  src="/logo.png"
-                  alt="EFM"
-                  className="nav-logo-img"
-                  style={{
-                    margin: "-7px 0",
-                    objectFit: "contain",
-                  }}
-                />
-              </Link>
-            </div>
-
-            {/* Center Info */}
-            <div
-              style={{
-                flex: 2,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: "8px",
-              }}
-            >
-              <div
+            <Link to="/">
+              <img
+                src="/logo.png"
+                alt="EFM"
+                className="mobile-logo-img"
                 style={{
-                  width: "6px",
-                  height: "6px",
-                  backgroundColor: "#22c55e",
-                  borderRadius: "50%",
-                  boxShadow: "0 0 8px rgba(34,197,94,0.6)",
-                  animation: "pulseGlow 2s infinite",
+                  height: "36px",
+                  objectFit: "contain",
                 }}
-              ></div>
-              <span
-                style={{
-                  fontSize: "0.65rem",
-                  fontWeight: "700",
-                  letterSpacing: "1px",
-                  textTransform: "uppercase",
-                  color: "var(--color-text-primary)",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                Live Sundays 10:30AM
-              </span>
-            </div>
-
-            {/* Hamburger Right */}
-            <div
-              style={{ flex: 1, display: "flex", justifyContent: "flex-end" }}
-            >
-              <button
-                onClick={() => setIsMobileMenuOpen(true)}
-                style={{
-                  background: "transparent",
-                  border: "none",
-                  padding: "4px",
-                  cursor: "pointer",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "6px",
-                }}
-                aria-label="Menu"
-              >
-                <div
-                  style={{
-                    width: "22px",
-                    height: "1.5px",
-                    backgroundColor: "var(--color-text-primary)",
-                    borderRadius: "2px",
-                  }}
-                ></div>
-                <div
-                  style={{
-                    width: "16px",
-                    height: "1.5px",
-                    backgroundColor: "var(--color-text-primary)",
-                    borderRadius: "2px",
-                    alignSelf: "flex-end",
-                  }}
-                ></div>
-              </button>
-            </div>
+              />
+            </Link>
           </div>
         </div>
       </header>
 
-      {/* ── Mobile Menu Backdrop ── */}
-      <div
-        className="mobile-backdrop"
-        onClick={() => setIsMobileMenuOpen(false)}
-        style={{
-          position: "fixed",
-          inset: 0,
-          backgroundColor: "rgba(0, 0, 0, 0.6)",
-          backdropFilter: "blur(4px)",
-          WebkitBackdropFilter: "blur(4px)",
-          zIndex: 1999,
-          opacity: isMobileMenuOpen ? 1 : 0,
-          pointerEvents: isMobileMenuOpen ? "auto" : "none",
-          transition: "opacity 0.4s ease",
-        }}
-      />
-
-      {/* ── Mobile Menu Bottom Sheet ── */}
-      <div
-        className={`glass-menu ${isMobileMenuOpen ? "active" : ""}`}
-        style={{
-          position: "fixed",
-          top: "auto",
-          left: 0,
-          right: 0,
-          bottom: 0,
-          zIndex: 2000,
-          padding: "16px 24px 40px",
-          maxHeight: "85vh",
-          overflowY: "auto",
-          display: "flex",
-          flexDirection: "column",
-          backgroundColor: theme === "dark" ? "#121212" : "#FFFFFF",
-          borderTopLeftRadius: "24px",
-          borderTopRightRadius: "24px",
-          transition: "transform 0.45s ease, opacity 0.35s ease",
-          transform: isMobileMenuOpen ? "translateY(0)" : "translateY(100%)",
-          opacity: isMobileMenuOpen ? 1 : 0,
-          boxShadow: "0 -8px 32px rgba(0,0,0,0.25)",
-        }}
-      >
-        {/* Drag Handle */}
-        <div style={{
-          width: "40px",
-          height: "4px",
-          backgroundColor: "rgba(0,0,0,0.2)",
-          borderRadius: "4px",
-          margin: "0 auto 24px auto"
-        }}></div>
-
-        <button
-          onClick={() => setIsMobileMenuOpen(false)}
-          style={{
-            position: "absolute",
-            top: "16px",
-            right: "16px",
-            background: "var(--color-bg-dark)",
-            border: "1px solid var(--color-border-outline)",
-            color: "var(--color-text-primary)",
-            width: "36px",
-            height: "36px",
-            borderRadius: "50%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            cursor: "pointer",
-            transition: "background 0.2s"
-          }}
-          aria-label="Close menu"
-          onMouseEnter={e => e.currentTarget.style.background = "var(--color-bg-card)"}
-          onMouseLeave={e => e.currentTarget.style.background = "var(--color-bg-dark)"}
-        >
-          <X size={18} />
-        </button>
-
-        <nav style={{ width: "100%" }}>
-          <ul
-            style={{
-              listStyle: "none",
-              margin: 0,
-              padding: 0,
-              display: "flex",
-              flexDirection: "column",
-              gap: "22px",
-            }}
-          >
-            {navLinks.map((link, index) => (
-              <li
-                key={link.name}
-                style={{
-                  transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-                  transitionDelay: isMobileMenuOpen ? `${index * 0.05}s` : "0s",
-                  opacity: isMobileMenuOpen ? 1 : 0,
-                  transform: isMobileMenuOpen ? "translateY(0)" : "translateY(20px)"
-                }}
-              >
-                <NavLink
-                  to={link.path}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  style={({ isActive }) => ({
-                    color: isActive
-                      ? "var(--color-gold)"
-                      : "var(--color-text-primary)",
-                    fontSize: "18px",
-                    fontWeight: isActive ? "600" : "500",
-                    fontFamily: "var(--font-sans)",
-                    letterSpacing: "0.4px",
-                    display: "block",
-                    padding: "14px 18px",
-                    borderRadius: "12px",
-                    backgroundColor: isActive ? "rgba(0,0,0,0.05)" : "transparent",
-                    transition: "all 0.2s ease",
-                    textDecoration: "none"
-                  })}
-                >
-                  {link.name}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div
-          style={{
-            marginTop: "10px",
-            paddingTop: "16px",
-            borderTop: "1px solid rgba(0,0,0,0.1)",
-            width: "100%",
-            display: "flex",
-            flexDirection: "column",
-            gap: "16px",
-            transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-            transitionDelay: isMobileMenuOpen ? "0.3s" : "0s",
-            opacity: isMobileMenuOpen ? 1 : 0,
-            transform: isMobileMenuOpen ? "translateY(0)" : "translateY(20px)"
-          }}
-        >
-          <button
-            onClick={toggleTheme}
-            style={{
-              background: theme === "dark" ? "var(--color-bg-card)" : "#f4f4f4",
-              border: "none",
-              color: "var(--color-text-primary)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "12px",
-              height: "48px",
-              borderRadius: "14px",
-              cursor: "pointer",
-              fontSize: "16px",
-              fontWeight: "500",
-              width: "100%"
-            }}
-          >
-            {theme === "dark" ? (
-              <>
-                <Sun size={20} /> Light Mode
-              </>
-            ) : (
-              <>
-                <Moon size={20} /> Dark Mode
-              </>
-            )}
-          </button>
-          <Link
-            to="/giving"
-            onClick={() => setIsMobileMenuOpen(false)}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "10px",
-              background: "linear-gradient(90deg, #ff7a00, #f6c33b)",
-              color: "#fff",
-              height: "54px",
-              borderRadius: "16px",
-              fontWeight: 600,
-              fontSize: "18px",
-              border: "none",
-              textDecoration: "none",
-              width: "100%",
-              letterSpacing: "0.5px"
-            }}
-          >
-            <Heart size={20} fill="#ff0000" stroke="#ffffff" strokeWidth={2} /> Give Online
-          </Link>
-        </div>
-      </div>
-
       {/* ── Responsive CSS ── */}
       <style>{`
-                @keyframes pulseGlow {
-                    0%, 100% { opacity: 1; }
-                    50% { opacity: 0.4; }
-                }
-                @keyframes slideUpMenu {
-                    from { opacity: 0; transform: translateY(20px); }
-                    to { opacity: 1; transform: translateY(0); }
-                }
                 @media (min-width: 992px) {
                     .desktop-nav { display: block !important; }
                     .desktop-cta { display: flex !important; }
                 }
-                @media (max-width: 991px) {
-                    .mobile-menu-toggle { display: flex !important; }
-                }
                 @media (max-width: 768px) {
                     .desktop-header-flex { display: none !important; }
-                    .mobile-header-flex { display: flex !important; }
+                    .mobile-header-only { 
+                        display: flex !important; 
+                        justify-content: flex-start !important;
+                        height: auto !important;
+                        padding: 24px 20px !important;
+                    }
+                    /* Forced transparency for immersive look */
+                    .glass-nav, [data-theme='light'] .glass-nav { 
+                        position: absolute !important;
+                        background: transparent !important; 
+                        background-image: none !important;
+                        backdrop-filter: none !important;
+                        -webkit-backdrop-filter: none !important;
+                        border-bottom: none !important;
+                        box-shadow: none !important;
+                        padding: 0 !important; /* Remove global padding */
+                    }
+                    .glass-nav-scrolled, [data-theme='light'] .glass-nav-scrolled {
+                        display: none !important;
+                    }
+                    .mobile-logo-img {
+                        height: 48px !important;
+                        /* Softer, more premium shadow */
+                        filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+                        transition: transform 0.2s ease;
+                    }
+                    .mobile-logo-img:active {
+                        transform: scale(0.95);
+                    }
                 }
                 @media (min-width: 769px) {
                     .desktop-header-flex { display: flex !important; }
-                    .mobile-header-flex { display: none !important; }
-                }
-                @media (max-width: 600px) {
-                    .logo-text { display: none !important; }
-                    .info-bar-divider,
-                    .info-bar-location { display: none !important; }
+                    .mobile-header-only { display: none !important; }
                 }
             `}</style>
     </>

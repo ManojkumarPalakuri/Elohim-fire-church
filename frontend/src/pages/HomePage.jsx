@@ -155,7 +155,7 @@ const HomePage = () => {
               position: "absolute",
               inset: 0,
               background:
-                "linear-gradient(to top, rgba(5,5,5,1) 0%, rgba(5,5,5,0.7) 30%, rgba(5,5,5,0.2) 60%, rgba(5,5,5,0.1) 100%)",
+                "linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 20%), linear-gradient(to top, rgba(5,5,5,1) 0%, rgba(5,5,5,0.7) 30%, rgba(5,5,5,0.2) 60%, rgba(0,0,0,0) 100%)",
               zIndex: 1,
             }}
           ></div>
@@ -255,6 +255,7 @@ const HomePage = () => {
                 width: "100%",
                 display: "flex",
                 flexDirection: "column",
+                alignItems: "center",
                 gap: "16px",
               }}
               className="delay-300 animate-fade-in"
@@ -262,24 +263,21 @@ const HomePage = () => {
               <Link
                 to="/contact#prayer"
                 style={{
-                  width: "100%",
+                  width: "92%",
+                  height: "58px",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  background:
-                    window.innerWidth < 768
-                      ? "#0056b3"
-                      : "linear-gradient(135deg, #FFB703 0%, #FF6A00 100%)",
-                  color: window.innerWidth < 768 ? "#fff" : "#000",
+                  background: "#0056b3",
+                  color: "#fff",
                   borderRadius: "0",
-                  fontWeight: "800",
+                  fontWeight: "700",
                   textTransform: "uppercase",
-                  letterSpacing: "1px",
-                  fontSize: window.innerWidth < 768 ? "1rem" : "0.85rem",
+                  letterSpacing: "1.5px",
+                  fontSize: "17px",
                   textDecoration: "none",
                   border: "none",
-                  height: window.innerWidth < 768 ? "48px" : "56px",
-                  padding: window.innerWidth < 768 ? "0 12px" : undefined,
+                  boxShadow: "0 6px 20px rgba(0, 86, 179, 0.3)",
                 }}
               >
                 Prayer Request
@@ -290,29 +288,21 @@ const HomePage = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  width: "100%",
-                  height: "56px",
+                  width: "92%",
+                  height: "58px",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  backgroundColor: "#DC3545", // Match desktop red
+                  background: "linear-gradient(135deg, #FF0000 0%, #B20000 100%)",
                   color: "#fff",
                   borderRadius: "0",
                   fontWeight: "700",
                   textTransform: "uppercase",
-                  letterSpacing: "1px",
-                  fontSize: "0.85rem",
+                  letterSpacing: "1.5px",
+                  fontSize: "17px",
                   textDecoration: "none",
                   border: "none",
-                  /* Mobile styles: use same red as desktop */
-                  ...(window.innerWidth < 768
-                    ? {
-                        backgroundColor: "#DC3545",
-                        height: "48px",
-                        fontSize: "1rem",
-                        padding: "0 12px",
-                      }
-                    : {}),
+                  boxShadow: "0 6px 20px rgba(255, 0, 0, 0.3)",
                 }}
               >
                 Watch Live
@@ -408,7 +398,7 @@ const HomePage = () => {
 
               <div
                 className="delay-300 animate-fade-in"
-                style={{ display: "flex", gap: "16px" }}
+                style={{ display: "flex", gap: "20px" }}
               >
                 <Link
                   to="/contact#prayer"
@@ -416,28 +406,27 @@ const HomePage = () => {
                     display: "inline-flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    height: "56px",
-                    padding: "0 32px",
-                    background: "var(--color-bg-light)", // Will typically be white or light cool gray
-                    backgroundColor: "#0056b3", // Primary blue
+                    height: "54px",
+                    padding: "0 40px",
+                    backgroundColor: "#0056b3",
                     color: "#ffffff",
                     borderRadius: "0",
                     fontWeight: "800",
                     textTransform: "uppercase",
                     letterSpacing: "1px",
-                    fontSize: "0.85rem",
+                    fontSize: "0.9rem",
                     textDecoration: "none",
                     border: "none",
                     transition: "all 0.3s ease",
-                    boxShadow: "0 4px 15px rgba(0, 86, 179, 0.4)",
+                    boxShadow: "0 6px 20px rgba(0, 86, 179, 0.3)",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "#004494";
-                    e.currentTarget.style.transform = "translateY(-2px)";
+                    e.currentTarget.style.transform = "translateY(-3px)";
+                    e.currentTarget.style.boxShadow = "0 8px 25px rgba(0, 86, 179, 0.4)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "#0056b3";
                     e.currentTarget.style.transform = "none";
+                    e.currentTarget.style.boxShadow = "0 6px 20px rgba(0, 86, 179, 0.3)";
                   }}
                 >
                   Prayer Request
@@ -451,34 +440,27 @@ const HomePage = () => {
                     display: "inline-flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    height: "56px",
-                    padding: "0 32px",
-                    backgroundColor: "#DC3545", // Strong vibrant Red
+                    height: "54px",
+                    padding: "0 40px",
+                    background: "linear-gradient(135deg, #FF0000 0%, #B20000 100%)",
                     color: "#ffffff",
                     borderRadius: "0",
                     fontWeight: "800",
                     textTransform: "uppercase",
                     letterSpacing: "1px",
-                    fontSize: "0.85rem",
+                    fontSize: "0.9rem",
                     textDecoration: "none",
                     border: "none",
                     transition: "all 0.3s ease",
-                    boxShadow: "0 4px 15px rgba(220, 53, 69, 0.4)",
-                    ...(window.innerWidth < 768
-                      ? {
-                          height: "48px",
-                          fontSize: "1rem",
-                          padding: "0 12px",
-                        }
-                      : {}),
+                    boxShadow: "0 6px 20px rgba(220, 53, 69, 0.3)",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "#C82333";
-                    e.currentTarget.style.transform = "translateY(-2px)";
+                    e.currentTarget.style.transform = "translateY(-3px)";
+                    e.currentTarget.style.boxShadow = "0 8px 25px rgba(220, 53, 69, 0.4)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "#DC3545";
                     e.currentTarget.style.transform = "none";
+                    e.currentTarget.style.boxShadow = "0 6px 20px rgba(220, 53, 69, 0.3)";
                   }}
                 >
                   Watch Live
@@ -911,51 +893,93 @@ const HomePage = () => {
             </Link>
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-              gap: "32px",
-            }}
-          >
-            {[
-              "https://www.youtube.com/embed/Wdb2nQyi9QU?si=F2M45NXiYX5H3i5h",
-              "https://www.youtube.com/embed/odpBYIqEeTk?si=80vUK42yv5UXlvMd",
-              "https://www.youtube.com/embed/UEBK2hKS504?si=SOMqcgCtLPLTcZVo",
-            ].map((videoSrc, idx) => (
-              <div
-                key={idx}
-                style={{
-                  borderRadius: "12px",
-                  overflow: "hidden",
-                  backgroundColor: "#000",
-                  border: "var(--border-thin)",
-                  cursor: "default",
-                  display: "block",
-                  width: "100%",
-                  aspectRatio: "16/9",
-                  position: "relative",
-                }}
-                className="media-card hover-glow"
-              >
-                <iframe
-                  src={videoSrc}
-                  title={`YouTube video player ${idx + 1}`}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
+          <div className="recent-messages-wrapper" style={{ position: 'relative' }}>
+            <div
+              className="recent-messages-container"
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+                gap: "32px",
+              }}
+            >
+              {[
+                "https://www.youtube.com/embed/Wdb2nQyi9QU?si=F2M45NXiYX5H3i5h",
+                "https://www.youtube.com/embed/odpBYIqEeTk?si=80vUK42yv5UXlvMd",
+                "https://www.youtube.com/embed/UEBK2hKS504?si=SOMqcgCtLPLTcZVo",
+              ].map((videoSrc, idx) => (
+                <div
+                  key={idx}
                   style={{
-                    position: "absolute",
-                    inset: 0,
+                    borderRadius: "12px",
+                    overflow: "hidden",
+                    backgroundColor: "#000",
+                    border: "var(--border-thin)",
+                    cursor: "default",
+                    display: "block",
                     width: "100%",
-                    height: "100%",
-                    border: "none",
+                    aspectRatio: "16/9",
+                    position: "relative",
+                    flexShrink: 0,
                   }}
-                ></iframe>
-              </div>
-            ))}
+                  className="media-card hover-glow sermon-carousel-item"
+                >
+                  <iframe
+                    src={videoSrc}
+                    title={`YouTube video player ${idx + 1}`}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      width: "100%",
+                      height: "100%",
+                      border: "none",
+                    }}
+                  ></iframe>
+                </div>
+              ))}
+            </div>
+            {/* Horizontal Scroll Gradient - Mobile Only */}
+            <div className="carousel-fade-edge md:hidden"></div>
           </div>
+
+          <style>{`
+            @media (max-width: 768px) {
+              .recent-messages-wrapper {
+                margin: 0 -20px;
+                padding-right: 40px; /* Space for the fade edge */
+              }
+              .recent-messages-container {
+                display: flex !important;
+                flex-direction: row !important;
+                overflow-x: auto !important;
+                scroll-snap-type: x mandatory !important;
+                gap: 16px !important;
+                padding: 0 20px 20px !important;
+                -webkit-overflow-scrolling: touch;
+              }
+              .sermon-carousel-item {
+                min-width: 85% !important;
+                max-width: 85% !important;
+                scroll-snap-align: center !important;
+              }
+              .recent-messages-container::-webkit-scrollbar {
+                display: none;
+              }
+              .carousel-fade-edge {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 20px;
+                width: 60px;
+                background: linear-gradient(to left, var(--color-bg-dark), transparent);
+                pointer-events: none;
+                z-index: 5;
+              }
+            }
+          `}</style>
         </div>
       </section>
 

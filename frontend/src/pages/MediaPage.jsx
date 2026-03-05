@@ -606,7 +606,7 @@ const MediaPage = () => {
                                     <div style={{ fontWeight: '800', fontSize: '1.2rem', marginBottom: '4px' }}>YouTube</div>
                                     <div style={{ opacity: 0.8, fontSize: '0.85rem' }}>Prophet Joshua</div>
                                 </div>
-                                <span style={{ backgroundColor: 'rgba(255,255,255,0.2)', padding: '8px 24px', borderRadius: '8px', fontWeight: '700', fontSize: '0.85rem', letterSpacing: '0.5px' }}>Subscribe</span>
+                                <span style={{ backgroundColor: 'rgba(255,255,255,0.2)', padding: '8px 24px', borderRadius: '0', fontWeight: '700', fontSize: '0.85rem', letterSpacing: '0.5px' }}>Subscribe</span>
                             </div>
                         </a>
 
