@@ -256,7 +256,7 @@ const HomePage = () => {
               flexDirection: "column",
               alignItems: "center",
               gap: "16px",
-              padding: "0 20px 95px 20px",
+              padding: "0 20px 120px 20px",
             }}
             className="delay-300 animate-fade-in"
           >
