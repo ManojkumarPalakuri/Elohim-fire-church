@@ -160,12 +160,14 @@ const HomePage = () => {
             }}
           ></div>
 
-          {/* Centered Hero Content */}
+          {/* Top Block: Spacer for Logo clearance */}
+          <div style={{ height: "80px", position: "relative", zIndex: 10 }}></div>
+
+          {/* Middle Block: Hero Text Content */}
           <div
             style={{
               position: "relative",
               zIndex: 10,
-              flex: 1,
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
@@ -234,7 +236,7 @@ const HomePage = () => {
                 lineHeight: 1.6,
                 color: "#FFFFFF",
                 maxWidth: "320px",
-                margin: "0 auto 30px auto",
+                margin: "0",
                 fontWeight: "400",
                 textShadow: "0 1px 4px rgba(0,0,0,0.3)",
                 textAlign: "center",
@@ -243,64 +245,66 @@ const HomePage = () => {
             >
               Experience the life-transforming ministry of Prophet Joshua through power and grace.
             </p>
+          </div>
 
-            {/* Premium Vertical Stack Buttons */}
-            <div
+          {/* Bottom Block: CTA Buttons (with Navbar clearance) */}
+          <div
+            style={{
+              position: "relative",
+              zIndex: 10,
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "15px",
+              padding: "0 20px 100px 20px",
+            }}
+            className="delay-300 animate-fade-in"
+          >
+            <a
+              href="https://youtube.com/@prophetjoshua6374"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 width: "100%",
+                height: "54px",
                 display: "flex",
-                flexDirection: "column",
                 alignItems: "center",
-                gap: "15px",
-                marginTop: "15px",
+                justifyContent: "center",
+                background: "var(--color-accent-primary)",
+                color: "#fff",
+                borderRadius: "0",
+                fontWeight: "700",
+                textTransform: "uppercase",
+                letterSpacing: "1.5px",
+                fontSize: "16px",
+                textDecoration: "none",
+                border: "none",
               }}
-              className="delay-300 animate-fade-in"
             >
-              <a
-                href="https://youtube.com/@prophetjoshua6374"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  width: "100%",
-                  height: "54px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  background: "var(--color-accent-primary)",
-                  color: "#fff",
-                  borderRadius: "0",
-                  fontWeight: "700",
-                  textTransform: "uppercase",
-                  letterSpacing: "1.5px",
-                  fontSize: "16px",
-                  textDecoration: "none",
-                  border: "none",
-                }}
-              >
-                Watch Live Now
-              </a>
-              <Link
-                to="/contact"
-                style={{
-                  width: "100%",
-                  height: "54px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  background: "transparent",
-                  color: "#fff",
-                  borderRadius: "0",
-                  fontWeight: "700",
-                  textTransform: "uppercase",
-                  letterSpacing: "1.5px",
-                  fontSize: "16px",
-                  textDecoration: "none",
-                  border: "2px solid #fff",
-                }}
-              >
-                Prayer Request
-              </Link>
-            </div>
+              Watch Live Now
+            </a>
+            <Link
+              to="/contact"
+              style={{
+                width: "100%",
+                height: "54px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                background: "transparent",
+                color: "#fff",
+                borderRadius: "0",
+                fontWeight: "700",
+                textTransform: "uppercase",
+                letterSpacing: "1.5px",
+                fontSize: "16px",
+                textDecoration: "none",
+                border: "2px solid #fff",
+              }}
+            >
+              Prayer Request
+            </Link>
           </div>
         </div>
 
@@ -580,7 +584,7 @@ const HomePage = () => {
       {/* Service Times Section */}
       <section
         className="section-padding"
-        style={{ backgroundColor: "#0F0F12", borderTop: "1px solid rgba(255,255,255,0.05)" }}
+        style={{ backgroundColor: "var(--color-bg-dark)", borderTop: "var(--border-thin)" }}
       >
         <div className="container">
           <div className="text-center mb-64">
@@ -679,7 +683,7 @@ const HomePage = () => {
       {/* Upcoming Events Section (Horizontal Cards) */}
       <section
         className="section-padding"
-        style={{ backgroundColor: "#0F0F12", borderTop: "1px solid rgba(255,255,255,0.05)" }}
+        style={{ backgroundColor: "var(--color-bg-dark)", borderTop: "var(--border-thin)" }}
       >
         <div className="container">
           <div className="text-center mb-64">
