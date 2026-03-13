@@ -28,6 +28,8 @@ app.use('/api/messages', require('./src/routes/messages'));
 app.use('/api/events', require('./src/routes/events'));
 app.use('/api/analytics', require('./src/routes/analytics'));
 app.use('/api/sermons', require('./src/routes/sermons'));
+console.log('Registering YouTube route...');
+app.use('/api/youtube', require('./src/routes/youtube'));
 
 app.get('/', (req, res) => {
     res.send('Elohim Fire Ministries API is running...');

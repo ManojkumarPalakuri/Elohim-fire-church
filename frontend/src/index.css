@@ -955,10 +955,10 @@ button {
     justify-content: flex-end;
     gap: 4px;
     font-size: 0.8rem;
-    color: var(--color-text-secondary);
+    color: var(--color-text-primary);
     margin-bottom: 8px;
     padding-right: 16px;
-    opacity: 0.8;
+    opacity: 1;
   }
 
   .mobile-swipe-hint::before {

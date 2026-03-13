@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Play, Headphones, Image as ImageIcon, Facebook, Instagram, Youtube, ChevronLeft, ChevronRight, X, Maximize2 } from 'lucide-react';
+import axios from 'axios';
+import API_BASE_URL from '../api/apiConfig.js';
 
 const imageModules = import.meta.glob('../assets/*.{jpeg,jpg,png,JPG,JPEG}', { eager: true });
 const galleryImages = Object.values(imageModules).map(mod => mod.default || mod);
@@ -79,6 +81,25 @@ const MediaPage = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isMarqueePaused, setIsMarqueePaused] = useState(false);
     const sliderRef = useRef(null);
+
+    // YouTube videos state
+    const [youtubeVideos, setYoutubeVideos] = useState([]);
+    const [youtubeLoading, setYoutubeLoading] = useState(true);
+
+    // Fetch YouTube videos
+    useEffect(() => {
+        const fetchYouTubeVideos = async () => {
+            try {
+                const res = await axios.get(`${API_BASE_URL}/youtube`);
+                setYoutubeVideos(res.data);
+            } catch (error) {
+                console.error("Error fetching YouTube videos:", error);
+            } finally {
+                setYoutubeLoading(false);
+            }
+        };
+        fetchYouTubeVideos();
+    }, []);
 
     const openLightbox = (index) => {
         setCurrentImageIndex(index);
@@ -604,7 +625,9 @@ const MediaPage = () => {
                                 <Youtube size={48} />
                                 <div style={{ textAlign: 'center' }}>
                                     <div style={{ fontWeight: '800', fontSize: '1.2rem', marginBottom: '4px' }}>YouTube</div>
-                                    <div style={{ opacity: 0.8, fontSize: '0.85rem' }}>Prophet Joshua</div>
+                                    <div style={{ opacity: 0.8, fontSize: '0.85rem' }}>
+                                        {youtubeLoading ? 'Loading latest...' : youtubeVideos.length > 0 ? youtubeVideos[0].title : 'Prophet Joshua'}
+                                    </div>
                                 </div>
                                 <span style={{ backgroundColor: 'rgba(255,255,255,0.2)', padding: '8px 24px', borderRadius: '0', fontWeight: '700', fontSize: '0.85rem', letterSpacing: '0.5px' }}>Subscribe</span>
                             </div>

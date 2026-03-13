@@ -10,9 +10,13 @@ import {
   Globe,
   Video,
   ChevronRight,
+  ChevronLeft,
   BookOpen,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import API_BASE_URL from "../api/apiConfig";
+import { useTheme } from "../context/ThemeContext";
 
 const testimonials = [
   {
@@ -67,10 +71,11 @@ const testimonials = [
   },
 ];
 
-import axios from "axios";
-import API_BASE_URL from "../api/apiConfig.js";
 
 const HomePage = () => {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   // Media filtering state
   const [activeFilter, setActiveFilter] = useState("all");
 
@@ -81,6 +86,34 @@ const HomePage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+
+  // YouTube videos state
+  const [youtubeVideos, setYoutubeVideos] = useState([]);
+  const [youtubeLoading, setYoutubeLoading] = useState(true);
+  const [activeVideoIndex, setActiveVideoIndex] = useState(0);
+  const sliderRef = React.useRef(null);
+
+  const scrollSlider = (direction) => {
+    if (sliderRef.current) {
+      const { scrollLeft, clientWidth } = sliderRef.current;
+      const scrollTo = direction === 'left'
+        ? scrollLeft - clientWidth
+        : scrollLeft + clientWidth;
+
+      sliderRef.current.scrollTo({
+        left: scrollTo,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const handleScroll = () => {
+    if (sliderRef.current) {
+      const { scrollLeft, clientWidth } = sliderRef.current;
+      const index = Math.round(scrollLeft / clientWidth);
+      setActiveVideoIndex(index);
+    }
+  };
 
   useEffect(() => {
     setIsLoaded(true);
@@ -100,6 +133,22 @@ const HomePage = () => {
       }
     };
     fetchEvents();
+  }, []);
+
+  // Fetch YouTube videos
+  useEffect(() => {
+    const fetchYouTubeVideos = async () => {
+      try {
+        const res = await axios.get(`${API_BASE_URL}/youtube`);
+        setYoutubeVideos(res.data);
+      } catch (error) {
+        console.error("Error fetching YouTube videos:", error);
+        // Fallback or handle error
+      } finally {
+        setYoutubeLoading(false);
+      }
+    };
+    fetchYouTubeVideos();
   }, []);
 
   useEffect(() => {
@@ -921,7 +970,59 @@ const HomePage = () => {
             <span className="mobile-swipe-hint-arrow">→</span>
           </div>
           <div className="recent-messages-wrapper mobile-swipe-section" style={{ position: 'relative' }}>
+            {/* Desktop Navigation Arrows */}
+            <button
+              onClick={() => scrollSlider('left')}
+              className="sermon-nav-btn"
+              style={{
+                display: activeVideoIndex === 0 ? 'none' : 'block',
+                position: 'absolute',
+                left: '-24px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                zIndex: 10,
+                backgroundColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.15)',
+                backdropFilter: 'blur(12px)',
+                padding: '12px',
+                borderRadius: '50%',
+                border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.15)',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer',
+                boxShadow: isDark ? 'none' : '0 2px 8px rgba(0,0,0,0.1)'
+              }}
+              onMouseEnter={(e) => e.target.style.backgroundColor = isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.25)'}
+              onMouseLeave={(e) => e.target.style.backgroundColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.15)'}
+            >
+              <ChevronLeft size={24} color={isDark ? "white" : "black"} />
+            </button>
+            <button
+              onClick={() => scrollSlider('right')}
+              className="sermon-nav-btn"
+              style={{
+                display: activeVideoIndex >= (youtubeVideos.length > 0 ? youtubeVideos.length : 3) - 1 ? 'none' : 'block',
+                position: 'absolute',
+                right: '-24px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                zIndex: 10,
+                backgroundColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.15)',
+                backdropFilter: 'blur(12px)',
+                padding: '12px',
+                borderRadius: '50%',
+                border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.15)',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer',
+                boxShadow: isDark ? 'none' : '0 2px 8px rgba(0,0,0,0.1)'
+              }}
+              onMouseEnter={(e) => e.target.style.backgroundColor = isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.25)'}
+              onMouseLeave={(e) => e.target.style.backgroundColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.15)'}
+            >
+              <ChevronRight size={24} color={isDark ? "white" : "black"} />
+            </button>
+
             <div
+              ref={sliderRef}
+              onScroll={handleScroll}
               className="recent-messages-container mobile-swipe-container"
               style={{
                 display: "flex",
@@ -933,51 +1034,129 @@ const HomePage = () => {
                 paddingBottom: "20px"
               }}
             >
-              {[
-                "https://www.youtube.com/embed/Wdb2nQyi9QU?si=F2M45NXiYX5H3i5h",
-                "https://www.youtube.com/embed/odpBYIqEeTk?si=80vUK42yv5UXlvMd",
-                "https://www.youtube.com/embed/UEBK2hKS504?si=SOMqcgCtLPLTcZVo",
-              ].map((videoSrc, idx) => (
-                <div
-                  key={idx}
-                  style={{
-                    borderRadius: "12px",
-                    overflow: "hidden",
-                    backgroundColor: "#000",
-                    border: "var(--border-thin)",
-                    cursor: "default",
-                    display: "block",
+              {youtubeLoading ? (
+                // Loading state skeleton/placeholder
+                [1, 2, 3].map((i) => (
+                  <div key={i} className="media-card sermon-carousel-item" style={{
                     width: "100%",
                     aspectRatio: "16/9",
-                    position: "relative",
+                    backgroundColor: "rgba(255,255,255,0.05)",
+                    borderRadius: "12px",
                     flexShrink: 0,
-                  }}
-                  className="media-card hover-glow sermon-carousel-item"
-                >
-                  <iframe
-                    src={videoSrc}
-                    title={`YouTube video player ${idx + 1}`}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
+                  }} />
+                ))
+              ) : youtubeVideos.length > 0 ? (
+                youtubeVideos.map((video, idx) => (
+                  <div
+                    key={video.id}
                     style={{
-                      position: "absolute",
-                      inset: 0,
+                      borderRadius: "12px",
+                      overflow: "hidden",
+                      backgroundColor: "#000",
+                      border: "var(--border-thin)",
+                      cursor: "default",
+                      display: "block",
                       width: "100%",
-                      height: "100%",
-                      border: "none",
+                      aspectRatio: "16/9",
+                      position: "relative",
+                      flexShrink: 0,
                     }}
-                  ></iframe>
-                </div>
-              ))}
+                    className="media-card hover-glow sermon-carousel-item"
+                  >
+                    <iframe
+                      src={video.embedUrl}
+                      title={video.title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        width: "100%",
+                        height: "100%",
+                        border: "none",
+                      }}
+                    ></iframe>
+                  </div>
+                ))
+              ) : (
+                // Fallback hardcoded if API fails or no videos found
+                [
+                  "https://www.youtube.com/embed/Wdb2nQyi9QU?si=F2M45NXiYX5H3i5h",
+                  "https://www.youtube.com/embed/odpBYIqEeTk?si=80vUK42yv5UXlvMd",
+                  "https://www.youtube.com/embed/UEBK2hKS504?si=SOMqcgCtLPLTcZVo",
+                ].map((videoSrc, idx) => (
+                  <div
+                    key={idx}
+                    style={{
+                      borderRadius: "12px",
+                      overflow: "hidden",
+                      backgroundColor: "#000",
+                      border: "var(--border-thin)",
+                      cursor: "default",
+                      display: "block",
+                      width: "100%",
+                      aspectRatio: "16/9",
+                      position: "relative",
+                      flexShrink: 0,
+                    }}
+                    className="media-card hover-glow sermon-carousel-item"
+                  >
+                    <iframe
+                      src={videoSrc}
+                      title={`YouTube video player ${idx + 1}`}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        width: "100%",
+                        height: "100%",
+                        border: "none",
+                      }}
+                    ></iframe>
+                  </div>
+                ))
+              )}
             </div>
             {/* Horizontal Scroll Gradient - Mobile Only */}
             <div className="carousel-fade-edge md:hidden"></div>
           </div>
 
+          {/* Pagination Dots */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '24px' }}>
+            {(youtubeVideos.length > 0 ? youtubeVideos : [1, 2, 3]).map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => {
+                  if (sliderRef.current) {
+                    sliderRef.current.scrollTo({
+                      left: idx * sliderRef.current.clientWidth,
+                      behavior: 'smooth'
+                    });
+                  }
+                }}
+                style={{
+                  height: '8px',
+                  borderRadius: '9999px',
+                  transition: 'all 0.3s ease',
+                  border: 'none',
+                  cursor: 'pointer',
+                  width: activeVideoIndex === idx ? '32px' : '8px',
+                  backgroundColor: activeVideoIndex === idx ? '#E53E3E' : (isDark ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.25)')
+                }}
+              />
+            ))}
+          </div>
+
           <style>{`
             @media (max-width: 768px) {
+              .sermon-nav-btn {
+                display: none !important;
+              }
               .recent-messages-wrapper {
                 margin: 0 -20px;
                 padding-right: 40px; /* Space for the fade edge */
