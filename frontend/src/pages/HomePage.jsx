@@ -91,6 +91,7 @@ const HomePage = () => {
   const [youtubeVideos, setYoutubeVideos] = useState([]);
   const [youtubeLoading, setYoutubeLoading] = useState(true);
   const [activeVideoIndex, setActiveVideoIndex] = useState(0);
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const sliderRef = React.useRef(null);
 
   const scrollSlider = (direction) => {
@@ -346,10 +347,8 @@ const HomePage = () => {
             >
               Prayer Request
             </Link>
-            <a
-              href="https://youtube.com/@prophetjoshua6374"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => setIsVideoModalOpen(true)}
               style={{
                 width: "100%",
                 height: "56px",
@@ -363,13 +362,13 @@ const HomePage = () => {
                 textTransform: "uppercase",
                 letterSpacing: "1.5px",
                 fontSize: "16px",
-                textDecoration: "none",
                 border: "none",
                 boxShadow: "0 6px 20px rgba(255, 0, 0, 0.3)",
+                cursor: "pointer",
               }}
             >
               Watch Live Now
-            </a>
+            </button>
           </div>
         </div>
 
@@ -494,10 +493,8 @@ const HomePage = () => {
                   Prayer Request
                 </Link>
 
-                <a
-                  href="https://youtube.com/@prophetjoshua6374?si=dGfgURVT4xawDOF_"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  onClick={() => setIsVideoModalOpen(true)}
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
@@ -511,10 +508,10 @@ const HomePage = () => {
                     textTransform: "uppercase",
                     letterSpacing: "1px",
                     fontSize: "0.9rem",
-                    textDecoration: "none",
                     border: "none",
                     transition: "all 0.3s ease",
                     boxShadow: "0 6px 20px rgba(220, 53, 69, 0.3)",
+                    cursor: "pointer",
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = "translateY(-3px)";
@@ -526,7 +523,7 @@ const HomePage = () => {
                   }}
                 >
                   Watch Live
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -1344,6 +1341,79 @@ const HomePage = () => {
           </Link>
         </div>
       </section>
+
+      {/* Video Modal Overlay */}
+      {isVideoModalOpen && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.9)",
+            zIndex: 9999,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "20px",
+          }}
+          onClick={() => setIsVideoModalOpen(false)}
+        >
+          {/* Close Button */}
+          <button
+            onClick={() => setIsVideoModalOpen(false)}
+            style={{
+              position: "absolute",
+              top: "20px",
+              right: "20px",
+              background: "transparent",
+              color: "#fff",
+              border: "none",
+              fontSize: "32px",
+              cursor: "pointer",
+              zIndex: 10000,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "48px",
+              height: "48px",
+              borderRadius: "50%",
+              backgroundColor: "rgba(255, 255, 255, 0.1)",
+              transition: "background-color 0.3s ease"
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.2)"}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.1)"}
+          >
+            ×
+          </button>
+
+          {/* Video Container - click propagation stopped so clicking video doesn't close modal */}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              width: "100%",
+              maxWidth: "1000px",
+              aspectRatio: "16/9",
+              backgroundColor: "#000",
+              borderRadius: "12px",
+              overflow: "hidden",
+              boxShadow: "0 20px 50px rgba(0,0,0,0.5)"
+            }}
+          >
+            <iframe
+              src={youtubeVideos.length > 0 ? youtubeVideos[0].embedUrl : "https://www.youtube.com/embed/Wdb2nQyi9QU?si=F2M45NXiYX5H3i5h"}
+              title="Elohim Fire Ministries Live Stream"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+              style={{
+                width: "100%",
+                height: "100%",
+                border: "none",
+              }}
+            ></iframe>
+          </div>
+        </div>
+      )}
     </>
   );
 };
