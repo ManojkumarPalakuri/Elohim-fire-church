@@ -207,15 +207,29 @@ const MediaPage = () => {
                             backgroundColor: '#000'
                         }}>
                             {youtubeLoading ? (
-                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#fff' }}>
-                                    <div className="spinner-border text-primary" role="status">
-                                        <span className="visually-hidden">Loading...</span>
-                                    </div>
+                                <div style={{ 
+                                    display: 'flex', 
+                                    flexDirection: 'column',
+                                    alignItems: 'center', 
+                                    justifyContent: 'center', 
+                                    height: '100%', 
+                                    color: '#fff',
+                                    gap: '15px'
+                                }}>
+                                    <div style={{
+                                        width: '40px',
+                                        height: '40px',
+                                        border: '3px solid rgba(255,255,255,0.1)',
+                                        borderTop: '3px solid var(--color-accent-primary)',
+                                        borderRadius: '50%',
+                                        animation: 'spin 1s linear infinite'
+                                    }}></div>
+                                    <span style={{ fontSize: '0.9rem', opacity: 0.8 }}>Connecting to Live Stream...</span>
                                 </div>
                             ) : (
                                 <iframe
-                                    src={youtubeVideos.length > 0 ? `${youtubeVideos[0].embedUrl}?autoplay=0` : "https://www.youtube.com/embed/Wdb2nQyi9QU"}
-                                    title="Elohim Fire Ministries Live Stream"
+                                    src={youtubeVideos.length > 0 ? `${youtubeVideos[0].embedUrl}?autoplay=0&rel=0` : "https://www.youtube.com/embed/Wdb2nQyi9QU?rel=0"}
+                                    title="Latest YouTube Video"
                                     frameBorder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                     referrerPolicy="strict-origin-when-cross-origin"
@@ -224,9 +238,16 @@ const MediaPage = () => {
                                         width: "100%",
                                         height: "100%",
                                         border: "none",
+                                        backgroundColor: '#000'
                                     }}
                                 ></iframe>
                             )}
+                            <style>{`
+                                @keyframes spin {
+                                    from { transform: rotate(0deg); }
+                                    to { transform: rotate(360deg); }
+                                }
+                            `}</style>
                         </div>
 
                         <div style={{ marginTop: '2rem' }}>

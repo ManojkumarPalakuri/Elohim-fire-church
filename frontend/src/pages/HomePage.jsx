@@ -186,7 +186,7 @@ const HomePage = () => {
           className="mobile-only-hero d-md-none"
           style={{
             position: "relative",
-            height: "100vh",
+            minHeight: "100vh",
             minHeight: "100vh",
             display: "flex",
             flexDirection: "column",
@@ -1392,10 +1392,14 @@ const HomePage = () => {
               width: "100%",
               maxWidth: "1000px",
               aspectRatio: "16/9",
-              backgroundColor: "#000",
+              backgroundColor: "#111", // Dark background while loading
               borderRadius: "12px",
               overflow: "hidden",
-              boxShadow: "0 20px 50px rgba(0,0,0,0.5)"
+              boxShadow: "0 20px 50px rgba(0,0,0,0.6)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              position: "relative"
             }}
           >
             {youtubeLoading ? (
@@ -1404,18 +1408,22 @@ const HomePage = () => {
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                height: '100%',
                 color: '#fff',
                 gap: '20px'
               }}>
-                <div className="spinner-border text-primary" role="status">
-                  <span className="visually-hidden">Loading...</span>
-                </div>
-                <p>Fetching latest live stream...</p>
+                <div style={{
+                  width: '40px',
+                  height: '40px',
+                  border: '3px solid rgba(255,255,255,0.1)',
+                  borderTop: '3px solid var(--color-accent-primary)',
+                  borderRadius: '50%',
+                  animation: 'spin 1s linear infinite'
+                }}></div>
+                <p style={{ margin: 0, fontSize: '0.9rem', opacity: 0.8 }}>Connecting to Prophet Joshua Live...</p>
               </div>
             ) : (
               <iframe
-                src={youtubeVideos.length > 0 ? `${youtubeVideos[0].embedUrl}?autoplay=1` : "https://www.youtube.com/embed/Wdb2nQyi9QU?autoplay=1"}
+                src={youtubeVideos.length > 0 ? `${youtubeVideos[0].embedUrl}?autoplay=1&mute=0&rel=0` : "https://www.youtube.com/embed/Wdb2nQyi9QU?autoplay=1&mute=0&rel=0"}
                 title="Elohim Fire Ministries Live Stream"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -1425,9 +1433,17 @@ const HomePage = () => {
                   width: "100%",
                   height: "100%",
                   border: "none",
+                  backgroundColor: "#000"
                 }}
               ></iframe>
             )}
+            
+            <style>{`
+              @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+              }
+            `}</style>
           </div>
         </div>
       )}
