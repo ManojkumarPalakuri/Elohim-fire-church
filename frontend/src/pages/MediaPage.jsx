@@ -189,31 +189,68 @@ const MediaPage = () => {
                         zIndex: 0
                     }}></div>
 
-                    <div style={{ position: 'relative', zIndex: 1 }}>
+                    <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
                         <h3 style={{ color: 'var(--color-text-primary)', fontSize: 'clamp(1.5rem, 5vw, 2rem)', marginBottom: '1rem', fontWeight: '800' }}>Watch Prophet Joshua Live</h3>
-                        <p style={{ color: 'var(--color-text-secondary)', maxWidth: '500px', fontSize: '1rem', marginBottom: '2rem' }}>
+                        <p style={{ color: 'var(--color-text-secondary)', maxWidth: '500px', fontSize: '1rem', marginBottom: '2rem', marginLeft: 'auto', marginRight: 'auto' }}>
                             Experience powerful teachings, miraculous healings, and prophetic declarations from anywhere in the world.
                         </p>
-                        <a href="https://youtube.com/@prophetjoshua6374?si=dGfgURVT4xawDOF_" target="_blank" rel="noopener noreferrer" style={{
-                            background: 'linear-gradient(135deg, #FF0000 0%, #CC0000 100%)',
-                            color: '#FFFFFF',
-                            textDecoration: 'none',
-                            padding: '16px 40px',
-                            borderRadius: '0',
-                            fontWeight: '800',
-                            textTransform: 'uppercase',
-                            letterSpacing: '1px',
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: '12px',
-                            boxShadow: '0 10px 30px rgba(255, 0, 0, 0.3)',
-                            transition: 'all 0.3s ease',
-                            fontSize: '0.9rem'
-                        }}
-                            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-3px)'}
-                            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
-                            <Play size={20} fill="currentColor" /> Visit YouTube
-                        </a>
+                        
+                        <div style={{
+                            width: '100%',
+                            maxWidth: '800px',
+                            margin: '0 auto',
+                            aspectRatio: '16/9',
+                            borderRadius: '16px',
+                            overflow: 'hidden',
+                            boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
+                            border: '1px solid rgba(255,255,255,0.1)',
+                            backgroundColor: '#000'
+                        }}>
+                            {youtubeLoading ? (
+                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#fff' }}>
+                                    <div className="spinner-border text-primary" role="status">
+                                        <span className="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                            ) : (
+                                <iframe
+                                    src={youtubeVideos.length > 0 ? `${youtubeVideos[0].embedUrl}?autoplay=0` : "https://www.youtube.com/embed/Wdb2nQyi9QU"}
+                                    title="Elohim Fire Ministries Live Stream"
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerPolicy="strict-origin-when-cross-origin"
+                                    allowFullScreen
+                                    style={{
+                                        width: "100%",
+                                        height: "100%",
+                                        border: "none",
+                                    }}
+                                ></iframe>
+                            )}
+                        </div>
+
+                        <div style={{ marginTop: '2rem' }}>
+                            <a href="https://youtube.com/@prophetjoshua6374?si=dGfgURVT4xawDOF_" target="_blank" rel="noopener noreferrer" style={{
+                                background: 'rgba(255, 255, 255, 0.05)',
+                                color: '#FFFFFF',
+                                textDecoration: 'none',
+                                padding: '12px 24px',
+                                borderRadius: '0',
+                                fontWeight: '700',
+                                textTransform: 'uppercase',
+                                letterSpacing: '1px',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '8px',
+                                border: '1px solid rgba(255, 255, 255, 0.1)',
+                                transition: 'all 0.3s ease',
+                                fontSize: '0.8rem'
+                            }}
+                                onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'}
+                                onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'}>
+                                <Play size={16} fill="currentColor" /> More on YouTube
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>

@@ -1398,19 +1398,36 @@ const HomePage = () => {
               boxShadow: "0 20px 50px rgba(0,0,0,0.5)"
             }}
           >
-            <iframe
-              src={youtubeVideos.length > 0 ? youtubeVideos[0].embedUrl : "https://www.youtube.com/embed/Wdb2nQyi9QU?si=F2M45NXiYX5H3i5h"}
-              title="Elohim Fire Ministries Live Stream"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-              style={{
-                width: "100%",
-                height: "100%",
-                border: "none",
-              }}
-            ></iframe>
+            {youtubeLoading ? (
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '100%',
+                color: '#fff',
+                gap: '20px'
+              }}>
+                <div className="spinner-border text-primary" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+                <p>Fetching latest live stream...</p>
+              </div>
+            ) : (
+              <iframe
+                src={youtubeVideos.length > 0 ? `${youtubeVideos[0].embedUrl}?autoplay=1` : "https://www.youtube.com/embed/Wdb2nQyi9QU?autoplay=1"}
+                title="Elohim Fire Ministries Live Stream"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  border: "none",
+                }}
+              ></iframe>
+            )}
           </div>
         </div>
       )}

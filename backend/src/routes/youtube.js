@@ -87,9 +87,14 @@ router.get('/', async (req, res) => {
         // RSS URL: https://www.youtube.com/feeds/videos.xml?channel_id=CHANNEL_ID
         const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
 
+        console.log(`Fetching YouTube RSS feed from: ${rssUrl}`);
+
         const rssResponse = await axios.get(rssUrl, {
-            headers: { 'Accept': 'application/xml' },
-            timeout: 8000
+            headers: { 
+                'Accept': 'application/xml',
+                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+            },
+            timeout: 10000
         });
         const rssData = rssResponse.data;
 
@@ -101,7 +106,11 @@ router.get('/', async (req, res) => {
         const publishedRegex = /<published>(.*?)<\/published>/;
 
         // Keywords that identify a "Live" broadcast or Church Service (Full length)
-        const liveKeywords = ['Sunday Service', 'Friday Service', 'Morning Service', 'Evening Service', 'Prophetic Seminar', 'Night of Deliverance', 'Night of Fire', 'Special Meeting', '7095409118'];
+        const liveKeywords = [
+            'Sunday Service', 'Friday Service', 'Morning Service', 'Evening Service', 
+            'Prophetic Seminar', 'Night of Deliverance', 'Night of Fire', 'Special Meeting', 
+            '7095409118', 'Live', 'Broadcast', 'Streaming', 'Direct', 'Prophet Joshua'
+        ];
 
         let match;
         const allFound = [];
@@ -149,7 +158,7 @@ router.get('/', async (req, res) => {
                 const titleMatch = entryContent.match(titleRegex);
                 const publishedMatch = entryContent.match(publishedRegex);
 
-                if (videoIdMatch && titleMatch) {
+                                if (videoIdMatch && titleMatch) {
                     const videoId = videoIdMatch[1];
                     const title = titleMatch[1].replace(/<!\[CDATA\[(.*?)\]\]>/, '$1');
 
@@ -158,6 +167,7 @@ router.get('/', async (req, res) => {
                             id: videoId,
                             title: title,
                             publishedAt: publishedMatch ? publishedMatch[1] : null,
+                            thumbnail: `https://i3.ytimg.com/vi/${videoId}/hqdefault.jpg`,
                             embedUrl: `https://www.youtube.com/embed/${videoId}`,
                             isLive: liveKeywords.some(keyword =>
                                 title.toLowerCase().includes(keyword.toLowerCase()) ||
@@ -168,6 +178,12 @@ router.get('/', async (req, res) => {
                     }
                 }
             }
+        }
+
+        if (allFound.length === 0) {
+            console.warn('No videos found in RSS feed for channel:', channelId);
+        } else {
+            console.log(`Successfully found ${allFound.length} videos from RSS.`);
         }
 
         res.json(allFound.slice(0, 3)); // Ensure only up to 3 videos are returned
